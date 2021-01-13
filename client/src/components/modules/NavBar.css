@@ -1,10 +1,16 @@
 .NavBar-container {
     padding: var(--s) var(--m);
-    background-color: var(--darkgray);
+    background-color: var(--darkgrey);
+    display: flex;
+    align-items: center;
 }
 
 .NavBar-title {
-    color: var(--white);
+    color: var(--lightgrey);
     font-size: 30px;
-    font-family: "Quantico", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
+  }
+
+  .LoginButton{
+    margin-left: auto;
   }
