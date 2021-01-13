@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "@reach/router";
+import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "./NavBar.css";
 
@@ -14,7 +14,12 @@ class NavBar extends Component {
         return(
             <nav className="NavBar-container">
                <div className="NavBar-title u-inlineBlock">Fancy.App.Name</div>
-               <div className="LoginButton">
+               <span className="NavBar-linkContainer u-inlineBlock">
+                <Link to="/" className="NavBar-link"> Home </Link>
+                <Link to="/profile" className="NavBar-link"> Profile </Link>
+                <Link to="/howtoplay" className="NavBar-link"> How to play </Link>
+                </span>
+               <div className="LoginButton u-inlineBlock">
                {this.props.userId ? (
                     <GoogleLogout
                         clientId={GOOGLE_CLIENT_ID}
@@ -27,7 +32,7 @@ class NavBar extends Component {
                         clientId={GOOGLE_CLIENT_ID}
                         buttonText="Login"
                         onSuccess={this.props.handleLogin}
-                       onFailure={(err) => console.log(err)}
+                        onFailure={(err) => console.log(err)}
                     />
                 )}
                 </div>

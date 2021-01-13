@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
-import "./Skeleton.css";
+import "./Home.css";
 
-class Skeleton extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
@@ -40,4 +39,4 @@ class Skeleton extends Component {
   }
 }
 
-export default Skeleton;
+export default Home;

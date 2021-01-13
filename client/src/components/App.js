@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Home from "./pages/Home.js";
 import NavBar from "./modules/NavBar.js";
+import Profile from "./pages/Profile.js";
+//import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../utilities.css";
 import "./App.js";
+import HowTo from "./pages/HowTo.js";
 
 import { socket } from "../client-socket.js";
 
@@ -55,9 +58,9 @@ class App extends Component {
         /> 
         <div className="App-container">
         <Router>
-          <Skeleton
-            path="/"
-          />
+          <Home path="/" />
+          <Profile path="/profile" userId={this.state.userId}/>
+          <HowTo path="/howtoplay" />
           <NotFound default />
         </Router>
         </div>
