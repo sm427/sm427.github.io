@@ -13,7 +13,7 @@ class NavBar extends Component {
     render() {
         return(
             <nav className="NavBar-container">
-               <div className="NavBar-title u-inlineBlock">Fancy.App.Name</div>
+               <div className="NavBar-title u-inlineBlock">track'ntag</div>
                <span className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link"> Home </Link>
                 <Link to="/profile" className="NavBar-link"> Profile </Link>
