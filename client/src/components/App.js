@@ -47,6 +47,11 @@ class App extends Component {
   render() {
     return (
       <>
+        {/* <NavBar 
+          // handleLogin={this.handleLogin}
+          // handleLogout={this.handleLogout}
+          // userId={this.state.userId}
+        />  */}
         <Router>
           <Skeleton
             path="/"

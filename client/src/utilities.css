@@ -15,14 +15,23 @@
 */
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+/**@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;700;900&display=swap");*/
+
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
+/* Bebas */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* Capriola */
+@import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+/* Quantico */
+@import url('https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap');
 
 :root {
-  --primary: #396dff;
-  --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
+  --primary: #41866f;
+  --primary--dim: #2e5749;
+  --darkgrey: #4d4d4d;
+  --medgrey: #bdbdbd;
+  --lightgrey: #efefef;
   --white: #fff;
 
   --xs: 4px;
@@ -34,7 +43,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
 

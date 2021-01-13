@@ -1,0 +1,10 @@
+.NavBar-container {
+    padding: var(--s) var(--m);
+    background-color: var(--darkgray);
+}
+
+.NavBar-title {
+    color: var(--white);
+    font-size: 30px;
+    font-family: "Quantico", sans-serif;
+  }
