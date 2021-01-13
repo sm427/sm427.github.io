@@ -24,7 +24,7 @@ class NavBar extends Component {
                     <GoogleLogout
                         clientId={GOOGLE_CLIENT_ID}
                         buttonText="Logout"
-                        onLogoutSuccess={this.props.handleLogout}
+                        onLogoutSuccess={this.props.handleLogout} // possibly remove the props since i dont think handleLogout is a prop in App.js, it's a function
                         onFailure={(err) => console.log(err)}
                     />
                 ) : (
