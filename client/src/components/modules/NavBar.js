@@ -11,12 +11,17 @@ class NavBar extends Component {
     }
 
     render() {
+
+        let profileLink = "/profile/" + this.props.userId
+
         return(
             <nav className="NavBar-container">
                <div className="NavBar-title u-inlineBlock">track'ntag</div>
                <span className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link"> Home </Link>
-                <Link to="/profile" className="NavBar-link"> Profile </Link>
+                {this.props.userId ? (
+                    <Link to={profileLink} className="NavBar-link"> Profile </Link>
+                ):("")}
                 <Link to="/howtoplay" className="NavBar-link"> How to play </Link>
                 </span>
                <div className="LoginButton u-inlineBlock">

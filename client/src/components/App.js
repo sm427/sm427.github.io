@@ -58,8 +58,8 @@ class App extends Component {
         /> 
         <div className="App-container">
         <Router>
-          <Home path="/" />
-          <Profile path="/profile" userId={this.state.userId}/>
+          <Home path="/" userId={this.state.userId}/>
+          <Profile path="/profile/:userId" userId={this.state.userId}/>
           <HowTo path="/howtoplay" />
           <NotFound default />
         </Router>
