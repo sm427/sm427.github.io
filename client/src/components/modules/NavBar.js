@@ -24,6 +24,7 @@ class NavBar extends Component {
                 ):("")}
                 <Link to="/howtoplay" className="NavBar-link"> How to play </Link>
                 </span>
+                <div className="u-inlineBlock NavBar-link"> logged in as: </div>
                <div className="LoginButton u-inlineBlock">
                {this.props.userId ? (
                     <GoogleLogout

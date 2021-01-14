@@ -1,1 +1,12 @@
-/* Fill me in :) */
+.Home-Header {
+    font-family: "Bebas Neue";
+    font-size: 80px;
+}
+
+.Home-Container{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1 2 1;
+    width: 80vw;
+    margin-left: 10vw;
+}

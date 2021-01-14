@@ -13,13 +13,16 @@ class Profile extends Component {
     };
   }
 
+  //this.props.currentUserId is the userId of the logged-in user
+  //this.props.userId and this.state.user refer to the user whose profile is being displayed
+
   componentDidMount() {
     document.title = "Profile Page";
     get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user[0] }));
     }
 
   updateUser = (updatedUser) => { 
-    console.log(updatedUser)
+    //console.log(updatedUser)
     this.setState({
       user: updatedUser})
   }
@@ -28,9 +31,14 @@ class Profile extends Component {
     if (!this.state.user) {
     return <div> Loading! </div>;
     }
-    // if (this.props.userId===this.state.user[0]._id) 
-    //   {userNameChanger= "<ChangeUsername username={this.state.user[0].username} userId={this.props.userId}/>"}
-    // else {userNameChanger= ""}
+
+    let userNameChanger = "";
+    if (this.props.currentUserId===this.state.user._id) {     //checks if the user is viewing his own profile page
+        userNameChanger = 
+          <div className="Profile-Object">
+            <ChangeUsername username={this.state.user.username} userId={this.props.userId} updateUser={this.updateUser}/>
+          </div> }  
+    else {userNameChanger= ""}
 
     return (
       <div className="u-textCenter Profile-Container">
@@ -42,9 +50,7 @@ class Profile extends Component {
           <h2>Username</h2>
           <p>{this.state.user.username}</p>
         </div>
-        <div className="Profile-Object">
-          <ChangeUsername username={this.state.user.username} userId={this.props.userId} updateUser={this.updateUser}/>
-        </div>
+        {userNameChanger}
         <div className="Profile-Object">
           <h2>User-ID</h2>
           <p>{this.state.user._id}</p>

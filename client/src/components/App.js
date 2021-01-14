@@ -32,6 +32,9 @@ class App extends Component {
         this.setState({ userId: user._id });
       }
     });
+
+    //TODO: get(User) and pass the whole user as a prop instead of calling get(user) in every component
+
   }
 
   handleLogin = (res) => {
@@ -49,6 +52,9 @@ class App extends Component {
   };
 
   render() {
+
+    let currentUserId = this.state.userId
+
     return (
       <>
         <NavBar 
@@ -59,7 +65,7 @@ class App extends Component {
         <div className="App-container">
         <Router>
           <Home path="/" userId={this.state.userId}/>
-          <Profile path="/profile/:userId" userId={this.state.userId}/>
+          <Profile path="/profile/:userId" currentUserId={currentUserId} />
           <HowTo path="/howtoplay" />
           <NotFound default />
         </Router>
