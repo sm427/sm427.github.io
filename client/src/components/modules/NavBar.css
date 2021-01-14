@@ -1,15 +1,20 @@
 .NavBar-container {
     padding: var(--s) var(--m);
-    background-color: var(--darkgrey);
+    background-color: var(--primary);
     display: flex;
     align-items: center;
 }
 
+.NavBar-title:hover {
+    color: var(--primary--dim);
+}
+
 .NavBar-title {
+    vertical-align: center;
     color: var(--white);
     font-size: 30px;
     font-family: "Bebas Neue", sans-serif;
-    margin: 0 0 0 0;
+    margin: 0 0.5em 0 0;
   }
 
   .LoginButton{
@@ -18,12 +23,13 @@
 
   .NavBar-link,
   .NavBar-link:visited {
+      vertical-align: center;
       color: var(--white);
-      font-size: 20px;
+      font-size: 15px;
       text-decoration: none;
       margin: 0 0 0 1em;
   }
 
   .NavBar-link:hover{
-      color: var(--midgrey);
+      color: var(--primary--dim);
   }

@@ -15,8 +15,8 @@ class NavBar extends Component {
         let profileLink = "/profile/" + this.props.userId
 
         return(
-            <nav className="NavBar-container">
-               <div className="NavBar-title u-inlineBlock">track'ntag</div>
+            <nav className="NavBar-container u-flex">
+               <Link to="/" className="NavBar-title u-inlineBlock u-link">track'ntag</Link>
                <span className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link"> Home </Link>
                 {this.props.userId ? (

@@ -1,4 +1,16 @@
-.Profile-Username {
-    font-family: "Bebas Neue";
-    color: #000;
+.Profile-Object {
+    margin: calc(5vh - 16px) 0;
+}
+
+.shortHorizontalLine {
+    height: 1px;
+    width: 64px;
+    background-color: var(--darkgrey);
+    margin-left: calc(50% - 32px);
+}
+
+.Profile-Container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

@@ -43,10 +43,18 @@ router.post("/initsocket", (req, res) => {
   if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
-
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.post("/user", (req, res) => {
+  if (req.body.userId) {
+    User.find({_id: req.body.userId}).then((user) => {
+      user[0].username = req.body.username;
+      user[0].save().then((updatedUser)=>res.send(updatedUser));
+    })
+  }
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
