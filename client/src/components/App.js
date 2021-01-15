@@ -38,22 +38,7 @@ class App extends Component {
       }
     })
     ;
-
-    //TODO: get(User) and pass the whole user as a prop instead of calling get(user) in every component
-
   }
-
-  // componentDidMount() {
-  //   get("/api/whoami").then((user) => {
-  //     if (user._id) {
-  //       // they are registed in the database, and currently logged in.
-  //       this.setState({ user:{_id: user._id} });
-  //     }}).then(console.log(this.state.user._id))
-  //       //get(`/api/user`, { userid: this.state._id })).then((user) => this.setState({ user: user[0] })).then(console.log("logged in"))
-
-  //   //TODO: get(User) and pass the whole user as a prop instead of calling get(user) in every component
-
-  // }
 
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
@@ -70,7 +55,6 @@ class App extends Component {
   };
 
   updateUser = (updatedUser) => { 
-    //console.log(updatedUser)
     this.setState({
       user: updatedUser})
   }

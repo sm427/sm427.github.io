@@ -16,9 +16,8 @@ class ChangeUsername extends Component {
     }
     
     changeUsername = (value) => {
-      console.log(`Changed username for ${this.props.userId} to ${this.state.value}`)
       let body = { userId: this.props.profileUser._id, username: this.state.value };
-      post("/api/user", body).then((updatedUser)=>this.props.updateUser(updatedUser));
+      post("/api/user", body).then((updatedUser)=>this.props.updateUser(updatedUser)).then(console.log(`Changed username for ${this.props.profileUser.name}/${this.props.profileUser._id} to ${this.state.value}`));
     };
 
     handleChange = (event) => {

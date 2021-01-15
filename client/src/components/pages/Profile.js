@@ -13,8 +13,10 @@ class Profile extends Component {
     };
   }
 
-  //this.props.currentUserId is the userId of the logged-in user
-  //this.props.userId and this.state.user refer to the user whose profile is being displayed
+  //this.props.user refers to the currently logged-in user
+  //this.props.profileUserId is used to load the user whose profile is being displayed
+  //this.state.profileuser is the user whose profile is being replaced
+  //the differene between user and profileUser is important to secure that users can only change their own username
 
   componentDidMount() {
     document.title = "Profile Page";
