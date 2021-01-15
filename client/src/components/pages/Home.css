@@ -5,8 +5,50 @@
 
 .Home-Container{
     display: flex;
-    justify-content: space-between;
-    flex-grow: 1 2 1;
-    width: 80vw;
-    margin-left: 10vw;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-basis: 40%;
+    height: 50vh;
+    padding: 16px;
 }
+
+
+.Home-Box-Header{
+    background-color: var(--primary);
+    border-radius: 56px 56px 0 0;
+    padding: 32px 50px 8px 50px;
+    font-size: 24px;
+    margin: 0;
+    border-color: var(--primary--dim);
+    color: white;
+}
+
+.Home-Box-contentcontainer {
+    padding: 16px;
+    align-items: center;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around; */
+}
+
+
+
+.Home-doubleBox {
+    background-color: var(--lightgrey);
+    border-bottom: 0px solid ; /*ask how to make border everywhere in office hours*/
+    border-color: var(--primary--dim);
+    border-radius: 56px;
+    margin: 16px;
+    flex: 2 0 600px;
+}
+
+.Home-singleBox {
+    background-color: var(--lightgrey);
+    border-bottom: 0px solid ; /*ask how to make border everywhere in office hours*/
+    border-color: var(--primary--dim);
+    border-radius: 56px;
+    margin: 16px;
+    flex: 1 0 300px;
+}
+

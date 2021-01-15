@@ -48,7 +48,7 @@ class ChangeUsername extends Component {
          <button
             type="submit"
             className="u-pointer changeUsername-submit"
-            value="Change"
+            value="Submit"
             onClick={this.handleSubmit}
          >
           Submit

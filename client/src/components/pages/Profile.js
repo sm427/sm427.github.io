@@ -19,8 +19,8 @@ class Profile extends Component {
   //the differene between user and profileUser is important to secure that users can only change their own username
 
   componentDidMount() {
-    document.title = "Profile Page";
-    get(`/api/user`, { userid: this.props.profileUserId}).then((user) => this.setState({ profileUser: user[0]}));
+    document.title = `Profile`;
+    get(`/api/user`, { userid: this.props.profileUserId}).then((user) => this.setState({ profileUser: user[0]})).then;
     }
 
   updateProfileUser = (updatedUser) => { 
@@ -34,6 +34,7 @@ class Profile extends Component {
       return <div> Loading! </div>;
     }
     else { 
+      document.title = `Profile of ${this.state.profileUser.username}`;
       let userNameChanger = "";
       if (this.props.user._id===this.props.profileUserId) {     //checks if the user is viewing his own profile
         userNameChanger = 

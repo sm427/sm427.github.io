@@ -1,11 +1,11 @@
 .changeUsername-input {
-    
-    border: 0;
-    border-bottom: 1px solid;
+    border: 1px solid;
+    border-radius: 32px;
+    padding: 8px 32px;
     color: var(--darkgrey);
     transition: border-color 0.2s;
     font-family: "Montserrat";
-    font-size: 24px;
+    font-size: 16px;
     width: 200px;
     outline: 0px;
 }
@@ -23,7 +23,8 @@
 }
 
 .changeUsername-submit {
-    border: 0;
+    border: 1px solid;
+    outline: 0;
     border-radius: 32px;
     padding: 8px 32px;
     margin: 16px;
