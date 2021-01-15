@@ -21,7 +21,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: undefined,
+      user: {
+        _id: undefined,
+        name: undefined,
+        googleid: undefined,
+        username: undefined,
+      }
     };
   }
 
@@ -29,43 +34,62 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ user: user});
       }
-    });
+    })
+    ;
 
     //TODO: get(User) and pass the whole user as a prop instead of calling get(user) in every component
 
   }
 
+  // componentDidMount() {
+  //   get("/api/whoami").then((user) => {
+  //     if (user._id) {
+  //       // they are registed in the database, and currently logged in.
+  //       this.setState({ user:{_id: user._id} });
+  //     }}).then(console.log(this.state.user._id))
+  //       //get(`/api/user`, { userid: this.state._id })).then((user) => this.setState({ user: user[0] })).then(console.log("logged in"))
+
+  //   //TODO: get(User) and pass the whole user as a prop instead of calling get(user) in every component
+
+  // }
+
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({ user: {_id: user._id} });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
+    this.setState({ user: {_id: undefined }});
     post("/api/logout");
   };
 
+  updateUser = (updatedUser) => { 
+    //console.log(updatedUser)
+    this.setState({
+      user: updatedUser})
+  }
+
   render() {
 
-    let currentUserId = this.state.userId
+    let profileUserId = this.state.user._id
 
     return (
       <>
         <NavBar 
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
-          userId={this.state.userId}
+          user={this.state.user}
         /> 
         <div className="App-container">
         <Router>
-          <Home path="/" userId={this.state.userId}/>
-          <Profile path="/profile/:userId" currentUserId={currentUserId} />
+          <Home path="/" user={this.state.user}/>
+          <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUser={this.updateUser}/>
           <HowTo path="/howtoplay" />
           <NotFound default />
         </Router>

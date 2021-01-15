@@ -9,7 +9,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: undefined,
+      profileUser: undefined,
     };
   }
 
@@ -18,45 +18,47 @@ class Profile extends Component {
 
   componentDidMount() {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user[0] }));
+    get(`/api/user`, { userid: this.props.profileUserId}).then((user) => this.setState({ profileUser: user[0]}));
     }
 
-  updateUser = (updatedUser) => { 
-    //console.log(updatedUser)
-    this.setState({
-      user: updatedUser})
-  }
+  updateProfileUser = (updatedUser) => { 
+      this.setState({
+        profileUser: updatedUser})
+        this.props.updateUser
+    }
 
   render() {
-    if (!this.state.user) {
-    return <div> Loading! </div>;
+    if (!this.state.profileUser) {
+      return <div> Loading! </div>;
     }
-
-    let userNameChanger = "";
-    if (this.props.currentUserId===this.state.user._id) {     //checks if the user is viewing his own profile page
+    else { 
+      let userNameChanger = "";
+      if (this.props.user._id===this.props.profileUserId) {     //checks if the user is viewing his own profile
         userNameChanger = 
           <div className="Profile-Object">
-            <ChangeUsername username={this.state.user.username} userId={this.props.userId} updateUser={this.updateUser}/>
-          </div> }  
-    else {userNameChanger= ""}
-
-    return (
-      <div className="u-textCenter Profile-Container">
-        <div className="Profile-Object">
-          <h1 className="Profile-Username">Profile of {this.state.user.name}</h1>
-          <div className="shortHorizontalLine"> </div>
+          <ChangeUsername profileUser={this.state.profileUser} updateUser={this.updateProfileUser}/>
+          </div> 
+        }  
+      else {userNameChanger= ""} 
+    
+      return(
+        <div className="u-textCenter Profile-Container">
+          <div className="Profile-Object">
+            <h1 className="Profile-Username">Profile of {this.state.profileUser.name}</h1>
+            <div className="shortHorizontalLine"> </div>
+          </div>
+          <div className="Profile-Object">
+            <h2>Username</h2>
+            <p>{this.state.profileUser.username}</p>
+          </div>
+          {userNameChanger}
+          <div className="Profile-Object">
+            <h2>User-ID</h2>
+           <p>{this.state.profileUser._id}</p>
+          </div>
         </div>
-        <div className="Profile-Object">
-          <h2>Username</h2>
-          <p>{this.state.user.username}</p>
-        </div>
-        {userNameChanger}
-        <div className="Profile-Object">
-          <h2>User-ID</h2>
-          <p>{this.state.user._id}</p>
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

@@ -12,21 +12,21 @@ class NavBar extends Component {
 
     render() {
 
-        let profileLink = "/profile/" + this.props.userId
+        let profileLink = "/profile/" + this.props.user._id
 
         return(
             <nav className="NavBar-container u-flex">
                <Link to="/" className="NavBar-title u-inlineBlock u-link">track'ntag</Link>
                <span className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link"> Home </Link>
-                {this.props.userId ? (
+                {this.props.user._id ? (
                     <Link to={profileLink} className="NavBar-link"> Profile </Link>
                 ):("")}
                 <Link to="/howtoplay" className="NavBar-link"> How to play </Link>
                 </span>
-                <div className="u-inlineBlock NavBar-link"> logged in as: </div>
+                {/* <div className="u-inlineBlock NavBar-link"> logged in as: </div> */}
                <div className="LoginButton u-inlineBlock">
-               {this.props.userId ? (
+               {this.props.user._id ? (
                     <GoogleLogout
                         clientId={GOOGLE_CLIENT_ID}
                         buttonText="Logout"
