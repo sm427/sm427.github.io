@@ -42,7 +42,7 @@ class Profile extends Component {
     }
   
     deleteImages = () => {
-      post("/api/deleteImages").then(this.loadImages);
+      post("/api/deleteImages").then(this.loadImages).then(this.props.updateUserServer());
     }
   
     uploadImage = (event) => {
@@ -51,7 +51,7 @@ class Profile extends Component {
       console.log(fileInput);
       this.readImage(fileInput.files[0]).then(image => {
         fileInput.value = null;
-        return post("/api/uploadImage", { image: image }).then(this.loadImages);
+        return post("/api/uploadImage", { image: image }).then(this.loadImages).then(this.props.updateUserServer());
       }).catch(err => {
         console.log(err);
       });
@@ -80,9 +80,10 @@ class Profile extends Component {
     };
 
   updateProfileUser = (updatedUser) => { 
+      console.log("run1");
       this.setState({
         profileUser: updatedUser})
-        this.props.updateUser
+        this.props.updateUserVariable(updatedUser)
     }
 
   changeShowChangePicture = () => {

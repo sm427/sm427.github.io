@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import "../../utilities.css";
 import "../pages/Home.css";
 import "../App.css";
@@ -24,8 +25,22 @@ class SinglePlayerSetup extends Component {
   }
 
   render() {
-    let usernameMessage = this.props.user.username ? (`Logged in as ${this.props.user._id}.`) : ("Please log in or sign up!");
-    let profilePictureMessage = this.props.user.imageNames[0] ? ("Profilepic uploaded"):("Please Upload Profile Pic");
+
+    let usernameMessage;
+    let profilePictureMessage;
+    
+  if (!this.props.user.username) {
+    usernameMessage = "Please log in or sign up to continue!";
+    profilePictureMessage = "";
+  }
+  else if (!this.props.user.imageNames[0]) {
+    usernameMessage = `Logged in as ${this.props.user._id}.`;
+    profilePictureMessage =("Please upload a picture in  to continue!");
+  }
+  else {
+    usernameMessage = `Logged in as ${this.props.user.username}.`;
+    profilePictureMessage = "Profilepic uploaded";
+  }
 
     return (
       <>

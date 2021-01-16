@@ -55,9 +55,19 @@ class App extends Component {
     post("/api/logout");
   };
 
-  updateUser = (updatedUser) => { 
+  updateUserVariable = (updatedUser) => { 
+    console.log("run");
     this.setState({
       user: updatedUser})
+  }
+
+  updateUserServer = () => {
+    console.log("run");
+    get("/api/whoami").then((user) => {
+      if (user._id) {
+        this.setState({ user: user});
+      }
+    });
   }
 
   render() {
@@ -74,7 +84,7 @@ class App extends Component {
         <div className="App-container">
         <Router>
           <Home path="/" user={this.state.user}/>
-          <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUser={this.updateUser}/>
+          <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUserVariable={this.updateUserVariable} updateUserServer={this.updateUserServer}/>
           <HowTo path="/howtoplay" />
           <NotFound default />
         </Router>
