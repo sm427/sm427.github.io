@@ -24,11 +24,14 @@ class SinglePlayerSetup extends Component {
   }
 
   render() {
+    let usernameMessage = this.props.user.username ? (`Logged in as ${this.props.user._id}.`) : ("Please log in or sign up!");
+    let profilePictureMessage = this.props.user.imageNames[0] ? ("Profilepic uploaded"):("Please Upload Profile Pic");
+
     return (
       <>
         <h4 className="Home-Box-Header">Singleplayer</h4>
-        <p className="u-textCenter">Description</p>
-         
+        <p className="u-textCenter">{usernameMessage}</p>
+        <p className="u-textCenter">{profilePictureMessage}</p>
         
       </>
     );

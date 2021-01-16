@@ -26,6 +26,7 @@ class App extends Component {
         name: undefined,
         googleid: undefined,
         username: undefined,
+        imageNames: [],
       }
     };
   }
@@ -44,13 +45,13 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ user: {_id: user._id} });
+      this.setState({ user: user });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ user: {_id: undefined }});
+    this.setState({ user: {_id: undefined, name: undefined, googleid: undefined, username: undefined, imageNames: [], }});
     post("/api/logout");
   };
 
