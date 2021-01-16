@@ -40,3 +40,22 @@
 .App-fileUpload{
     font-family: "Montserrat";
 }
+
+.App-slider {
+    appearance: none;
+    width:60%;
+    height: 2px;
+    background-color: var(--darkgrey);
+    outline: none;
+    transition: opacity .2s;
+}
+
+
+.App-slider::-webkit-slider-thumb{
+    appearance: none;
+    border-radius: 10%;
+    height: 20px;
+    width: 10px;
+    position: relative;
+    background: var(--darkgrey);
+}
