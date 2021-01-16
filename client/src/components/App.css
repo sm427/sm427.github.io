@@ -23,7 +23,7 @@
 }
 
 .App-submit {
-    margin: 16px;
+    margin: 0px 16px 16px 16px;
     border: 1px solid;
     outline: 0;
     border-radius: 32px;
@@ -35,4 +35,8 @@
 
 .App-submit:hover{
     background-color: var(--primary);
+}
+
+.App-fileUpload{
+    font-family: "Montserrat";
 }
