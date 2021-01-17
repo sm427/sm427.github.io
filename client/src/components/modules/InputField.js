@@ -13,7 +13,7 @@ class InputField extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Home-inputField">
           <input
             type="text"
             placeholder={this.props.placeholder}

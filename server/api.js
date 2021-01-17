@@ -64,7 +64,7 @@ router.post("/uploadImage", auth.ensureLoggedIn, (req, res) => {
       + typeof (req.body.image));
   }
   User.findById(req.user._id).then(user => {
-    if (user.imageNames.length >= 1) {
+    if (user.imageNames.length() >= 1) {
       // don't allow anyone to have more than 3 images (not race condition safe) - limited it to 1 bc users should obv only have one profile pic
       res.status(412).send({
         message: "You already have a profile picture. Please delete it before you post a new one"

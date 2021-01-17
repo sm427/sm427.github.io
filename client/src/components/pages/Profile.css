@@ -20,7 +20,7 @@
 }
 
 img {
-    height: 200px;
+    max-height: 300px;
     margin: auto;
     margin-bottom: 16px;
     width: 200px;

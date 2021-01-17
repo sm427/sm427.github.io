@@ -17,22 +17,12 @@
 .Home-Box-Header{
     background-color: var(--primary);
     border-radius: 56px 56px 0 0;
-    padding: 32px 50px 8px 50px;
+    padding: 24px 50px 8px 50px;
     font-size: 24px;
     margin: 0;
     border-color: var(--primary--dim);
     color: white;
 }
-
-.Home-Box-contentcontainer {
-    padding: 16px;
-    align-items: center;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
-}
-
-
 
 .Home-doubleBox {
     background-color: var(--lightgrey);
@@ -40,7 +30,7 @@
     border-color: var(--primary--dim);
     border-radius: 56px;
     margin: 16px;
-    flex: 2 0 600px;
+    flex: 2 0 500px;
 }
 
 .Home-singleBox {
@@ -52,3 +42,20 @@
     flex: 1 0 300px;
 }
 
+.Home-singlePlayerContentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+    padding: 16px 32px;
+    align-items: center;
+}
+
+.Home-singlePlayerButton {
+    width: 150px;
+}
+
+.Home-inputField {
+    display: flex;
+    align-items: center;
+}

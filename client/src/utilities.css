@@ -98,3 +98,6 @@ form {
   color: var(--primary--dim);
 }
 
+.u-width100 {
+  width: 100%;
+}
