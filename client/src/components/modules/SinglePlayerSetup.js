@@ -4,6 +4,7 @@ import "../../utilities.css";
 import "../pages/Home.css";
 import "../App.css";
 import PictureCount from "./PictureCount.js";
+import { browserHistory } from "react-router";
 
 class SinglePlayerSetup extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class SinglePlayerSetup extends Component {
 }
 
   handleSubmit = (event) => {
-    //link to new page
+    this.playGame
   }
 
   render() {
@@ -36,11 +37,11 @@ class SinglePlayerSetup extends Component {
     profilePictureMessage = "";
     startbutton = "Log in before playing.";
   }
-  else if (!this.props.user.imageNames[0]) {
-    usernameMessage = `Logged in as ${this.props.user._id}.`;
-    profilePictureMessage =("Please upload a picture in  to continue!");
-    startbutton = "Upload a picture before playing.";
-  }
+  // else if (!this.props.user.imageNames[0]) {
+  //   usernameMessage = `Logged in as ${this.props.user._id}.`;
+  //   profilePictureMessage =("Please upload a picture in  to continue!");
+  //   startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hot the button
+  // }
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
@@ -50,7 +51,7 @@ class SinglePlayerSetup extends Component {
       value="Change"
       onClick={this.handleSubmit}
      >
-       Useless
+       Play!
      </button>);
 
   }
