@@ -24,6 +24,7 @@ class SinglePlayerSetup extends Component {
 
   handleSubmit = (event) => {
     //pass sliderValue to App.js (and then from there to SinglePlayer.js)
+    //timer will start here too
   }
 
   render() {
@@ -40,7 +41,7 @@ class SinglePlayerSetup extends Component {
   // else if (!this.props.user.imageNames[0]) {
   //   usernameMessage = `Logged in as ${this.props.user._id}.`;
   //   profilePictureMessage =("Please upload a picture in  to continue!");
-  //   startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hot the button
+  //   startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hit the button
   // }
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
