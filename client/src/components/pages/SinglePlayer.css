@@ -23,7 +23,7 @@
 
 
 .SinglePlayer-Image {
-    height: 100%;
+    height: calc(100vh - 59px);
     cursor: move;
-    position: relative;
+    margin-left: calc(90px + 70vw - 150vh);
 }

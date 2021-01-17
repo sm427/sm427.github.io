@@ -75,4 +75,4 @@ class GameTimer extends Component{
       }
 }
 
-export default App;
+export default GameTimer;

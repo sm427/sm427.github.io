@@ -9,6 +9,7 @@ class SinglePlayerGame extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            zoomin: 0,
             img_ele: null,
             x_cursor: 0,
             y_cursor: 0,
@@ -18,20 +19,33 @@ class SinglePlayerGame extends Component {
     }
 
 // code to zoom and drag from stackoverflow.com, user "Bug"
-// zoom = (zoomincrement) => {
-//   img_ele = document.getElementById('drag-img');
-//   var pre_width = img_ele.getBoundingClientRect().width, pre_height = img_ele.getBoundingClientRect().height;
-//   img_ele.style.width = (pre_width * zoomincrement) + 'px';
-//   img_ele.style.height = (pre_height * zoomincrement) + 'px';
-//   img_ele = null;
-// }
+zoomin = (event) => {
+  let img_ele = document.getElementById("drag-img");
+  if (img_ele) {
+  let pre_width = img_ele.getBoundingClientRect().width
+  let pre_height = img_ele.getBoundingClientRect().height;
+  img_ele.style.width = (pre_width * 1.2) + 'px';
+  img_ele.style.height = (pre_height * 1.2) + 'px';
+  this.setState({zoomin: this.state.zoomin+1});
+  
+  }
+  img_ele = null;
+}
 
-// document.getElementById('zoomout').addEventListener('click', function() {
-//   zoom(0.5);
-// });
-// document.getElementById('zoomin').addEventListener('click', function() {
-//   zoom(1.5);
-// });
+zoomout = (event) => {
+    let img_ele = document.getElementById("drag-img");
+    if (img_ele) {
+        if (this.state.zoomin > 0) {
+            let pre_width = img_ele.getBoundingClientRect().width
+            let pre_height = img_ele.getBoundingClientRect().height;
+            img_ele.style.width = (pre_width / 1.2) + 'px';
+            img_ele.style.height = (pre_height / 1.2) + 'px';
+            this.setState({zoomin: this.state.zoomin-1});
+        }
+    }
+    img_ele = null;
+  }
+
 
 start_drag = () => {
   this.setState({img_ele: true})
@@ -59,15 +73,22 @@ while_drag = () => {
 
 
     render() {
+        // document.getElementById('zoomout').addEventListener('click', function() {
+        //     zoom(0.5);
+        //   });
+        //   document.getElementById('zoomin').addEventListener('click', function() {
+        //     zoom(1.5);
+        //   });
+
 //getElementById('drag-img').addEventListener('mousedown', this.start_drag);
 //getElementById('container').addEventListener('mousemove', this.while_drag);
 //getElementById('container').addEventListener('mouseup', this.stop_drag);
 
         return(
             <div  className="SinglePlayer-ImageContainer"> 
-            {/* <input type="button" id="zoomout" class="button" value="Zoom out"/>
-            <input type="button" id="zoomin" class="button" value="Zoom in"/> */}
-            <img  id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
+            <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
+            <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
+            <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
             </img> 
             </div>
         )
