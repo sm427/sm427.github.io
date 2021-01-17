@@ -109,7 +109,7 @@ class Profile extends Component {
         profilePictureSection = (<div className="Profile-Object"><div className="Skeleton-images">
           {
             this.state.images.map((image, index) => (
-            <img src={image} key={index} />
+            <img src={image} key={index} className="Profile-picture"/>
             ))
          }
 

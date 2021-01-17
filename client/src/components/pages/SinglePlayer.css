@@ -1,0 +1,29 @@
+.SinglePlayer-container {
+    background-color: var(--lightgrey);
+    width:100vw;
+    height: calc(100vh - 59px);
+    margin: 0px;
+    display: flex;
+}
+
+.SinglePlayer-SearchImageContainer {
+    background-color: var(--primary);
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.SinglePlayer-SideBarContainer {
+    background-color: var(--primary--dim);
+    width: 30%;
+    height: 100%;
+    padding: 0 16px;
+    color: white;
+}
+
+
+.SinglePlayer-Image {
+    height: 100%;
+    cursor: move;
+    position: relative;
+}

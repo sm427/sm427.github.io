@@ -23,7 +23,7 @@ class SinglePlayerSetup extends Component {
 }
 
   handleSubmit = (event) => {
-    this.playGame
+    //pass sliderValue to App.js (and then from there to SinglePlayer.js)
   }
 
   render() {
@@ -67,7 +67,7 @@ class SinglePlayerSetup extends Component {
         <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" value={this.state.slidervalue} onChange={this.handleChange}/></p>
                 {/* <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist> */}
         <p>You'll play  {this.state.sliderValue} rounds.</p></div>
-        {startbutton}
+        <Link to="/singleplayer"> {startbutton} </Link>
       </div>
       </div>
     );

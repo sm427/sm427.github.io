@@ -12,6 +12,7 @@ import HowTo from "./pages/HowTo.js";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import SinglePlayer from "./pages/SinglePlayer.js";
 
 /**
  * Define the "App" component as a class.
@@ -86,6 +87,7 @@ class App extends Component {
           <Home path="/" user={this.state.user}/>
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUserVariable={this.updateUserVariable} updateUserServer={this.updateUserServer}/>
           <HowTo path="/howtoplay" />
+          <SinglePlayer path="/singleplayer" />
           <NotFound default />
         </Router>
         </div>
