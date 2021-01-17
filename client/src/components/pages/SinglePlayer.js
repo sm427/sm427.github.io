@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get, post } from "../../utilities";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
+import Waldo from "../modules/Waldo.js"
 
 import "../../utilities.css";
 import "./Singleplayer.css";
@@ -25,7 +26,7 @@ class Singleplayer extends Component {
     render() {
         return(
             <div
-            className="hiddenFace"
+            className="Waldo"
             onClick={() => {
               this.pictureProgress();
             }}

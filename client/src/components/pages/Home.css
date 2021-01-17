@@ -21,7 +21,7 @@
     font-size: 24px;
     margin: 0;
     border-color: var(--primary--dim);
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .Home-doubleBox {
