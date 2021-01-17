@@ -49,12 +49,12 @@ class Profile extends Component {
       this.changeShowChangePicture;
       const fileInput = event.target;
       console.log(fileInput);
-      this.readImage(fileInput.files[0]).then(image => {
+      post("/api/deleteImages").then(this.readImage(fileInput.files[0]).then(image => {
         fileInput.value = null;
         return post("/api/uploadImage", { image: image }).then(this.loadImages).then(this.props.updateUserServer());
       }).catch(err => {
         console.log(err);
-      });
+      }));
     };
   
     readImage = (blob) => {
@@ -92,6 +92,7 @@ class Profile extends Component {
   }
 
   render() {
+    let profilePictureSection;
     if (!this.state.profileUser) {
       return <div> Loading! </div>;
     }
@@ -99,12 +100,33 @@ class Profile extends Component {
       document.title = `Profile of ${this.state.profileUser.username}`;
       let userNameChanger = "";
       if (this.props.user._id===this.props.profileUserId) {     //checks if the user is viewing his own profile
-        userNameChanger = 
+        
+        userNameChanger = (
           <div className="Profile-Object">
           <ChangeUsername profileUser={this.state.profileUser} updateUser={this.updateProfileUser}/>
-          </div> 
+          </div> );
+        
+        profilePictureSection = (<div className="Profile-Object"><div className="Skeleton-images">
+          {
+            this.state.images.map((image, index) => (
+            <img src={image} key={index} />
+            ))
+         }
+
+          <div><button className="App-submit" type="button" onClick={this.deleteImages}>
+            Delete Profile Picture
+            </button>
+
+            <div><button className="App-submit" type="button" onClick={this.changeShowChangePicture}>
+                Upload new Profile Picture
+              </button>
+                    {/* <label htmlFor="fileInput">Upload New Profile Picture</label> */}
+              {this.state.showChangePicture ? (<><input className="App-fileUpload" id="fileInput" type="file" name="files[]" accept="image/*" onChange={this.uploadImage} /> </>):("")}
+            </div>
+          </div>
+        </div></div>);
         }  
-      else {userNameChanger= ""} 
+      else {userNameChanger= ""; profilePictureSection=""} 
     
       return(
         <div className="u-textCenter Profile-Container">
@@ -113,27 +135,9 @@ class Profile extends Component {
             <div className="shortHorizontalLine"> </div>
           </div>
           
-          <div className="Profile-Object">
-        
-              <div className="Skeleton-images">
-              {
-                this.state.images.map((image, index) => (
-                <img src={image} key={index} />
-                ))
-              }
-
-              <div><button className="App-submit" type="button" onClick={this.deleteImages}>
-                Delete Profile Picture
-              </button>
-
-              <div><button className="App-submit" type="button" onClick={this.changeShowChangePicture}>
-                Upload new Profile Picture
-              </button>
-              {/* <label htmlFor="fileInput">Upload New Profile Picture</label> */}
-              {this.state.showChangePicture ? (<><input className="App-fileUpload" id="fileInput" type="file" name="files[]" accept="image/*" onChange={this.uploadImage} /> </>):("")}
-              </div></div>
-            </div>
-          </div>
+          
+          {profilePictureSection}
+      
 
           <div className="Profile-Object">
             <h2>Username</h2>

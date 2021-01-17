@@ -34,12 +34,12 @@ class SinglePlayerSetup extends Component {
   if (!this.props.user.username) {
     usernameMessage = "Please log in or sign up to continue!";
     profilePictureMessage = "";
-    startbutton = "";
+    startbutton = "Log in before playing.";
   }
   else if (!this.props.user.imageNames[0]) {
     usernameMessage = `Logged in as ${this.props.user._id}.`;
     profilePictureMessage =("Please upload a picture in  to continue!");
-    startbutton = "";
+    startbutton = "Upload a picture before playing.";
   }
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
