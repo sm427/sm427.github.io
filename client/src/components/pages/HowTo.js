@@ -10,8 +10,15 @@ class HowTo extends Component {
 
   componentDidMount() {
     document.title = "How To Play";
+   //fetch("http://worldclockapi.com/api/json/est/now").then((time)=>console.log(time.json()))
     //get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
     }
+
+  // callTime = async () => {
+  //   const response = await fetch("http://worldclockapi.com/api/json/est/now");
+  //   const time = await response.json();
+  //   await console.log(JSON.stringify(time));
+  // }
 
   render() {
     return (
