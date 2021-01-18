@@ -43,36 +43,73 @@ zoomout = () => {
     img_ele = 0;
   }
 
-moveleft = () => {
-        let img_ele = document.getElementById("drag-img");
-        let marginLeftStart = img_ele.getBoundingClientRect().left;  
+moveright = () => {
+    let img_ele = document.getElementById("drag-img");
+    let marginLeftStart = img_ele.getBoundingClientRect().left; 
+    let spaceright = img_ele.getBoundingClientRect().right - window.innerWidth * 0.7;
+    console.log(spaceright);
+    if(spaceright > 50 ){         
         img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
         this.setState({right: this.state.right + 1})
-  }
-
-moveright = () => {
-    if (this.state.right > 0) {
-        let img_ele = document.getElementById("drag-img");
-        let marginLeftStart = img_ele.getBoundingClientRect().left;  
-        img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
-        this.setState({right: this.state.right -1})
+    }
+    else if (img_ele.getBoundingClientRect().right - window.innerWidth * 0.7 <= 0) {}
+    else {
+        img_ele.style.marginLeft = (marginLeftStart - spaceright) + 'px';
     }
 }
 
+moveleft = () => {
+    let img_ele = document.getElementById("drag-img");
+    let marginLeftStart = img_ele.getBoundingClientRect().left; 
+    let spaceleft = img_ele.getBoundingClientRect().left
+    console.log(spaceleft);
+    if(spaceleft < -50 ){         
+        img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
+        this.setState({right: this.state.right - 1})
+    }
+    else if (spaceleft >= 0) {}
+    else {
+        img_ele.style.marginLeft = (marginLeftStart - spaceleft) + 'px';
+    }
+}
+
+// moveright = () => {
+//     if (this.state.right > 0) {
+//         let img_ele = document.getElementById("drag-img");
+//         let marginLeftStart = img_ele.getBoundingClientRect().left;  
+//         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
+//         this.setState({right: this.state.right -1})
+//     }
+// }
+
 moveup = () => {
-    if (this.state.down > 0) {
-        let img_ele = document.getElementById("drag-img"); 
-        let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let img_ele = document.getElementById("drag-img");
+    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let spacetop = img_ele.getBoundingClientRect().top - 59;
+    console.log(spacetop);
+    if(spacetop < -50 ){         
         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
-        this.setState({down: this.state.down -1})
+        this.setState({right: this.state.right + 1})
+    }
+    else if (spacetop >= 0) {}
+    else {
+        img_ele.style.marginTop = (marginTopStart - spacetop) + 'px';
     }
 }
 
 movedown = () => {
-        let img_ele = document.getElementById("drag-img"); 
-        let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let img_ele = document.getElementById("drag-img");
+    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
+    console.log(spacebottom);
+    if(spacebottom > 50 ){         
         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
-        this.setState({down: this.state.down +1})
+        this.setState({right: this.state.right + 1})
+    }
+    else if (spacebottom <= 0) {}
+    else {
+        img_ele.style.marginTop = (marginTopStart - spacebottom) + 'px';
+    }
 }
 
 
@@ -122,8 +159,8 @@ movedown = () => {
             <div className="SinglePlayer-ButtonPanel">
                 <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
                 <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
-                <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
                 <button id="zoomin" value="Zoom in" onClick={this.moveright}>Right</button>
+                <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
                 <button id="zoomin" value="Zoom in" onClick={this.moveup}>Up</button>
                 <button id="zoomin" value="Zoom in" onClick={this.movedown}>Down</button>
             </div>

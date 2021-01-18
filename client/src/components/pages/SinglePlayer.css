@@ -35,8 +35,10 @@
     width: 150px;
     height: 150px;
     border-radius: 32px;
-    background-color: var(--primary--dim);
-    left: calc(35vw - 91px);
-    top: calc(85vh - 91px);
+    background-color: var(--lightgrey);
+    left: calc(85vw - 105px);
+    top: calc(200px);
+    /* left: calc(35vw - 91px);
+    top: calc(85vh - 91px); */
     padding: 16px
 }
