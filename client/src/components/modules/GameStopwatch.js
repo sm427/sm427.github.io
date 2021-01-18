@@ -1,78 +1,68 @@
-import React, { useState, useRef, Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import React, { Component } from "react";
+import "../App.css";
 
-import './App.css';
+class Stopwatch extends Component {
+  constructor(props) {
+    super(props)
+  }
+  state = {
+    timerOn: false,
+    timerStart: 0,
+    timerTime: 0
+  };
 
-class GameTimer extends Component{
-    constructor(props) {
-        super(props);
-        // Initialize Default State
-        this.state = {element: <FontAwesomeIcon icon={faClock} />};
-      } 
+  startTimer = () => {
+    this.setState({
+      timerOn: true,
+      timerTime: this.state.timerTime,
+      timerStart: Date.now() - this.state.timerTime
+    });
+    this.timer = setInterval(() => {
+      this.setState({
+        timerTime: Date.now() - this.state.timerStart
+      });
+    }, 10);
+  };
 
-      App = () => {
-        const [timer, setTimer] = useState(3595)
-        const [isActive, setIsActive] = useState(false)
-        const [isPaused, setIsPaused] = useState(false)
-        const increment = useRef(null)
-      
-        handleStart = () => {
-          setIsActive(true)
-          setIsPaused(true)
-          increment.current = setInterval(() => {
-            setTimer((timer) => timer + 1)
-          }, 1000)
-        }
-      
-        handlePause = () => {
-          clearInterval(increment.current)
-          setIsPaused(false)
-        }
-      
-        handleResume = () => {
-          setIsPaused(true)
-          increment.current = setInterval(() => {
-            setTimer((timer) => timer + 1)
-          }, 1000)
-        }
-      
-        handleReset = () => {
-          clearInterval(increment.current)
-          setIsActive(false)
-          setIsPaused(false)
-          setTimer(0)
-        }
-      
-        formatTime = () => {
-          const getSeconds = `0${(timer % 60)}`.slice(-2)
-          const minutes = `${Math.floor(timer / 60)}`
-          const getMinutes = `0${minutes % 60}`.slice(-2)
-          const getHours = `0${Math.floor(timer / 3600)}`.slice(-2)
-      
-          return `${getHours} : ${getMinutes} : ${getSeconds}`
-        }
-      
-        return (
-          <div className="app">
-            <h3>React Stopwatch {element}</h3>
-            <div className='stopwatch-card'>
-              <p>{formatTime()}</p>
-              <div className='buttons'>
-                {
-                  !isActive && !isPaused ?
-                    <button onClick={handleStart}>Start</button>
-                    : (
-                      isPaused ? <button onClick={handlePause}>Pause</button> :
-                        <button onClick={handleResume}>Resume</button>
-                    )
-                }
-                <button onClick={handleReset} disabled={!isActive}>Reset</button>
-              </div>
-            </div>
-          </div>
-        );
-      }
+  stopTimer = () => {
+    this.setState({ timerOn: false });
+    clearInterval(this.timer);
+  };
+
+  resetTimer = () => {
+    this.setState({
+      timerStart: 0,
+      timerTime: 0
+    });
+  };
+
+  render() {
+    const { timerTime } = this.state;
+    let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);
+    let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
+    let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
+    let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
+    return (
+      <div className="Stopwatch">
+        <div className="Stopwatch-header">Stopwatch</div>
+        <div className="Stopwatch-display">
+          {hours} : {minutes} : {seconds} : {centiseconds}
+        </div>
+        {this.state.timerOn === false && this.state.timerTime === 0 && (
+          <button onClick={this.startTimer}>Start</button>
+        )}
+        {this.state.timerOn === true && (
+          <button onClick={this.stopTimer}>Stop</button>
+        )}
+        {this.state.timerOn === false && this.state.timerTime > 0 && (
+          <button onClick={this.startTimer}>Resume</button>
+        )}
+        {this.state.timerOn === false && this.state.timerTime > 0 && (
+          <button onClick={this.resetTimer}>Reset</button>
+        )}
+      </div>
+    );
+  }
 }
 
-export default GameTimer;
+export default Stopwatch;
