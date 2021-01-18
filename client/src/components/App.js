@@ -4,6 +4,7 @@ import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
+import SinglePlayerGameOver from "./pages/SinglePlayerGameOver.js";
 //import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../utilities.css";
 import "./App.js";
@@ -88,6 +89,7 @@ class App extends Component {
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUserVariable={this.updateUserVariable} updateUserServer={this.updateUserServer}/>
           <HowTo path="/howtoplay" />
           <SinglePlayer path="/singleplayer" />
+          <SinglePlayerGameOver path="/singleplayergameover" />
           <NotFound default />
         </Router>
         </div>

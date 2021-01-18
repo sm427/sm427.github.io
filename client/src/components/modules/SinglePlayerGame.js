@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import Scene from "../images/templatetest3red.png"
+import Scene from "../images/t1-main2.png";
+import face from "../images/facetest1.png";
 
 import "../../utilities.css"
 import "../pages/SinglePlayer.css";
@@ -14,7 +15,7 @@ class SinglePlayerGame extends Component {
     }
 
 // code to zoom partly from stackoverflow.com, user "Bug"
-zoomin = (event) => {
+zoomin = () => {
   let img_ele = document.getElementById("drag-img");
   if (img_ele) {
   let pre_width = img_ele.getBoundingClientRect().width
@@ -43,27 +44,43 @@ zoomout = () => {
 
 moveright = () => {
     let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
     let marginLeftStart = img_ele.getBoundingClientRect().left; 
+    let leftBoxStart = box.getBoundingClientRect().left; 
+    let leftFaceStart = face.getBoundingClientRect().left; 
     let spaceright = img_ele.getBoundingClientRect().right - window.innerWidth * 0.7;
     if(spaceright > 50 ){         
         img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
+        box.style.left = (leftBoxStart - 50) + "px";
+        face.style.left = (leftFaceStart -50) +"px";
     }
     else if (img_ele.getBoundingClientRect().right - window.innerWidth * 0.7 <= 0) {}
     else {
         img_ele.style.marginLeft = (marginLeftStart - spaceright) + 'px';
+        box.style.left = (leftBoxStart - spaceright) + "px";
+        face.style.left = (leftFaceStart - spaceright) +"px";
     }
 }
 
 moveleft = () => {
     let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
     let marginLeftStart = img_ele.getBoundingClientRect().left; 
+    let leftBoxStart = box.getBoundingClientRect().left; 
+    let leftFaceStart = face.getBoundingClientRect().left; 
     let spaceleft = img_ele.getBoundingClientRect().left
     if(spaceleft < -50 ){         
         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
+        box.style.left = (leftBoxStart + 50) + "px";
+        face.style.left = (leftFaceStart + 50) +"px";
     }
     else if (spaceleft >= 0) {}
     else {
         img_ele.style.marginLeft = (marginLeftStart - spaceleft) + 'px';
+        box.style.left = (leftBoxStart - spaceleft) + "px";
+        face.style.left = (leftFaceStart - spaceleft) +"px";
     }
 }
 
@@ -160,9 +177,11 @@ movedown = () => {
         </div>
 
         <div  className="SinglePlayer-ImageContainer" id="container"> 
-            <div > 
+                <div className="SinglePlayer-face" id="drag-face"><img src={face} className="sp-face" /></div>
+                <Link to="/singleplayergameover"><div className="SinglePlayer-box" id="drag-box"></div></Link>
                 <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
-            </div>
+                
+            
         </div>
         </>
     )
