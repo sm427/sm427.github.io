@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+import { get } from "../../utilities.js";
 import Scene from "../images/t1-main2.png";
 import face from "../images/facetest1.png";
 
@@ -10,8 +11,15 @@ class SinglePlayerGame extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            images: [],
             zoomin: 0,
         }
+    }
+
+    componentDidMount() {
+        get("/api/getImages").then(images => {
+            this.setState({ images: images });
+    });
     }
 
 // code to zoom partly from stackoverflow.com, user "Bug"
@@ -50,10 +58,10 @@ moveright = () => {
     let leftBoxStart = box.getBoundingClientRect().left; 
     let leftFaceStart = face.getBoundingClientRect().left; 
     let spaceright = img_ele.getBoundingClientRect().right - window.innerWidth * 0.7;
-    if(spaceright > 50 ){         
+    if(spaceright >= 50 ){         
         img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
         box.style.left = (leftBoxStart - 50) + "px";
-        face.style.left = (leftFaceStart -50) +"px";
+        face.style.left = (leftFaceStart - 50) +"px";
     }
     else if (img_ele.getBoundingClientRect().right - window.innerWidth * 0.7 <= 0) {}
     else {
@@ -71,7 +79,7 @@ moveleft = () => {
     let leftBoxStart = box.getBoundingClientRect().left; 
     let leftFaceStart = face.getBoundingClientRect().left; 
     let spaceleft = img_ele.getBoundingClientRect().left
-    if(spaceleft < -50 ){         
+    if(spaceleft <= -50 ){         
         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
         box.style.left = (leftBoxStart + 50) + "px";
         face.style.left = (leftFaceStart + 50) +"px";
@@ -84,31 +92,47 @@ moveleft = () => {
     }
 }
 
-// moveup = () => {
-//     let img_ele = document.getElementById("drag-img");
-//     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-//     let spacetop = img_ele.getBoundingClientRect().top - 59;
-//     if(spacetop < -50 ){         
-//         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
-//     }
-//     else if (spacetop >= 0) {}
-//     else {
-//         img_ele.style.marginTop = (marginTopStart - spacetop) + 'px';
-//     }
-// }
+moveup = () => {
+    let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
+    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let topBoxStart = box.getBoundingClientRect().top; 
+    let topFaceStart = face.getBoundingClientRect().top; 
+    let spacetop = img_ele.getBoundingClientRect().top - 59;
+    if(spacetop <= -50 ){         
+        img_ele.style.marginTop = (marginTopStart + 50) + 'px';
+        box.style.top = (topBoxStart + 50) + "px";
+        face.style.top = (topFaceStart + 50) +"px";
+    }
+    else if (spacetop >= 0) {}
+    else {
+        img_ele.style.marginTop = (marginTopStart - spacetop) + 'px';
+        box.style.top = (topBoxStart - spacetop) + "px";
+        face.style.top = (topFaceStart - spacetop) +"px";
+    }
+}
 
-// movedown = () => {
-//     let img_ele = document.getElementById("drag-img");
-//     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-//     let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
-//     if(spacebottom > 50 ){         
-//         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
-//     }
-//     else if (spacebottom <= 0) {}
-//     else {
-//         img_ele.style.marginTop = (marginTopStart - spacebottom) + 'px';
-//     }
-// }
+movedown = () => {
+    let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
+    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+    let topBoxStart = box.getBoundingClientRect().top; 
+    let topFaceStart = face.getBoundingClientRect().top; 
+    let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
+    if(spacebottom >= 50 ){         
+        img_ele.style.marginTop = (marginTopStart - 50) + 'px';
+        box.style.top = (topBoxStart - 50) + "px";
+        face.style.top = (topFaceStart - 50) +"px";
+    }
+    else if (spacebottom <= 0) {}
+    else {
+        img_ele.style.marginTop = (marginTopStart - spacebottom) + 'px';
+        box.style.top = (topBoxStart - spacebottom) + "px";
+        face.style.top = (topFaceStart - spacebottom) +"px";
+    }
+}
 
 
 // start_drag = () => {
@@ -156,34 +180,32 @@ moveleft = () => {
         <>
         <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
                 
-            <div className="u-textCenter"> moving up currently not working </div>
-            {/* <div>
+            <div>
                 <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
-            </div> */}
+            </div>
         
             <div>
                 <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
                 <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
             </div>
 
-            <div className="u-textCenter"> moving down currently not working </div>
-            {/* <div>
+            <div>
                 <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
-            </div> */}
+            </div>
         
         </div>
 
         <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
-            <div className="u-textCenter"> zooming currently not working </div>
+            <div className="u-textCenter"> zooming only in final version </div>
             {/* <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
             <button className="SinglePlayer-button" onClick={this.zoomin}>+</button> */}
         </div>
 
         <div  className="SinglePlayer-ImageContainer" id="container"> 
-                <div className="SinglePlayer-face" id="drag-face"><img src={face} className="sp-face" /></div>
-                <Link to="/singleplayergameover"><div className="SinglePlayer-box" id="drag-box"></div></Link>
+                <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
                 <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
-                
+                <Link to="/singleplayergameover"><div className="SinglePlayer-box" id="drag-box"></div></Link>
+                {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
             
         </div>
         </>
