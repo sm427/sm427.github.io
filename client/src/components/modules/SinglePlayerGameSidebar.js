@@ -14,7 +14,6 @@ class SinglePlayerGameSidebar extends Component {
     render() {
       return (
         <div className="App">
-          <div className="App-title">Timers Demo</div>
           <div className="Timers">
             <Stopwatch />
           </div>
