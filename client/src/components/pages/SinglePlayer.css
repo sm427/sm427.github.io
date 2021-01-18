@@ -26,7 +26,6 @@
     margin-left: 00px;
     margin-top: 0px;
     height: calc(100vh - 59px);
-    cursor: move;
     /* margin-left: calc(90px + 70vw - 150vh); */
 }
 
@@ -34,9 +33,9 @@
     position: absolute;
     width: 200px;
     height: 168px;
-    border-radius: 84px;
+    border-radius: 32px;
     background-color: var(--primary);
-    left: calc(85vw - 105px);
+    left: calc(85vw - 112px);
     top: calc(200px);
     /* left: calc(35vw - 91px);
     top: calc(85vh - 91px); */
@@ -65,8 +64,19 @@
     height: 70px;
     border-radius: 32px;
     background-color: var(--primary);
-    left: calc(85vw - 105px);
+    left: calc(85vw - 112px);
     top: calc(384px);
     /* left: calc(35vw - 91px);
     top: calc(85vh - 91px); */
+}
+
+.SinglePlayer-Timers {
+
+ background-color:var(--primary);
+ /* border: 2px solid var(--darkgrey); */
+ padding: 16px 0px 8px 0px; 
+ border-radius: 32px;
+ margin-top: 411px;
+ /* margin-left: calc(15vw - 105px); */
+ width: 200px;
 }

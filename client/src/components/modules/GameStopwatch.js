@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
+import "../pages/SinglePlayer.css"
 
 class Stopwatch extends Component {
   constructor(props) {
@@ -44,21 +45,21 @@ class Stopwatch extends Component {
     let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
     return (
       <div className="Stopwatch">
-        <div className="Stopwatch-header">Stopwatch</div>
-        <div className="Stopwatch-display">
+        <div className="Stopwatch-header"></div>
+        <div className="Stopwatch-display u-Bebas u-fontsize30">
           {hours} : {minutes} : {seconds} : {centiseconds}
         </div>
         {this.state.timerOn === false && this.state.timerTime === 0 && (
-          <button onClick={this.startTimer}>Start</button>
+          <button className="SinglePlayer-button" onClick={this.startTimer}>Start</button>
         )}
         {this.state.timerOn === true && (
-          <button onClick={this.stopTimer}>Stop</button>
+          <button className="SinglePlayer-button" onClick={this.stopTimer}>Stop</button>
         )}
         {this.state.timerOn === false && this.state.timerTime > 0 && (
-          <button onClick={this.startTimer}>Resume</button>
+          <button className="SinglePlayer-button" onClick={this.startTimer}>Resume</button>
         )}
         {this.state.timerOn === false && this.state.timerTime > 0 && (
-          <button onClick={this.resetTimer}>Reset</button>
+          <button className="SinglePlayer-button" onClick={this.resetTimer}>Reset</button>
         )}
       </div>
     );

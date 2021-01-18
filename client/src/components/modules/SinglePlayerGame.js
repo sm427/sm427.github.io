@@ -136,33 +136,35 @@ movedown = () => {
 //document.getElementById("container").addEventListener('mouseup', this.stop_drag);
 
     return(
-        <div  className="SinglePlayer-ImageContainer" id="container"> 
-            <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
+        <>
+        <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
                 
-                <div>
-                    <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
-                </div>
-                
-                <div>
-                    <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
-                    <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
-                </div>
-
-                <div>
-                    <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
-                </div>
-                
+            <div>
+                <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
+            </div>
+        
+            <div>
+                <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
+                <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
             </div>
 
-            <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
-                    <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
-                    <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
+            <div>
+                <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
             </div>
-
-            <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
-            </img> 
-            
+        
         </div>
+
+        <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
+            <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
+            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
+        </div>
+
+        <div  className="SinglePlayer-ImageContainer" id="container"> 
+            <div > 
+                <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
+            </div>
+        </div>
+        </>
     )
     }
 }

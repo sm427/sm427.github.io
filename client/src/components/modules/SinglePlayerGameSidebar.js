@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import "../../utilities.css";
 import "../App.css";
-import "../pages/Home.css";
+import "../pages/SinglePlayer.css"
 import Stopwatch from "./GameStopwatch.js"
 
 class SinglePlayerGameSidebar extends Component {
@@ -13,8 +13,8 @@ class SinglePlayerGameSidebar extends Component {
     // use props here to update time and picture progress
     render() {
       return (
-        <div className="App">
-          <div className="Timers">
+        <div className="u-flexColumn u-flex-alignCenter u-textCenter">
+          <div className="SinglePlayer-Timers">
             <Stopwatch />
           </div>
         </div>
