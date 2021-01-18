@@ -10,12 +10,10 @@ class SinglePlayerGame extends Component {
         super(props);
         this.state = {
             zoomin: 0,
-            right: 0,
-            down: 0,
         }
     }
 
-// code to zoom and drag from stackoverflow.com, user "Bug"
+// code to zoom partly from stackoverflow.com, user "Bug"
 zoomin = (event) => {
   let img_ele = document.getElementById("drag-img");
   if (img_ele) {
@@ -47,10 +45,8 @@ moveright = () => {
     let img_ele = document.getElementById("drag-img");
     let marginLeftStart = img_ele.getBoundingClientRect().left; 
     let spaceright = img_ele.getBoundingClientRect().right - window.innerWidth * 0.7;
-    console.log(spaceright);
     if(spaceright > 50 ){         
         img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
-        this.setState({right: this.state.right + 1})
     }
     else if (img_ele.getBoundingClientRect().right - window.innerWidth * 0.7 <= 0) {}
     else {
@@ -62,10 +58,8 @@ moveleft = () => {
     let img_ele = document.getElementById("drag-img");
     let marginLeftStart = img_ele.getBoundingClientRect().left; 
     let spaceleft = img_ele.getBoundingClientRect().left
-    console.log(spaceleft);
     if(spaceleft < -50 ){         
         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
-        this.setState({right: this.state.right - 1})
     }
     else if (spaceleft >= 0) {}
     else {
@@ -73,23 +67,12 @@ moveleft = () => {
     }
 }
 
-// moveright = () => {
-//     if (this.state.right > 0) {
-//         let img_ele = document.getElementById("drag-img");
-//         let marginLeftStart = img_ele.getBoundingClientRect().left;  
-//         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
-//         this.setState({right: this.state.right -1})
-//     }
-// }
-
 moveup = () => {
     let img_ele = document.getElementById("drag-img");
     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
     let spacetop = img_ele.getBoundingClientRect().top - 59;
-    console.log(spacetop);
     if(spacetop < -50 ){         
         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
-        this.setState({right: this.state.right + 1})
     }
     else if (spacetop >= 0) {}
     else {
@@ -101,10 +84,8 @@ movedown = () => {
     let img_ele = document.getElementById("drag-img");
     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
     let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
-    console.log(spacebottom);
     if(spacebottom > 50 ){         
         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
-        this.setState({right: this.state.right + 1})
     }
     else if (spacebottom <= 0) {}
     else {
@@ -156,13 +137,26 @@ movedown = () => {
 
     return(
         <div  className="SinglePlayer-ImageContainer" id="container"> 
-            <div className="SinglePlayer-ButtonPanel">
-                <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
-                <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
-                <button id="zoomin" value="Zoom in" onClick={this.moveright}>Right</button>
-                <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
-                <button id="zoomin" value="Zoom in" onClick={this.moveup}>Up</button>
-                <button id="zoomin" value="Zoom in" onClick={this.movedown}>Down</button>
+            <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
+                
+                <div>
+                    <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
+                </div>
+                
+                <div>
+                    <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
+                    <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
+                </div>
+
+                <div>
+                    <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
+                </div>
+                
+            </div>
+
+            <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
+                    <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
+                    <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
             </div>
 
             <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
