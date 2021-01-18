@@ -34,7 +34,7 @@ class SinglePlayerSetup extends Component {
     let startbutton;
 
   if (!this.props.user.username) {
-    usernameMessage = "Please log in or sign up to continue!";
+    usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
     profilePictureMessage = "";
     startbutton = "Log in before playing.";
   }
@@ -46,14 +46,14 @@ class SinglePlayerSetup extends Component {
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
-    startbutton = (<button
+    startbutton = (<Link to="/singleplayer"><button
       type="submit"
       className="u-pointer App-submit Home-singlePlayerButton"
       value="Change"
       onClick={this.handleSubmit}
      >
        Play!
-     </button>);
+     </button></Link>);
 
   }
 
@@ -68,7 +68,7 @@ class SinglePlayerSetup extends Component {
         <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" value={this.state.slidervalue} onChange={this.handleChange}/></p>
                 {/* <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist> */}
         <p>You'll play  {this.state.sliderValue} rounds.</p></div>
-        <Link to="/singleplayer"> {startbutton} </Link>
+         {startbutton} 
       </div>
       </div>
     );

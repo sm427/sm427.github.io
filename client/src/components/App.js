@@ -88,8 +88,8 @@ class App extends Component {
           <Home path="/" user={this.state.user}/>
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUserVariable={this.updateUserVariable} updateUserServer={this.updateUserServer}/>
           <HowTo path="/howtoplay" />
-          <SinglePlayer path="/singleplayer" />
-          <SinglePlayerGameOver path="/singleplayergameover" />
+          <SinglePlayer path="/singleplayer" user={this.state.user}/>
+          <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>
           <NotFound default />
         </Router>
         </div>

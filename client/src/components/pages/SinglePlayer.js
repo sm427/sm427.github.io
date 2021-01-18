@@ -26,10 +26,10 @@ class SinglePlayer extends Component {
       return(
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame  pictureCounter={this.state.pictureCounter} />
+            <SinglePlayerGame  pictureCounter={this.state.pictureCounter} user={this.props.user}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} />
+            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.props.user}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}
