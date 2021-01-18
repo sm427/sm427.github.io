@@ -23,7 +23,9 @@
 
 
 .SinglePlayer-Image {
+    margin-left: 00px;
+    margin-top: 0px;
     height: calc(100vh - 59px);
     cursor: move;
-    margin-left: calc(90px + 70vw - 150vh);
+    /* margin-left: calc(90px + 70vw - 150vh); */
 }

@@ -10,11 +10,8 @@ class SinglePlayerGame extends Component {
         super(props);
         this.state = {
             zoomin: 0,
-            img_ele: null,
-            x_cursor: 0,
-            y_cursor: 0,
-            x_img_ele: 0,
-            y_img_ele: 0,
+            right: 0,
+            down: 0,
         }
     }
 
@@ -29,10 +26,10 @@ zoomin = (event) => {
   this.setState({zoomin: this.state.zoomin+1});
   
   }
-  img_ele = null;
+  img_ele = 0;
 }
 
-zoomout = (event) => {
+zoomout = () => {
     let img_ele = document.getElementById("drag-img");
     if (img_ele) {
         if (this.state.zoomin > 0) {
@@ -43,51 +40,92 @@ zoomout = (event) => {
             this.setState({zoomin: this.state.zoomin-1});
         }
     }
-    img_ele = null;
+    img_ele = 0;
   }
 
+moveleft = () => {
+        let img_ele = document.getElementById("drag-img");
+        let marginLeftStart = img_ele.getBoundingClientRect().left;  
+        img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
+        this.setState({right: this.state.right + 1})
+  }
 
-start_drag = () => {
-  this.setState({img_ele: true})
-  this.setState({x_img_ele: window.event.clientX - document.getElementById('drag-img').offsetLeft})
-  this.setState({y_img_ele: window.event.clientY - document.getElementById('drag-img').offsetTop})
-
+moveright = () => {
+    if (this.state.right > 0) {
+        let img_ele = document.getElementById("drag-img");
+        let marginLeftStart = img_ele.getBoundingClientRect().left;  
+        img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
+        this.setState({right: this.state.right -1})
+    }
 }
 
-stop_drag = () => {
-  this.setState({img_ele: null})
+
+moveup = () => {
+        let img_ele = document.getElementById("drag-img"); 
+        let marginTopStart = img_ele.getBoundingClientRect().top-80; 
+        img_ele.style.marginTop = (marginTopStart - 50) + 'px';
+        this.setState({down: this.state.down +1})
 }
 
-while_drag = () => {
-  this.setState({ x_cursor: window.event.clientX })
-  this.setState({ y_cursor: window.event.clientY})
-//   if (this.state.img_ele !== null) {
-//     img_ele.style.left = (x_cursor - x_img_ele) + 'px';
-//     img_ele.style.top = ( window.event.clientY - y_img_ele) + 'px';
-
-//       console.log(img_ele.style.left+' - '+img_ele.style.top);
-
-//   }
+movedown = () => {
+    if (this.state.down > 0) {
+        let img_ele = document.getElementById("drag-img"); 
+        let marginTopStart = img_ele.getBoundingClientRect().top-80; 
+        img_ele.style.marginTop = (marginTopStart + 50) + 'px';
+        this.setState({down: this.state.down -1})
+    }
 }
+
+
+// start_drag = () => {
+//     console.log("go");
+//     let img_ele = document.getElementById("drag-img");
+//     //console.log("start drag");
+//     this.setState({dragOn: true});       
+//     this.setState({x_start: window.event.clientX});
+//     this.setState({y_start: window.event.clientY})   ;
+//     this.setState({marginLeftStart: img_ele.getBoundingClientRect().left})  ;  
+//     this.setState({marginTopStart: img_ele.getBoundingClientRect().top})  ; 
+// }
+
+// stop_drag = () => {
+//     //console.log("stop drag");
+    
+//     this.setState({dragOn: false});
+// }
+
+// while_drag = () => {
+//     let img_ele = document.getElementById("drag-img");
+//     let x_cursor= window.event.clientX;
+//     let y_cursor= window.event.clientY;
+//     if (this.state.dragOn) {
+//         //console.log("while drag");
+//         img_ele.style.marginLeft = (x_cursor - this.state.x_start + this.state.marginLeftStart) + 'px';
+//         img_ele.style.marginTop = (y_cursor - this.state.y_start + this.state.marginTopStart - 80) + 'px';
+//     }
+// }
 
 
 
     render() {
-        // document.getElementById('zoomout').addEventListener('click', function() {
-        //     zoom(0.5);
-        //   });
-        //   document.getElementById('zoomin').addEventListener('click', function() {
-        //     zoom(1.5);
-        //   });
-
-//getElementById('drag-img').addEventListener('mousedown', this.start_drag);
-//getElementById('container').addEventListener('mousemove', this.while_drag);
-//getElementById('container').addEventListener('mouseup', this.stop_drag);
+let img = document.getElementById("drag-img");
+let container = document.getElementById("container");
+if (img) {addEventListener('mousedown', this.start_drag);}
+if (container) {
+    addEventListener('mousemove', this.while_drag);
+    addEventListener('mouseup', this.stop_drag);
+}
+//document.getElementById("container").addEventListener('mousemove', this.while_drag);
+//document.getElementById("container").addEventListener('mouseup', this.stop_drag);
 
         return(
-            <div  className="SinglePlayer-ImageContainer"> 
+            <div  className="SinglePlayer-ImageContainer" id="container"> 
             <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
             <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
+            <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
+            <button id="zoomin" value="Zoom in" onClick={this.moveright}>Right</button>
+            <button id="zoomin" value="Zoom in" onClick={this.moveup}>Up</button>
+            <button id="zoomin" value="Zoom in" onClick={this.movedown}>Down</button>
             <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
             </img> 
             </div>
