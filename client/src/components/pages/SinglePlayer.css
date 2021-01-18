@@ -29,3 +29,14 @@
     cursor: move;
     /* margin-left: calc(90px + 70vw - 150vh); */
 }
+
+.SinglePlayer-ButtonPanel {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 32px;
+    background-color: var(--primary--dim);
+    left: calc(35vw - 91px);
+    top: calc(85vh - 91px);
+    padding: 16px
+}

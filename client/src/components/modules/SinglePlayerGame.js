@@ -59,21 +59,20 @@ moveright = () => {
     }
 }
 
-
 moveup = () => {
-        let img_ele = document.getElementById("drag-img"); 
-        let marginTopStart = img_ele.getBoundingClientRect().top-80; 
-        img_ele.style.marginTop = (marginTopStart - 50) + 'px';
-        this.setState({down: this.state.down +1})
-}
-
-movedown = () => {
     if (this.state.down > 0) {
         let img_ele = document.getElementById("drag-img"); 
-        let marginTopStart = img_ele.getBoundingClientRect().top-80; 
+        let marginTopStart = img_ele.getBoundingClientRect().top-59; 
         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
         this.setState({down: this.state.down -1})
     }
+}
+
+movedown = () => {
+        let img_ele = document.getElementById("drag-img"); 
+        let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+        img_ele.style.marginTop = (marginTopStart - 50) + 'px';
+        this.setState({down: this.state.down +1})
 }
 
 
@@ -108,28 +107,32 @@ movedown = () => {
 
 
     render() {
-let img = document.getElementById("drag-img");
-let container = document.getElementById("container");
-if (img) {addEventListener('mousedown', this.start_drag);}
-if (container) {
-    addEventListener('mousemove', this.while_drag);
-    addEventListener('mouseup', this.stop_drag);
-}
+        let img = document.getElementById("drag-img");
+        let container = document.getElementById("container");
+        if (img) {addEventListener('mousedown', this.start_drag);}
+        if (container) {
+            addEventListener('mousemove', this.while_drag);
+            addEventListener('mouseup', this.stop_drag);
+        }       
 //document.getElementById("container").addEventListener('mousemove', this.while_drag);
 //document.getElementById("container").addEventListener('mouseup', this.stop_drag);
 
-        return(
-            <div  className="SinglePlayer-ImageContainer" id="container"> 
-            <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
-            <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
-            <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
-            <button id="zoomin" value="Zoom in" onClick={this.moveright}>Right</button>
-            <button id="zoomin" value="Zoom in" onClick={this.moveup}>Up</button>
-            <button id="zoomin" value="Zoom in" onClick={this.movedown}>Down</button>
+    return(
+        <div  className="SinglePlayer-ImageContainer" id="container"> 
+            <div className="SinglePlayer-ButtonPanel">
+                <button id="zoomout" value="Zoom out" onClick={this.zoomout}>Zoom out</button>
+                <button id="zoomin" value="Zoom in" onClick={this.zoomin}>Zoom in</button>
+                <button id="zoomin" value="Zoom in" onClick={this.moveleft}>Left</button>
+                <button id="zoomin" value="Zoom in" onClick={this.moveright}>Right</button>
+                <button id="zoomin" value="Zoom in" onClick={this.moveup}>Up</button>
+                <button id="zoomin" value="Zoom in" onClick={this.movedown}>Down</button>
+            </div>
+
             <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene">
             </img> 
-            </div>
-        )
+            
+        </div>
+    )
     }
 }
 
