@@ -13,6 +13,10 @@
     overflow: hidden;
 }
 
+.SinglePlayer-ImageContainer{
+    overflow: hidden;
+}
+
 .SinglePlayer-SideBarContainer {
     z-index: 10;
     background-color: var(--primary--dim);
@@ -39,7 +43,7 @@
     border-radius: 32px;
     background-color: var(--primary);
     left: calc(85vw - 112px);
-    top: calc(200px);
+    top: calc(232px);
     /* left: calc(35vw - 91px);
     top: calc(85vh - 91px); */
 }
@@ -69,7 +73,7 @@
     border-radius: 32px;
     background-color: var(--primary);
     left: calc(85vw - 112px);
-    top: calc(384px);
+    top: calc(416px);
     /* left: calc(35vw - 91px);
     top: calc(85vh - 91px); */
 }
@@ -80,7 +84,7 @@
  /* border: 2px solid var(--darkgrey); */
  padding: 16px 0px 8px 0px; 
  border-radius: 32px;
- margin-top: 411px;
+ margin-top: 285px;
  /* margin-left: calc(15vw - 105px); */
  width: 200px;
 }

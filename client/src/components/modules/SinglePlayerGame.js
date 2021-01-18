@@ -15,32 +15,32 @@ class SinglePlayerGame extends Component {
     }
 
 // code to zoom partly from stackoverflow.com, user "Bug"
-zoomin = () => {
-  let img_ele = document.getElementById("drag-img");
-  if (img_ele) {
-  let pre_width = img_ele.getBoundingClientRect().width
-  let pre_height = img_ele.getBoundingClientRect().height;
-  img_ele.style.width = (pre_width * 1.2) + 'px';
-  img_ele.style.height = (pre_height * 1.2) + 'px';
-  this.setState({zoomin: this.state.zoomin+1});
+// zoomin = () => {
+//   let img_ele = document.getElementById("drag-img");
+//   if (img_ele) {
+//   let pre_width = img_ele.getBoundingClientRect().width
+//   let pre_height = img_ele.getBoundingClientRect().height;
+//   img_ele.style.width = (pre_width * 1.2) + 'px';
+//   img_ele.style.height = (pre_height * 1.2) + 'px';
+//   this.setState({zoomin: this.state.zoomin+1});
   
-  }
-  img_ele = 0;
-}
+//   }
+//   img_ele = 0;
+// }
 
-zoomout = () => {
-    let img_ele = document.getElementById("drag-img");
-    if (img_ele) {
-        if (this.state.zoomin > 0) {
-            let pre_width = img_ele.getBoundingClientRect().width
-            let pre_height = img_ele.getBoundingClientRect().height;
-            img_ele.style.width = (pre_width / 1.2) + 'px';
-            img_ele.style.height = (pre_height / 1.2) + 'px';
-            this.setState({zoomin: this.state.zoomin-1});
-        }
-    }
-    img_ele = 0;
-  }
+// zoomout = () => {
+//     let img_ele = document.getElementById("drag-img");
+//     if (img_ele) {
+//         if (this.state.zoomin > 0) {
+//             let pre_width = img_ele.getBoundingClientRect().width
+//             let pre_height = img_ele.getBoundingClientRect().height;
+//             img_ele.style.width = (pre_width / 1.2) + 'px';
+//             img_ele.style.height = (pre_height / 1.2) + 'px';
+//             this.setState({zoomin: this.state.zoomin-1});
+//         }
+//     }
+//     img_ele = 0;
+//   }
 
 moveright = () => {
     let img_ele = document.getElementById("drag-img");
@@ -84,31 +84,31 @@ moveleft = () => {
     }
 }
 
-moveup = () => {
-    let img_ele = document.getElementById("drag-img");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-    let spacetop = img_ele.getBoundingClientRect().top - 59;
-    if(spacetop < -50 ){         
-        img_ele.style.marginTop = (marginTopStart + 50) + 'px';
-    }
-    else if (spacetop >= 0) {}
-    else {
-        img_ele.style.marginTop = (marginTopStart - spacetop) + 'px';
-    }
-}
+// moveup = () => {
+//     let img_ele = document.getElementById("drag-img");
+//     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+//     let spacetop = img_ele.getBoundingClientRect().top - 59;
+//     if(spacetop < -50 ){         
+//         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
+//     }
+//     else if (spacetop >= 0) {}
+//     else {
+//         img_ele.style.marginTop = (marginTopStart - spacetop) + 'px';
+//     }
+// }
 
-movedown = () => {
-    let img_ele = document.getElementById("drag-img");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-    let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
-    if(spacebottom > 50 ){         
-        img_ele.style.marginTop = (marginTopStart - 50) + 'px';
-    }
-    else if (spacebottom <= 0) {}
-    else {
-        img_ele.style.marginTop = (marginTopStart - spacebottom) + 'px';
-    }
-}
+// movedown = () => {
+//     let img_ele = document.getElementById("drag-img");
+//     let marginTopStart = img_ele.getBoundingClientRect().top-59; 
+//     let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
+//     if(spacebottom > 50 ){         
+//         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
+//     }
+//     else if (spacebottom <= 0) {}
+//     else {
+//         img_ele.style.marginTop = (marginTopStart - spacebottom) + 'px';
+//     }
+// }
 
 
 // start_drag = () => {
@@ -156,24 +156,27 @@ movedown = () => {
         <>
         <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
                 
-            <div>
+            <div className="u-textCenter"> moving up currently not working </div>
+            {/* <div>
                 <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
-            </div>
+            </div> */}
         
             <div>
                 <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
                 <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
             </div>
 
-            <div>
+            <div className="u-textCenter"> moving down currently not working </div>
+            {/* <div>
                 <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
-            </div>
+            </div> */}
         
         </div>
 
         <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
-            <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
-            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
+            <div className="u-textCenter"> zooming currently not working </div>
+            {/* <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
+            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button> */}
         </div>
 
         <div  className="SinglePlayer-ImageContainer" id="container"> 

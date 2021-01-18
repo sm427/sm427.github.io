@@ -14,6 +14,8 @@ class SinglePlayerGameSidebar extends Component {
     render() {
       return (
         <div className="u-flexColumn u-flex-alignCenter u-textCenter">
+          <h2>Tag yourself!</h2>
+          <p>Use the bottons to move the image to the left or to the right. Find and click on yourself!</p>
           <div className="SinglePlayer-Timers">
             <Stopwatch />
           </div>
