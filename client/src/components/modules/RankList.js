@@ -35,7 +35,7 @@ class RankList extends Component {
         <h2 className="textCenter">Your Best Times</h2>
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
-          {this.state.times.map((time, index) => (
+          {this.state.times.slice(0,10).map((time, index) => (
             <div key={index} className="SPGO-timeBox" >{("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
           ))}
       </div>
