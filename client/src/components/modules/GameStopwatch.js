@@ -38,6 +38,7 @@ class Stopwatch extends Component {
   };
 
   render() {
+    // this.startTimer;
     const { timerTime } = this.state;
     let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);
     let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
@@ -49,7 +50,10 @@ class Stopwatch extends Component {
         <div className="Stopwatch-display u-Bebas u-fontsize30">
           {hours} : {minutes} : {seconds} : {centiseconds}
         </div>
-        {this.state.timerOn === false && this.state.timerTime === 0 && (
+        {this.startTimer}
+        <p1> Stopwatch </p1>
+
+        {/* {this.state.timerOn === false && this.state.timerTime === 0 && (
           <button className="SinglePlayer-button" onClick={this.startTimer}>Start</button>
         )}
         {this.state.timerOn === true && (
@@ -60,7 +64,7 @@ class Stopwatch extends Component {
         )}
         {this.state.timerOn === false && this.state.timerTime > 0 && (
           <button className="SinglePlayer-button" onClick={this.resetTimer}>Reset</button>
-        )}
+        )} */}
       </div>
     );
   }
