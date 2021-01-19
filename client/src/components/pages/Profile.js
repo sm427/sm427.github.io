@@ -142,10 +142,11 @@ class Profile extends Component {
 
           <div><h3>How to Upload a Profile Picture</h3></div>
           <div><p className="Profile-PictureExplanation"> Open an graphics editor of your choice (e.g. Adobe Photoshop, Gimp, MS Paint). </p>
-          <p className="Profile-PictureExplanation"> Create a new image with width 200px and height 300px. Add a picture of your face; make sure that you look directly at the camera, thst your head isn't tilted in any direction, that the picture is well-lighted and that your face isn't covered by hair in front of your forehead or glasses.</p>
-          <p className="Profile-PictureExplanation">Transform the picture of your face such that your face fills the 200x300 image, distort it if neccessary. Your chin should lay on the bottom edge of the image; the top edge should be between your hairline and the top of your head. The left and the right edge of the image should be where your ears start, or a bit closer to the center of your face. Please see the example picture below.</p>
-          <p className="Profile-PictureExplanation">Save the image as .png, minimizing the file size. If your graphics editor supports it, change the colors to 8-bit, in order to further decrease the file size. Your image needs to be smaller than 50kb. If neccessary reduce the widthxheight to 100x150px.</p>
-          <p className="Profile-PictureExplanation">Feel free to right-click, save, reupload, and play with one of the sample pictures below</p>
+          <p className="Profile-PictureExplanation">  Add a picture of your face; make sure that you look directly at the camera, thst your head isn't tilted in any direction, that the picture is well-lighted and that your face isn't covered by hair in front of your forehead or glasses.</p>
+          <p className="Profile-PictureExplanation">Crop the picture of your face such that your face completly fills the image. Your chin should lay on the bottom edge of the image; the top edge should be between your hairline and the top of your head. The left and the right edge of the image should be where your ears start, or a bit closer to the center of your face. Please see the example picture below.</p>
+          <p className="Profile-PictureExplanation">Save the image and upload it here.</p>
+          <p className="Profile-PictureExplanation">Optional: For the best experience, make sure that your image has a width of 200px and a height of 300px, distorting it if neccessary. If your graphics editor supports it, change the colors to 8-bit, in order to decrease the file size. Save as .png.</p>
+          <p className="Profile-PictureExplanation">Feel free to right-click, save, reupload, and play with one of the sample pictures below.</p>
           <p className="Profile-PictureExplanation">Sample picture:</p>
           <img src={Sampleimage} />
           <p className="Profile-PictureExplanation">Sources: CC <a href="https://commons.wikimedia.org/wiki/File:JoeBidenCropped.jpg">White House</a>, images distorted and mirrored</p>
