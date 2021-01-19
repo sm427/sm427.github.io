@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import { get } from "../../utilities.js";
 import Scene from "../images/t1-main2.png";
-import face from "../images/facetest1.png";
 
 import "../../utilities.css"
 import "../pages/SinglePlayer.css";
