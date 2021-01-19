@@ -35,7 +35,7 @@ class NavOut extends Component {
      </button></Link>);
 
     return (
-    <div>
+    <div className="u-flexColumn u-flex-alignCenter">
       <div>
       <h4>What do you want to do next?</h4>
     </div>
@@ -43,6 +43,7 @@ class NavOut extends Component {
         {homeButton} 
         {replayButton}
       </div>
+      <p className="u-Quantico">Note: Play again doesn't really make sense in the MVP because there is only one playable image. This will be changed in the final product.</p>
     </div>
     );
 

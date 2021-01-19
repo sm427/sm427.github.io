@@ -3,9 +3,8 @@ import { Link } from "@reach/router";
 import Scene from "../images/templatetest3red.png"
 
 import "../../utilities.css"
-import "../pages/SinglePlayer.css";
-import "../pages/Home.css";
 import "../App.css";
+import "./SinglePlayerGameOver.css"
 
 import RankList from "../modules/RankList.js"
 import NavOut from "../modules/NavOut.js"
@@ -21,7 +20,7 @@ class SinglePlayerGameOver extends Component {
     render() {
 
         return(
-            <div >
+            <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <RankList user={this.props.user}/>
                 <NavOut/>
