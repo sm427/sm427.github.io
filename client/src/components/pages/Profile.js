@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities";
-import ChangeUsername from"../modules/ChangeUsername.js";
+import ChangeUsername from "../modules/ChangeUsername.js";
+import Sampleimage from "../images/facetest1.png"
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -135,19 +136,36 @@ class Profile extends Component {
             <div className="shortHorizontalLine"> </div>
           </div>
           
-          
-          {profilePictureSection}
-      
+        <div className="u-flex Profile-ContentContainer">
+          <div className="Profile-Parts u-flexColumn u-flex-alignCenter">
+            {profilePictureSection}
 
-          <div className="Profile-Object">
-            <h2>Username</h2>
-            <p>{this.state.profileUser.username}</p>
+          <div><h3>How to Upload a Profile Picture</h3></div>
+          <div><p className="Profile-PictureExplanation"> Open an graphics editor of your choice (e.g. Adobe Photoshop, Gimp, MS Paint). </p>
+          <p className="Profile-PictureExplanation"> Create a new image with width 200px and height 300px. Add a picture of your face; make sure that you look directly at the camera, your head isn't tilted in any direction, and that the picture is well-lighted. </p>
+          <p className="Profile-PictureExplanation">Transform the picture of your face such that your face fills the 200x300 image, distort it if neccessary. Your chin should lay on the bottom edge of the image; the top edge should be between your hairline and the top of your head. The left and the right edge of the image should be where your ears start, or a bit closer to the center of your face. Please see the example picture below.</p>
+          <p className="Profile-PictureExplanation">Save the image as .png, minimizing the file size. If your graphics editor supports it, change the colors to 8-bit, in order to further decrease the file size.</p>
+          <p className="Profile-PictureExplanation">Sample picture:</p>
+          <img src={Sampleimage} />
           </div>
-          {userNameChanger}
-          <div className="Profile-Object">
-            <h2>User-ID</h2>
-           <p>{this.state.profileUser._id}</p>
           </div>
+
+          <div>
+            <div className="Profile-verticalLine" />
+          </div>
+          
+          <div className="Profile-Parts">
+            <div className="Profile-Object">
+              <h2>Username</h2>
+              <p>{this.state.profileUser.username}</p>
+            </div>
+            {userNameChanger}
+            <div className="Profile-Object">
+              <h2>User-ID</h2>
+             <p>{this.state.profileUser._id}</p>
+            </div>
+          </div>
+        </div>
         </div>
       );
     }

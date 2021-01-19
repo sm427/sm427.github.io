@@ -26,3 +26,28 @@
     max-width: 500px;
     display: block;
 }
+
+.Profile-ContentContainer{
+    width: 100%;
+    justify-content: center;
+}
+
+.Profile-verticalLine{
+    flex-grow: 1 0 100%;
+    width: 1px;
+    background-color: black;
+    margin: 32px 32px;
+    height: 400px;
+}
+
+.Profile-Parts {
+    width: 45vw;
+}
+
+.Profile-PictureExplanation {
+    width: 70%;
+    margin-left: 15%;
+    line-height: 1.4;
+    text-align:justify;
+    text-align-last: center;
+}
