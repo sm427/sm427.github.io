@@ -12,7 +12,7 @@ class Stopwatch extends Component {
     timerTime: 0
   };
 
-  startTimer = () => {
+  startTimer()  {
     this.setState({
       timerOn: true,
       timerTime: this.state.timerTime,
@@ -37,6 +37,10 @@ class Stopwatch extends Component {
     });
   };
 
+  componentDidMount() {
+    this.startTimer()
+  }
+
   render() {
     // this.startTimer;
     const { timerTime } = this.state;
@@ -50,7 +54,6 @@ class Stopwatch extends Component {
         <div className="Stopwatch-display u-Bebas u-fontsize30">
           {hours} : {minutes} : {seconds} : {centiseconds}
         </div>
-        {this.startTimer}
         <p1> Stopwatch </p1>
 
         {/* {this.state.timerOn === false && this.state.timerTime === 0 && (
