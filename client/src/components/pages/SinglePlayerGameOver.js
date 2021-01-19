@@ -22,7 +22,9 @@ class SinglePlayerGameOver extends Component {
         return(
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
+                <div className="SPGO-ranklistContainer">
                 <RankList user={this.props.user}/>
+                </div>
                 <NavOut/>
             </div>
           )

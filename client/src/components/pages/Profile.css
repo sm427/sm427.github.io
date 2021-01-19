@@ -22,6 +22,7 @@
 .Profile-picture {
     height: 300px;
     margin: auto;
+    margin-top: 32px;
     margin-bottom: 16px;
     max-width: 500px;
     display: block;
@@ -50,4 +51,8 @@
     line-height: 1.4;
     text-align:justify;
     text-align-last: center;
+}
+
+.Profile-rankListContainer{
+    margin: 32px;
 }

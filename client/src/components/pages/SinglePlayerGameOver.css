@@ -7,7 +7,7 @@
 }
 
 .SPGO-timeBox{
-    width: 100%;
+    width: 80%;
     background-color: var(--lightgrey);
     border-radius: 32px;
     padding: 8px 32px;
@@ -18,26 +18,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw;
-    padding: 16px;
+    width: 100%;
+    padding: 32px 0px;
     text-align: center;
 }
 
 .SPGO-timeBox:first-child{
     background-color: gold;
-    width: 50vw;
+    width: 100%;
     font-size: 24px;
 }
 
 .SPGO-timeBox:nth-child(2){
     background-color: silver;
-    width: 48vw;
+    width: 96%;
     font-size: 22px;
 }
 
 .SPGO-timeBox:nth-child(3){
     background-color: burlywood;
-    width: 46vw;
+    width: 92%;
     font-size: 20px;
 }
 
@@ -45,4 +45,8 @@
     height: 1px;
     width: 64px;
     background-color: var(--darkgrey);
+}
+
+.SPGO-ranklistContainer{
+    width: 50vw;
 }

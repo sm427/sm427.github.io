@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get, post } from "../../utilities";
 import ChangeUsername from "../modules/ChangeUsername.js";
 import Sampleimage from "../images/testface4.png"
+import RankList from "../modules/RankList.js"
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -167,6 +168,11 @@ class Profile extends Component {
               <h2>User-ID</h2>
              <p>{this.state.profileUser._id}</p>
             </div>
+
+            <div className="Profile-rankListContainer">
+              <RankList user={this.props.user}/>
+            </div>
+
           </div>
         </div>
         </div>
