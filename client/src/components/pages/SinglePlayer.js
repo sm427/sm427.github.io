@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import { post } from "../../utilities.js";
 //import { get, post } from "../../utilities";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
 //import Waldo from "../modules/Waldo.js"
 
 import "./SinglePlayer.css";
+import "../../utilities.css";
 
 
 class SinglePlayer extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            time : 0,
+            finalTimerTime: 0,
             pictureCounter : 1,
             gameOn: true,
         }
@@ -28,6 +30,12 @@ class SinglePlayer extends Component {
     //     });
     //   };
 
+    reportTimerTime = (time) => {
+      console.log(time);
+      this.setState({finalTimerTime: time})
+      //post()
+    }
+
     render() {
       return(
         <div className="SinglePlayer-container">
@@ -35,7 +43,7 @@ class SinglePlayer extends Component {
             <SinglePlayerGame  pictureCounter={this.state.pictureCounter} user={this.props.user} endGame={this.endGame}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.props.user} gameOn={this.state.gameOn}/>
+            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.props.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}
@@ -43,14 +51,14 @@ class SinglePlayer extends Component {
           { (!this.state.gameOn) ? (
           <div> 
             <div className="SinglePlayer-dimBackground"></div>
-          <div className="SinglePlayer-GameOver">
+          <div className="SinglePlayer-GameOver u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
           
-            <div>
-              Game over
+            <div> <h2>
+              Game over </h2>
             </div>
 
             <div>
-              Time
+              Your time was Time
             </div>
 
             <div>

@@ -28,7 +28,8 @@ class SinglePlayerGameSidebar extends Component {
     componentDidUpdate() {
       if (this.state.timerOn) {
       if (!this.props.gameOn) {
-        this.stopTimer()
+        this.stopTimer();
+        this.props.reportTimerTime(this.state.timerTime);
       }}
     }
     
@@ -56,6 +57,8 @@ class SinglePlayerGameSidebar extends Component {
           timerTime: 0
         });
       };
+
+    
 
     // use props here to update time and picture progress
     render() {
