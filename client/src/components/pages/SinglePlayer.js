@@ -33,7 +33,8 @@ class SinglePlayer extends Component {
     reportTimerTime = (time) => {
       console.log(time);
       this.setState({finalTimerTime: time})
-      //post()
+      let body = {finalTime: time, user: this.props.user}
+      post("/api/reportTime", body)
     }
 
     render() {
@@ -58,7 +59,7 @@ class SinglePlayer extends Component {
             </div>
 
             <div>
-              Your time was Time
+              Your time was {this.state.finalTimerTime}
             </div>
 
             <div>

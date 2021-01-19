@@ -58,6 +58,18 @@ router.post("/user", (req, res) => {
   }
 });
 
+router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.user._id },{ $push: { playedTimes: req.body.finalTime } }).then((user) => {
+  res.send({}); // success!
+})
+})
+
+router.get("/getTimes", auth.ensureLoggedIn, (req,res) => {
+  User.find({_id: req.body.user._id}).then((user) => {
+    res.send(user.playedTimes)
+  })
+})
+
 router.post("/uploadImage", auth.ensureLoggedIn, (req, res) => {
   if (typeof (req.body.image) !== 'string') {
     throw new Error("Can only handle images encoded as strings. Got type: "
