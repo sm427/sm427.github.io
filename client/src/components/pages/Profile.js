@@ -107,7 +107,7 @@ class Profile extends Component {
           <ChangeUsername profileUser={this.state.profileUser} updateUser={this.updateProfileUser}/>
           </div> );
         
-        profilePictureSection = (<div className="Profile-Object"><div className="Skeleton-images">
+        profilePictureSection = (<div className="Skeleton-images">
           {
             this.state.images.map((image, index) => (
             <img src={image} key={index} className="Profile-picture"/>
@@ -122,10 +122,10 @@ class Profile extends Component {
                 Upload new Profile Picture
               </button>
                     {/* <label htmlFor="fileInput">Upload New Profile Picture</label> */}
-              {this.state.showChangePicture ? (<><input className="App-fileUpload" id="fileInput" type="file" name="files[]" accept="image/*" onChange={this.uploadImage} /> </>):("")}
+              {this.state.showChangePicture ? (<><input className="App-fileUpload" id="fileInput" type="file" name="files[]" accept="image/*" onChange={this.uploadImage} /> <p>Only you can see your profile picture!</p></>):("")}
             </div>
           </div>
-        </div></div>);
+        </div>);
         }  
       else {userNameChanger= ""; profilePictureSection=""} 
     
