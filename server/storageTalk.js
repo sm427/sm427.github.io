@@ -3,6 +3,7 @@
 
 const { Storage } = require('@google-cloud/storage');
 const NodeCache = require("node-cache");
+require('dotenv').config();
 
 // The advantage of this cache is that we avoid loading images we've seen recently,
 // since GCP will charge you money if you request too much data. See GCP pricing.
