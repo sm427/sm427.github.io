@@ -45,6 +45,25 @@ class RankList extends Component {
       console.log(usertimes);
     }
 
+        // this still nedds some work, is the start to highlight the last time
+    let ranklist = this.state.times.slice(0,10).map((time, index) => (
+      <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
+    ));
+
+      // let sortedTimes = this.state.times.sort((a,b) => a - b);
+      // let tenBestTimes = sortedTimes.slice(0,10)
+      // let lastTime = this.state.times[this.state.times.length-1]
+      // if (lastTime <= tenBestTimes[tenBestTimes,length-1]) {
+      //   ranklist = sortedTimes.slice(0,10).map((time, index) => (
+      //     <div key={index} className="SPGO-timeBox" >{index+1} | {time===lastTime?("a"):("b")} {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
+      //   ))
+      // }
+      // else {
+      //   ranklist = this.state.times.slice(0,10).map((time, index) => (
+      //     <div key={index} className="SPGO-timeBox" >{("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
+      //   ));
+      // }
+
     return (
       // <div>
       // <div className="u-flexColumn u-flex-alignCenter">
@@ -54,14 +73,11 @@ class RankList extends Component {
       //    <Stopwatch/>
       // </div>
       // </div>
-
       <div className="u-flexColumn u-flex-alignCenter">
         <h2 className="textCenter">Your Best Times</h2>
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
-          {this.state.times.slice(0,10).map((time, index) => (
-            <div key={index} className="SPGO-timeBox" >{("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
-          ))}
+          {ranklist}
       </div>
       </div>
       // </div>
