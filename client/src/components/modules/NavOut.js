@@ -31,13 +31,13 @@ class NavOut extends Component {
       value="Change"
       onClick={this.handleSubmit}
      >
-       Play!
+       Play Again!
      </button></Link>);
 
     return (
     <div>
       <div>
-      <h4>Next?</h4>
+      <h4>What do you want to do next?</h4>
     </div>
     <div>
         {homeButton} 

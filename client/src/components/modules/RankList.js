@@ -9,53 +9,26 @@ class RankList extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
-
+    this.state = {
+        times : []
+    }
   }
 
+  componentDidMount() {
+    get("/api/getTimes").then(times => {
+      this.setState({ times: times });
+    });
+    }
 
-  render() {
+    render() {
 
-    let usernameMessage;
-    let profilePictureMessage;
-    let startbutton;
+    // let variable;
 
-  if (!this.props.user.username) {
-    usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
-    profilePictureMessage = "";
-    startbutton = "Log in before playing.";
-  }
-  // else if (!this.props.user.imageNames[0]) {
-  //   usernameMessage = `Logged in as ${this.props.user._id}.`;
-  //   profilePictureMessage =("Please upload a picture in  to continue!");
-  //   startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hit the button
-  // }
-  else {
-    usernameMessage = `Logged in as ${this.props.user.username}.`;
-    profilePictureMessage = "You have already uploaded a picture.";
-    startbutton = (<Link to="/singleplayer"><button
-      type="submit"
-      className="u-pointer App-submit Home-singlePlayerButton"
-      value="Change"
-      onClick={this.handleSubmit}
-     >
-       Play!
-     </button></Link>);
-
-  }
+  
 
     return (
       <div>
-      <h4 className="Home-Box-Header">Singleplayer</h4>
-      <div className="u-textCenter Home-singlePlayerContentContainer">
-        
-        <div><p>{usernameMessage}</p>
-        <p>{profilePictureMessage}</p></div>
-        <div><h4>Picture Count</h4>
-        <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" value={this.state.slidervalue} onChange={this.handleChange}/></p>
-                {/* <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist> */}
-        <p>You'll play  {this.state.sliderValue} rounds.</p><p className="u-Quantico">Note: Picture Count is not working atm. There is only one playable picture in the MVP. The number of playable pictures will be significantly increased for the final product.</p></div>
-         {startbutton} 
-      </div>
+          {this.state.times}
       </div>
     );
   }
