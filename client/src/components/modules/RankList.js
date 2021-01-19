@@ -31,14 +31,14 @@ class RankList extends Component {
   
 
     return (
-      <div>
-      <div className="u-flexColumn u-flex-alignCenter">
-        <h2 className="textCenter">Your Time</h2>
-        <div className="SPGO-shortHorizontalLine"> </div>
-      <div className="SPGO-timesContainer">
-         <Stopwatch page={false} />
-      </div>
-      </div>
+      // <div>
+      // <div className="u-flexColumn u-flex-alignCenter">
+      //   <h2 className="textCenter">Your Time</h2>
+      //   <div className="SPGO-shortHorizontalLine"> </div>
+      // <div className="SPGO-timesContainer">
+      //    <Stopwatch/>
+      // </div>
+      // </div>
 
       <div className="u-flexColumn u-flex-alignCenter">
         <h2 className="textCenter">Your Best Times</h2>
@@ -49,7 +49,7 @@ class RankList extends Component {
           ))}
       </div>
       </div>
-      </div>
+      // </div>
     );
   }
 }
