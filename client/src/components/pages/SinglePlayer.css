@@ -191,3 +191,18 @@ position: absolute;
     top: 0;
     left: 0;
 }
+
+.SinglePlayer-GameOverButton{
+    margin: 16px;
+    border: 0px solid;
+    outline: 0;
+    border-radius: 32px;
+    padding: 8px 32px;
+    font-size: 16px;
+    background-color: var(--darkgrey);
+    color: white;
+}
+
+.SinglePlayer-GameOverButton:hover{
+    background-color: var(--primary--dim);
+}

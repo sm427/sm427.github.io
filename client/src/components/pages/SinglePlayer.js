@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { post } from "../../utilities.js";
+import { Link } from "@reach/router";
 //import { get, post } from "../../utilities";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
@@ -38,6 +39,13 @@ class SinglePlayer extends Component {
     }
 
     render() {
+
+      const finalTimerTime  = this.state.finalTimerTime;
+      console.log(finalTimerTime);
+      let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
+      let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
+      let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
+
       return(
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
@@ -59,11 +67,19 @@ class SinglePlayer extends Component {
             </div>
 
             <div>
-              Your time was {this.state.finalTimerTime}
+              Your time was {minutes}:{seconds}:{centiseconds}.
             </div>
 
             <div>
-             Buttons
+            <Link to="/singleplayergameover">
+              <button
+                  type="submit"
+                  className="u-pointer SinglePlayer-GameOverButton"
+                  value="Change"
+                  >
+                    See the ranklist!
+              </button>
+            </Link>
             </div>
 
           </div>
