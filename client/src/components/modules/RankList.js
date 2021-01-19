@@ -31,6 +31,15 @@ class RankList extends Component {
   
 
     return (
+      <div>
+      <div className="u-flexColumn u-flex-alignCenter">
+        <h2 className="textCenter">Your Time</h2>
+        <div className="SPGO-shortHorizontalLine"> </div>
+      <div className="SPGO-timesContainer">
+         <Stopwatch page={false} />
+      </div>
+      </div>
+
       <div className="u-flexColumn u-flex-alignCenter">
         <h2 className="textCenter">Your Best Times</h2>
         <div className="SPGO-shortHorizontalLine"> </div>
@@ -38,6 +47,7 @@ class RankList extends Component {
           {this.state.times.slice(0,10).map((time, index) => (
             <div key={index} className="SPGO-timeBox" >{("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
           ))}
+      </div>
       </div>
       </div>
     );
