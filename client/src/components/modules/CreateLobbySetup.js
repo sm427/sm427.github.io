@@ -48,7 +48,10 @@ class CreateLobbySetup extends Component {
         <h4 className="Home-Box-Header">Create a Lobby</h4>
         <div className="Home-singlePlayerContentContainer u-textCenter">
           <div>
-            <p className="u-textCenter">i coded those input fields and didn't realize that the multiplayer won't be a part of the mvp</p>
+            <p className="u-textCenter u-Quantico">
+              Note: Lobbies/multiplayer are not a part of the MVP, they will be added in the final product.
+              {/* i coded those input fields and didn't realize that the multiplayer won't be a part of the mvp */}
+              </p>
           </div>
 
           <div className="u-width100">

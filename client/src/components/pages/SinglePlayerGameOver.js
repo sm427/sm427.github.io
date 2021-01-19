@@ -25,6 +25,10 @@ class SinglePlayerGameOver extends Component {
                 <div className="SPGO-ranklistContainer">
                 <RankList user={this.props.user}/>
                 </div>
+                <p className="u-textCenter u-Quantico">
+                Note: The final product will show you which time was the one that you just played.
+              
+                </p>
                 <NavOut/>
             </div>
           )
