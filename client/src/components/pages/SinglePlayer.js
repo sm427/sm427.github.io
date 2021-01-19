@@ -34,6 +34,7 @@ class SinglePlayer extends Component {
     reportTimerTime = (time) => {
       console.log(time);
       this.setState({finalTimerTime: time})
+      this.props.addTime(time);
       let body = {finalTime: time, user: this.props.user}
       post("/api/reportTime", body)
     }

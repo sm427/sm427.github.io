@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { get, post } from "../../utilities.js";
 import { Link } from "@reach/router";
 import "../../utilities.css";
 import "../pages/Home.css";
@@ -11,24 +12,38 @@ class RankList extends Component {
     super(props);
     // Initialize Default State
     this.state = {
-        times : []
+        times : [],
+        user: undefined,
     }
   }
 
   componentDidMount() {
     // this.setState({times: this.props.user.playedTimes[0]});
+      get("/api/whoami").then((user) => {
+        if (user._id) {
+          this.setState({ user: user});
+        }
+      })
+      ;
+      // const query = {userId: this}
+      // get("/api/getTimes", query).then((user) => {
+      //   console.log("user")
+      // })
     }
 
     componentDidUpdate() {
       if(this.props.user.playedTimes.sort((a,b) => a - b) !== this.state.times) {
       this.setState({times: this.props.user.playedTimes.sort((a,b) => a - b)});
       }
+
     }
 
     render() {
     // let variable;
-
-  
+    if (this.props.user !== undefined) {
+      let usertimes = this.props.user.playedTimes;
+      console.log(usertimes);
+    }
 
     return (
       // <div>
