@@ -163,7 +163,9 @@ movedown = () => {
 //     }
 // }
 
-
+    gameOver = () => {
+        this.props.endGame("abc")
+    }
 
     render() {
         let img = document.getElementById("drag-img");
@@ -204,7 +206,7 @@ movedown = () => {
         <div  className="SinglePlayer-ImageContainer" id="container"> 
                 <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
                 <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
-                <Link to="/singleplayergameover"><div className="SinglePlayer-box" id="drag-box"></div></Link>
+                {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}
                 {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
             
         </div>

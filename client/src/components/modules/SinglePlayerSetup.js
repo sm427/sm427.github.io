@@ -3,8 +3,8 @@ import { Link } from "@reach/router";
 import "../../utilities.css";
 import "../pages/Home.css";
 import "../App.css";
-import PictureCount from "./PictureCount.js";
-import { browserHistory } from "react-router";
+//import PictureCount from "./PictureCount.js";
+//import { browserHistory } from "react-router";
 
 class SinglePlayerSetup extends Component {
   constructor(props) {
