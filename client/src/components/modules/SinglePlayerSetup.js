@@ -66,7 +66,7 @@ class SinglePlayerSetup extends Component {
         <div><h4>Picture Count</h4>
         <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" value={this.state.slidervalue} onChange={this.handleChange}/></p>
                 {/* <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist> */}
-        <p>You'll play  {this.state.sliderValue} rounds.</p><p className="u-Quantico">Note: Picture Count is not working because there is only one playable picture in the MVP. The number of playable pictures will be significantly increased for the final product. The final product will only let the user start the game when he has uploaded a picture.</p></div>
+        <p>You'll play  {this.state.sliderValue} rounds.</p><p className="u-Quantico">Note: Picture Count is not working because there is only one playable picture in the MVP. The number of playable pictures will be significantly increased for the final product. The final product will only let users start the game when they have uploaded a picture.</p></div>
          {startbutton} 
       </div>
       </div>
