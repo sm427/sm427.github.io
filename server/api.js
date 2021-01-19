@@ -65,7 +65,7 @@ router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
 })
 
 router.get("/getTimes", auth.ensureLoggedIn, (req,res) => {
-  User.find({_id: req.body.user._id}).then((user) => {
+  User.find({_id: req.query.user._id}).then((user) => {
     res.send(user.playedTimes)
   })
 })

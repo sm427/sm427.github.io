@@ -21,8 +21,9 @@ class SinglePlayerGameOver extends Component {
     render() {
 
         return(
-            <div className="SinglePlayer-container">
-                {/* <RankList/> */}
+            <div >
+                {/* <p>{JSON.stringify(this.props.user)}</p> */}
+                <RankList user={this.props.user}/>
                 <NavOut/>
             </div>
           )
