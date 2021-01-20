@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
+import { get } from "../../utilities";
 import "../../utilities.css";
 import "../pages/Home.css";
 import "../App.css";
@@ -11,6 +12,7 @@ class SinglePlayerSetup extends Component {
     super(props);
     // Initialize Default State
     this.state = {
+      user: undefined,
       sliderValue: 3,
     };
   }
@@ -20,6 +22,7 @@ class SinglePlayerSetup extends Component {
         sliderValue: event.target.value,
     })
 }
+
 
   handleSubmit = (event) => {
     //pass sliderValue to App.js (and then from there to SinglePlayer.js)
@@ -32,19 +35,19 @@ class SinglePlayerSetup extends Component {
     let profilePictureMessage;
     let startbutton;
 
-  if (!this.props.user.username) {
+  if (!this.props.user) {
     usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
     profilePictureMessage = "";
     startbutton = "Log in before playing.";
   }
-  // else if (!this.props.user.imageNames[0]) {
-  //   usernameMessage = `Logged in as ${this.props.user._id}.`;
-  //   profilePictureMessage =("Please upload a picture in  to continue!");
-  //   startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hit the button
-  // }
+  else if (!this.props.user.imageNames[0]) {
+    usernameMessage = `Logged in as ${this.props.user.username}.`;
+    profilePictureMessage =("Please upload a picture in Profile to continue!");
+    startbutton = "Upload a picture before playing."; //bug, I have a profile picture and it is not letting me hit the button
+  }
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
-    profilePictureMessage = "Please make sure that you have uploaded a picture in Profile!";
+    profilePictureMessage = "You have already uploaded a picture.";
     startbutton = (<Link to="/singleplayer"><button
       type="submit"
       className="u-pointer App-submit Home-singlePlayerButton"

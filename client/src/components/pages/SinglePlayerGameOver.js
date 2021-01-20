@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
-import Scene from "../images/templatetest3red.png"
 
 import "../../utilities.css"
 import "../App.css";
@@ -19,7 +17,7 @@ class SinglePlayerGameOver extends Component {
 
     render() {
 
-        return(
+        return( 
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">

@@ -23,6 +23,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profileUserId: undefined,
       user: {
         _id: undefined,
         name: undefined,
@@ -39,10 +40,25 @@ class App extends Component {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ user: user});
+        this.setState({ profileUserId: user._id})
       }
-    })
-    ;
+    });
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userId !== this.props.userId && this.props.userId) { 
+      get("/api/whoami").then((currentuser) => {
+
+        get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
+          this.setState({ user: userObj});
+
+        });
+  
+      });
+  
+    }
+  }
+
 
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
@@ -58,21 +74,6 @@ class App extends Component {
     post("/api/logout");
   };
 
-  updateUserVariable = (updatedUser) => { 
-    console.log("run");
-    this.setState({
-      user: updatedUser})
-  }
-
-  updateUserServer = () => {
-    console.log("run");
-    get("/api/whoami").then((user) => {
-      if (user._id) {
-        this.setState({ user: user});
-      }
-    });
-  }
-
   addTime = (time) => {
     console.log("yep")
     this.setState((prevstate) => ({
@@ -84,9 +85,7 @@ class App extends Component {
 
 
   render() {
-
-    let profileUserId = this.state.user._id
-
+    let profileUserId = this.state.user._id;
     return (
       <>
         <NavBar 
@@ -96,8 +95,8 @@ class App extends Component {
         /> 
         <div className="App-container">
         <Router>
-          <Home path="/" user={this.state.user}/>
-          <Profile path="/profile/:profileUserId" profileUserId={profileUserId} user={this.state.user} updateUserVariable={this.updateUserVariable} updateUserServer={this.updateUserServer}/>
+          <Home path="/" user={this.state.user} userId={this.state.user._id}/>
+          <Profile path="/profile/:profileUserId" profileUserId={profileUserId} userId={this.state.user._id}/>
           <HowTo path="/howtoplay" />
           <SinglePlayer path="/singleplayer" user={this.state.user} addTime={this.addTime}/>
           <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>

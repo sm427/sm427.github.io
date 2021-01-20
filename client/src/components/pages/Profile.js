@@ -23,15 +23,17 @@ class Profile extends Component {
   //the differene between user and profileUser is important to secure that users can only change their own username
 
   componentDidMount() {
-    if (this.props.user._id) { //maybe this needs to be changed to profileUser._id
+    if (this.props.userId) { //maybe this needs to be changed to profileUser._id
       this.loadImages();
     }
     document.title = `Profile`;
-    get(`/api/user`, { userid: this.props.profileUserId}).then((user) => this.setState({ profileUser: user[0]})).then;
+    get(`/api/user`, { userid: this.props.profileUserId}).then((user) => {
+      this.setState({ profileUser: user});
+    });
     }
 
     componentDidUpdate(prevProps) {
-      if (prevProps.user._id !== this.props.user._id && this.props.user._id) { 
+      if (prevProps.userId !== this.props.userId && this.props.userId) { 
         // just logged in. reload images
         this.loadImages();
       }
@@ -44,16 +46,17 @@ class Profile extends Component {
     }
   
     deleteImages = () => {
-      post("/api/deleteImages").then(this.loadImages).then(this.props.updateUserServer());
+      post("/api/deleteImages").then(this.loadImages);
+      
     }
   
     uploadImage = (event) => {
-      this.changeShowChangePicture;
+      this.changeShowChangePicture();
       const fileInput = event.target;
       console.log(fileInput);
       post("/api/deleteImages").then(this.readImage(fileInput.files[0]).then(image => {
         fileInput.value = null;
-        return post("/api/uploadImage", { image: image }).then(this.loadImages).then(this.props.updateUserServer());
+        return post("/api/uploadImage", { image: image }).then(this.loadImages);
       }).catch(err => {
         console.log(err);
       }));
@@ -81,11 +84,11 @@ class Profile extends Component {
       });
     };
 
-  updateProfileUser = (updatedUser) => { 
+  updateProfileUser = () => { 
       console.log("run1");
-      this.setState({
-        profileUser: updatedUser})
-        this.props.updateUserVariable(updatedUser)
+      get(`/api/user`, { userid: this.props.profileUserId}).then((user) => {
+        this.setState({ profileUser: user});
+      });
     }
 
   changeShowChangePicture = () => {
@@ -101,7 +104,7 @@ class Profile extends Component {
     else { 
       document.title = `Profile of ${this.state.profileUser.username}`;
       let userNameChanger = "";
-      if (this.props.user._id===this.props.profileUserId) {     //checks if the user is viewing his own profile
+      if (this.props.userId===this.props.profileUserId) {     //checks if the user is viewing his own profile
         
         userNameChanger = (
           <div className="Profile-Object">
@@ -169,9 +172,9 @@ class Profile extends Component {
              <p>{this.state.profileUser._id}</p>
             </div>
 
-            <div className="Profile-rankListContainer">
+            {/* <div className="Profile-rankListContainer">
               <RankList user={this.props.user}/>
-            </div>
+            </div> */}
 
           </div>
         </div>

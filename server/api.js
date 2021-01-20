@@ -35,7 +35,7 @@ router.get("/whoami", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  User.find({_id: req.query.userid}).then((user) => {
+  User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
 });

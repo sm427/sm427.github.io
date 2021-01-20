@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import { get } from "../../utilities.js";
 import Scene from "../images/t1-main2.png";
+// import { Redirect } from "react-router-dom";
 
 import "../../utilities.css"
 import "../pages/SinglePlayer.css";
@@ -21,6 +22,13 @@ class SinglePlayerGame extends Component {
     });
     }
 
+    // componentDidUpdate() {
+    //     if (!this.props.userId) {
+    //       // just logged in. reload images
+    //       return <Redirect to="/" />
+    //     }
+    //   }
+
 // code to zoom partly from stackoverflow.com, user "Bug"
 // zoomin = () => {
 //   let img_ele = document.getElementById("drag-img");
@@ -30,7 +38,7 @@ class SinglePlayerGame extends Component {
 //   img_ele.style.width = (pre_width * 1.2) + 'px';
 //   img_ele.style.height = (pre_height * 1.2) + 'px';
 //   this.setState({zoomin: this.state.zoomin+1});
-  
+
 //   }
 //   img_ele = 0;
 // }
@@ -53,11 +61,11 @@ moveright = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginLeftStart = img_ele.getBoundingClientRect().left; 
-    let leftBoxStart = box.getBoundingClientRect().left; 
-    let leftFaceStart = face.getBoundingClientRect().left; 
+    let marginLeftStart = img_ele.getBoundingClientRect().left;
+    let leftBoxStart = box.getBoundingClientRect().left;
+    let leftFaceStart = face.getBoundingClientRect().left;
     let spaceright = img_ele.getBoundingClientRect().right - window.innerWidth * 0.7;
-    if(spaceright >= 50 ){         
+    if(spaceright >= 50 ){
         img_ele.style.marginLeft = (marginLeftStart - 50) + 'px';
         box.style.left = (leftBoxStart - 50) + "px";
         face.style.left = (leftFaceStart - 50) +"px";
@@ -74,11 +82,11 @@ moveleft = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginLeftStart = img_ele.getBoundingClientRect().left; 
-    let leftBoxStart = box.getBoundingClientRect().left; 
-    let leftFaceStart = face.getBoundingClientRect().left; 
+    let marginLeftStart = img_ele.getBoundingClientRect().left;
+    let leftBoxStart = box.getBoundingClientRect().left;
+    let leftFaceStart = face.getBoundingClientRect().left;
     let spaceleft = img_ele.getBoundingClientRect().left
-    if(spaceleft <= -50 ){         
+    if(spaceleft <= -50 ){
         img_ele.style.marginLeft = (marginLeftStart + 50) + 'px';
         box.style.left = (leftBoxStart + 50) + "px";
         face.style.left = (leftFaceStart + 50) +"px";
@@ -95,11 +103,11 @@ moveup = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-    let topBoxStart = box.getBoundingClientRect().top; 
-    let topFaceStart = face.getBoundingClientRect().top; 
+    let marginTopStart = img_ele.getBoundingClientRect().top-59;
+    let topBoxStart = box.getBoundingClientRect().top;
+    let topFaceStart = face.getBoundingClientRect().top;
     let spacetop = img_ele.getBoundingClientRect().top - 59;
-    if(spacetop <= -50 ){         
+    if(spacetop <= -50 ){
         img_ele.style.marginTop = (marginTopStart + 50) + 'px';
         box.style.top = (topBoxStart + 50) + "px";
         face.style.top = (topFaceStart + 50) +"px";
@@ -116,11 +124,11 @@ movedown = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59; 
-    let topBoxStart = box.getBoundingClientRect().top; 
-    let topFaceStart = face.getBoundingClientRect().top; 
+    let marginTopStart = img_ele.getBoundingClientRect().top-59;
+    let topBoxStart = box.getBoundingClientRect().top;
+    let topFaceStart = face.getBoundingClientRect().top;
     let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
-    if(spacebottom >= 50 ){         
+    if(spacebottom >= 50 ){
         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
         box.style.top = (topBoxStart - 50) + "px";
         face.style.top = (topFaceStart - 50) +"px";
@@ -138,16 +146,16 @@ movedown = () => {
 //     console.log("go");
 //     let img_ele = document.getElementById("drag-img");
 //     //console.log("start drag");
-//     this.setState({dragOn: true});       
+//     this.setState({dragOn: true});
 //     this.setState({x_start: window.event.clientX});
 //     this.setState({y_start: window.event.clientY})   ;
-//     this.setState({marginLeftStart: img_ele.getBoundingClientRect().left})  ;  
-//     this.setState({marginTopStart: img_ele.getBoundingClientRect().top})  ; 
+//     this.setState({marginLeftStart: img_ele.getBoundingClientRect().left})  ;
+//     this.setState({marginTopStart: img_ele.getBoundingClientRect().top})  ;
 // }
 
 // stop_drag = () => {
 //     //console.log("stop drag");
-    
+
 //     this.setState({dragOn: false});
 // }
 
@@ -173,18 +181,18 @@ movedown = () => {
         if (container) {
             addEventListener('mousemove', this.while_drag);
             addEventListener('mouseup', this.stop_drag);
-        }       
+        }
 //document.getElementById("container").addEventListener('mousemove', this.while_drag);
 //document.getElementById("container").addEventListener('mouseup', this.stop_drag);
 
     return(
         <>
         <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
-                
+
             <div>
                 <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
             </div>
-        
+
             <div>
                 <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
                 <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
@@ -193,7 +201,7 @@ movedown = () => {
             <div>
                 <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
             </div>
-        
+
         </div>
 
         <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
@@ -202,12 +210,12 @@ movedown = () => {
             <button className="SinglePlayer-button" onClick={this.zoomin}>+</button> */}
         </div>
 
-        <div  className="SinglePlayer-ImageContainer" id="container"> 
+        <div  className="SinglePlayer-ImageContainer" id="container">
                 <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
                 <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
                 {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}
                 {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
-            
+
         </div>
         </>
     )
