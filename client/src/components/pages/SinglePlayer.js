@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { post } from "../../utilities.js";
+import { get, post } from "../../utilities.js";
 import { Link } from "@reach/router";
 //import { get, post } from "../../utilities";
+import { Redirect } from "react-router-dom";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
 //import Waldo from "../modules/Waldo.js"
@@ -14,12 +15,24 @@ class SinglePlayer extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            redirect: "/",
+            user: undefined,
             finalTimerTime: 0,
-            pictureCounter : 1,
+            pictureCounter : 0,
             gameOn: true,
         }
     }
     
+
+    componentDidMount() {
+      get("/api/whoami").then((user) => {
+        if (user._id) {
+          // they are registed in the database, and currently logged in.
+          this.setState({ user: user});
+        }
+      });
+    }
+
 
     endGame = () => {
       console.log("Game ended.")
@@ -32,17 +45,13 @@ class SinglePlayer extends Component {
     //   };
 
     reportTimerTime = (time) => {
-      console.log(time);
       this.setState({finalTimerTime: time})
-      this.props.addTime(time);
-      let body = {finalTime: time, user: this.props.user}
+      let body = {finalTime: time, user: this.state.user}
       post("/api/reportTime", body)
     }
 
     render() {
-
       const finalTimerTime  = this.state.finalTimerTime;
-      console.log(finalTimerTime);
       let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
@@ -50,10 +59,10 @@ class SinglePlayer extends Component {
       return(
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame  pictureCounter={this.state.pictureCounter} user={this.props.user} endGame={this.endGame}/>
+            <SinglePlayerGame  pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.props.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>
+            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}

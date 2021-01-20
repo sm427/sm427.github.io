@@ -172,9 +172,9 @@ class Profile extends Component {
              <p>{this.state.profileUser._id}</p>
             </div>
 
-            {/* <div className="Profile-rankListContainer">
-              <RankList user={this.props.user}/>
-            </div> */}
+            <div className="Profile-rankListContainer">
+              <RankList user={this.state.profileUser}/>
+            </div> 
 
           </div>
         </div>

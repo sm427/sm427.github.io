@@ -18,13 +18,14 @@ class RankList extends Component {
   }
 
   componentDidMount() {
+    this.setState({times: this.props.user.playedTimes.sort((a,b) => a - b)});
     // this.setState({times: this.props.user.playedTimes[0]});
-      get("/api/whoami").then((user) => {
-        if (user._id) {
-          this.setState({ user: user});
-        }
-      })
-      ;
+      // get("/api/whoami").then((user) => {
+      //   if (user._id) {
+      //     this.setState({ user: user});
+      //   }
+      // })
+      // ;
       // const query = {userId: this}
       // get("/api/getTimes", query).then((user) => {
       //   console.log("user")
@@ -40,10 +41,9 @@ class RankList extends Component {
 
     render() {
     // let variable;
-    if (this.props.user !== undefined) {
-      let usertimes = this.props.user.playedTimes;
-      console.log(usertimes);
-    }
+    // if (this.props.user !== undefined) {
+    //   let usertimes = this.props.user.playedTimes;
+    // }
 
         // this still nedds some work, is the start to highlight the last time
     let ranklist = this.state.times.slice(0,10).map((time, index) => (

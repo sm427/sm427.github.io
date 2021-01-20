@@ -23,10 +23,9 @@ class Home extends Component {
       });
 
     });
-
+  }
     document.title = "Track'nTag";
     // remember -- api calls go here!
-  }
   }
 
   componentDidUpdate(prevProps) {

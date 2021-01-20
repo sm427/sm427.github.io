@@ -74,16 +74,6 @@ class App extends Component {
     post("/api/logout");
   };
 
-  addTime = (time) => {
-    console.log("yep")
-    this.setState((prevstate) => ({
-      user: {
-        playedTimes: prevstate.user.playedTimes.concat(time)
-      }
-    }))
-  }
-
-
   render() {
     let profileUserId = this.state.user._id;
     return (
@@ -98,7 +88,7 @@ class App extends Component {
           <Home path="/" user={this.state.user} userId={this.state.user._id}/>
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} userId={this.state.user._id}/>
           <HowTo path="/howtoplay" />
-          <SinglePlayer path="/singleplayer" user={this.state.user} addTime={this.addTime}/>
+          <SinglePlayer path="/singleplayer" addTime={this.addTime}/>
           <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>
           <NotFound default />
         </Router>
