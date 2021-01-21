@@ -70,3 +70,10 @@
     margin-right: -200px;
     margin-left: -20px;
 }
+
+.SPGO-placeholderTime{
+    height: 1px;
+    width: 64px;
+    background-color: var(--darkgrey);
+    margin: 8px;
+}

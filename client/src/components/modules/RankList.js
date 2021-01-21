@@ -76,9 +76,27 @@ class RankList extends Component {
         
       }
       else {
-        ranklist = this.state.times.slice(0,10).map((time, index) => (
-          <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
+        ranklist = sortedTimes.map((time, index) => (
+          <>
+         {index < 8 ?  (
+                <div key={"notlasttime"+index} className="SPGO-timeBox">
+                  {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                </div>
+              ) : ( <> {lastTime===time? (
+                    <div key={"lasttime"+index} className="SPGO-timeBox" >
+                      <div className="SPGO-lastTime">Last Time</div>
+                      {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                    </div>
+                  ):( 
+                    <> {index===8?(<div className="SPGO-placeholderTime"></div>):("")}
+                  
+                    </>
+                  )}
+                </>
+              )}
+          </>
         ));
+        
       }
 
     return (
