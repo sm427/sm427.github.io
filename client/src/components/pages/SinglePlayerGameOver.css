@@ -50,3 +50,23 @@
 .SPGO-ranklistContainer{
     width: 50vw;
 }
+
+.SPGO-lastTimeBox{
+    /* border: 2px solid var(--darkgrey); */
+}
+
+.SPGO-lastTime{
+    display: inline-block;
+    background-color: var(--darkgrey);
+    border-radius: 32px;
+    margin-left: auto;
+    color: white;
+    margin: 0px;
+    font-size: inherit;
+    margin-top: auto;
+    height: 120%;
+    padding: 0px 8px;
+    float: left;
+    margin-right: -200px;
+    margin-left: -20px;
+}

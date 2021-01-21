@@ -16,7 +16,7 @@ class SinglePlayerGameOver extends Component {
         }
     }
 
-
+ 
     componentDidMount() {
         get("/api/whoami").then((currentuser) => {
             get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
