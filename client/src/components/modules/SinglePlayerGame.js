@@ -22,18 +22,12 @@ class SinglePlayerGame extends Component {
     });
     }
 
-    // componentDidUpdate() {
-    //     if (!this.props.userId) {
-    //       // just logged in. reload images
-    //       return <Redirect to="/" />
-    //     }
-    //   }
-
-// code to zoom partly from stackoverflow.com, user "Bug"
 zoomin = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
+    let halfwwidth = window.innerWidth * 0.35
+    let halfwheight = (window.innerHeight - 59) / 2
     if (img_ele) {
     let pre_width = img_ele.getBoundingClientRect().width
     let pre_height = img_ele.getBoundingClientRect().height;
@@ -53,14 +47,14 @@ zoomin = () => {
     img_ele.style.width = (pre_width * 1.2) + 'px';
     img_ele.style.height = (pre_height * 1.2) + 'px';
 
-    img_ele.style.marginLeft = (marginLeftStart * 1.2) + 'px';
-    img_ele.style.marginTop = (marginTopStart * 1.2) + 'px';
+    img_ele.style.marginLeft = (-((-marginLeftStart + halfwwidth) * 1.2 - halfwwidth)) + 'px';
+    img_ele.style.marginTop = (-((-marginTopStart + halfwheight)* 1.2 - halfwheight)) + 'px';
 
-    box.style.left = (leftBoxStart * 1.2) + "px";
-    face.style.left = (leftFaceStart * 1.2) +"px";
+    box.style.left = ((leftBoxStart - halfwwidth) * 1.2 + halfwwidth) + "px";
+    face.style.left = ((leftFaceStart - halfwwidth) * 1.2 + halfwwidth) +"px";
 
-    box.style.top = (topBoxStart * 1.2 + 59) + "px";
-    face.style.top = (topFaceStart * 1.2 + 59) +"px";
+    box.style.top = ((topBoxStart - halfwheight) * 1.2 + halfwheight + 59) +"px";
+    face.style.top = ((topFaceStart - halfwheight) * 1.2 + halfwheight + 59) +"px";
 
     box.style.width = (widthBoxStart * 1.2) + 'px';
     box.style.height = (heightBoxStart * 1.2) + 'px';
@@ -78,6 +72,8 @@ zoomout = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
+    let halfwwidth = window.innerWidth * 0.35
+    let halfwheight = (window.innerHeight - 59) / 2
     if (img_ele) {
         if (this.state.zoomin > 0) {
             let pre_width = img_ele.getBoundingClientRect().width
@@ -98,14 +94,14 @@ zoomout = () => {
             img_ele.style.width = (pre_width / 1.2) + 'px';
             img_ele.style.height = (pre_height / 1.2) + 'px';
 
-            img_ele.style.marginLeft = (marginLeftStart / 1.2) + 'px';
-            img_ele.style.marginTop = (marginTopStart / 1.2) + 'px';
+            img_ele.style.marginLeft = (-((-marginLeftStart + halfwwidth) / 1.2 - halfwwidth)) + 'px';
+            img_ele.style.marginTop = (-((-marginTopStart + halfwheight)/ 1.2 - halfwheight)) + 'px';
 
-            box.style.left = (leftBoxStart / 1.2) + "px";
-            face.style.left = (leftFaceStart / 1.2) +"px";
+            box.style.left = ((leftBoxStart - halfwwidth) / 1.2 + halfwwidth) + "px";
+            face.style.left = ((leftFaceStart - halfwwidth) / 1.2 + halfwwidth) +"px";
 
-            box.style.top = (topBoxStart / 1.2 + 59) + "px";
-            face.style.top = (topFaceStart / 1.2 + 59) +"px";
+            box.style.top = ((topBoxStart - halfwheight) / 1.2 + halfwheight + 59) +"px";
+            face.style.top = ((topFaceStart - halfwheight) / 1.2 + halfwheight + 59) +"px";
 
             box.style.width = (widthBoxStart / 1.2) + 'px';
             box.style.height = (heightBoxStart / 1.2) + 'px';
