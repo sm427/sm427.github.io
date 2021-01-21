@@ -58,7 +58,8 @@ class RankList extends Component {
       console.log(lastTime);
       console.log(tenBestTimes[tenBestTimes.length-1]);
       
-      if (lastTime <= tenBestTimes[tenBestTimes.length-1]) {
+      if (lastTime - tenBestTimes[tenBestTimes.length-1] < 0 ) {
+        console.log("good");
         ranklist = sortedTimes.slice(0,10).map((time, index) => (
           <>
          {lastTime === time ?  (
@@ -76,6 +77,7 @@ class RankList extends Component {
         
       }
       else {
+        console.log("bad");
         ranklist = sortedTimes.map((time, index) => (
           <>
          {index < 8 ?  (
@@ -88,8 +90,8 @@ class RankList extends Component {
                       {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                     </div>
                   ):( 
-                    <> {index===8?(<div className="SPGO-placeholderTime"></div>):("")}
-                  
+                    <> 
+                      {index===8?(<div className="SPGO-placeholderTime"></div>):("")}                
                     </>
                   )}
                 </>

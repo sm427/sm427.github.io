@@ -57,7 +57,7 @@
 
 .SPGO-lastTime{
     display: inline-block;
-    background-color: var(--darkgrey);
+    background-color: var(--primary);
     border-radius: 32px;
     margin-left: auto;
     color: white;
