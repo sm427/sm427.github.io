@@ -30,32 +30,94 @@ class SinglePlayerGame extends Component {
     //   }
 
 // code to zoom partly from stackoverflow.com, user "Bug"
-// zoomin = () => {
-//   let img_ele = document.getElementById("drag-img");
-//   if (img_ele) {
-//   let pre_width = img_ele.getBoundingClientRect().width
-//   let pre_height = img_ele.getBoundingClientRect().height;
-//   img_ele.style.width = (pre_width * 1.2) + 'px';
-//   img_ele.style.height = (pre_height * 1.2) + 'px';
-//   this.setState({zoomin: this.state.zoomin+1});
+zoomin = () => {
+    let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
+    if (img_ele) {
+    let pre_width = img_ele.getBoundingClientRect().width
+    let pre_height = img_ele.getBoundingClientRect().height;
 
-//   }
-//   img_ele = 0;
-// }
+    let marginLeftStart = img_ele.getBoundingClientRect().left;
+    let marginTopStart = img_ele.getBoundingClientRect().top-59;
 
-// zoomout = () => {
-//     let img_ele = document.getElementById("drag-img");
-//     if (img_ele) {
-//         if (this.state.zoomin > 0) {
-//             let pre_width = img_ele.getBoundingClientRect().width
-//             let pre_height = img_ele.getBoundingClientRect().height;
-//             img_ele.style.width = (pre_width / 1.2) + 'px';
-//             img_ele.style.height = (pre_height / 1.2) + 'px';
-//             this.setState({zoomin: this.state.zoomin-1});
-//         }
-//     }
-//     img_ele = 0;
-//   }
+    let leftBoxStart = box.getBoundingClientRect().left;
+    let leftFaceStart = face.getBoundingClientRect().left;
+    let topBoxStart = box.getBoundingClientRect().top -59;
+    let topFaceStart = face.getBoundingClientRect().top -59;
+    let widthBoxStart = box.getBoundingClientRect().width;
+    let widthFaceStart = face.getBoundingClientRect().width;
+    let heightBoxStart = box.getBoundingClientRect().height;
+    let heightFaceStart = face.getBoundingClientRect().height;
+
+    img_ele.style.width = (pre_width * 1.2) + 'px';
+    img_ele.style.height = (pre_height * 1.2) + 'px';
+
+    img_ele.style.marginLeft = (marginLeftStart * 1.2) + 'px';
+    img_ele.style.marginTop = (marginTopStart * 1.2) + 'px';
+
+    box.style.left = (leftBoxStart * 1.2) + "px";
+    face.style.left = (leftFaceStart * 1.2) +"px";
+
+    box.style.top = (topBoxStart * 1.2 + 59) + "px";
+    face.style.top = (topFaceStart * 1.2 + 59) +"px";
+
+    box.style.width = (widthBoxStart * 1.2) + 'px';
+    box.style.height = (heightBoxStart * 1.2) + 'px';
+
+    face.style.width = (widthFaceStart * 1.2) + 'px';
+    face.style.height = (heightFaceStart * 1.2) + 'px';
+
+    this.setState({zoomin: this.state.zoomin+1});
+
+  }
+  img_ele = 0;
+}
+
+zoomout = () => {
+    let img_ele = document.getElementById("drag-img");
+    let box = document.getElementById("drag-box");
+    let face = document.getElementById("drag-face");
+    if (img_ele) {
+        if (this.state.zoomin > 0) {
+            let pre_width = img_ele.getBoundingClientRect().width
+            let pre_height = img_ele.getBoundingClientRect().height;
+
+            let marginLeftStart = img_ele.getBoundingClientRect().left;
+            let marginTopStart = img_ele.getBoundingClientRect().top-59;
+
+            let leftBoxStart = box.getBoundingClientRect().left;
+            let leftFaceStart = face.getBoundingClientRect().left;
+            let topBoxStart = box.getBoundingClientRect().top -59;
+            let topFaceStart = face.getBoundingClientRect().top -59;
+            let widthBoxStart = box.getBoundingClientRect().width;
+            let widthFaceStart = face.getBoundingClientRect().width;
+            let heightBoxStart = box.getBoundingClientRect().height;
+            let heightFaceStart = face.getBoundingClientRect().height;
+
+            img_ele.style.width = (pre_width / 1.2) + 'px';
+            img_ele.style.height = (pre_height / 1.2) + 'px';
+
+            img_ele.style.marginLeft = (marginLeftStart / 1.2) + 'px';
+            img_ele.style.marginTop = (marginTopStart / 1.2) + 'px';
+
+            box.style.left = (leftBoxStart / 1.2) + "px";
+            face.style.left = (leftFaceStart / 1.2) +"px";
+
+            box.style.top = (topBoxStart / 1.2 + 59) + "px";
+            face.style.top = (topFaceStart / 1.2 + 59) +"px";
+
+            box.style.width = (widthBoxStart / 1.2) + 'px';
+            box.style.height = (heightBoxStart / 1.2) + 'px';
+
+            face.style.width = (widthFaceStart / 1.2) + 'px';
+            face.style.height = (heightFaceStart / 1.2) + 'px';
+
+            this.setState({zoomin: this.state.zoomin-1});
+        }
+    }
+    img_ele = 0;
+  }
 
 moveright = () => {
     let img_ele = document.getElementById("drag-img");
@@ -205,9 +267,9 @@ movedown = () => {
         </div>
 
         <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
-            <div className="u-textCenter"> zooming only in final version </div>
-            {/* <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
-            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button> */}
+            {/* <div className="u-textCenter"> zooming only in final version </div> */}
+            <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
+            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
         </div>
 
         <div  className="SinglePlayer-ImageContainer" id="container">

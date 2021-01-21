@@ -32,7 +32,8 @@
     position: relative;
     margin-left: 00px;
     margin-top: 0px;
-    height: calc(971px - 59px);
+    height: 912px;
+    /* height: calc(971px - 59px); */
     /* margin-left: calc(90px + 70vw - 150vh); */
 }
 
@@ -107,7 +108,7 @@ position: absolute;
 }
 
 .SinglePlayer-face {
-    
+    /* z-index: 20; */
     position: absolute;
     border: 0px solid red;
     /* margin-top: calc(59px - 100vh);
