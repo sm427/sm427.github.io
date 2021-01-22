@@ -12,6 +12,10 @@ class SinglePlayerGame extends Component {
         this.state = {
             images: [],
             zoomin: 0,
+            facePositions: {
+                template0: [1266, 311, 16, 25, 1366.17],
+                template1: [,,,,1518.41]
+            }
         }
     }
 
@@ -228,10 +232,37 @@ movedown = () => {
 // }
 
     gameOver = () => {
-        //add one to playedImages prop
-    if (this.props.playedImages >= this.props.imageCount) {
-        this.props.endGame("abc")}
+        //add one to pictureCounter prop
+    if (this.props.pictureCounter +1 >= this.props.imageCount) {
+            this.props.endGame("abc")
+            this.props.pictureProgress()}
         else {
+            this.props.pictureProgress()
+
+            let templateName = "template" + "0";
+
+            let img_ele = document.getElementById("drag-img");
+            let box = document.getElementById("drag-box");
+            let face = document.getElementById("drag-face");
+
+            img_ele.style.marginTop = 0 + 'px';
+            img_ele.style.marginLeft = 0 + 'px';
+            img_ele.style.width = this.state.facePositions.templateName[4] + 'px';
+            img_ele.style.height = 912 + 'px';
+
+            this.setState({zoomin: this.state.zoomin-1});
+
+            box.style.left = this.state.facePositions.templateName[0] - 2 + "px";
+            face.style.left = this.state.facePositions.templateName[0] +"px";
+
+            box.style.top = this.state.facePositions.templateName[1] - 2 +"px";
+            face.style.top = this.state.facePositions.templateName[1] +"px";
+
+            box.style.width = this.state.facePositions.templateName[2] + 4 + 'px';
+            box.style.height = this.state.facePositions.templateName[3] + 4 + 'px';
+
+            face.style.width = this.state.facePositions.templateName[2] + 'px';
+            face.style.height = this.state.facePositions.templateName[3] + 'px';
             //load new template
         }
     }
@@ -277,7 +308,7 @@ movedown = () => {
                     <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
                 </div>
         
-                <div className="SinglePlayer-ProgressContainer">{this.props.imagesPlayed}/{this.props.imageCount}</div>
+                <div className="SinglePlayer-ProgressContainer">{this.props.pictureCounter}/{this.props.imageCount}</div>
 
                 <div  className="SinglePlayer-ImageContainer" id="container">
                         <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>

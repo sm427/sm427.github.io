@@ -23,7 +23,6 @@ class SinglePlayer extends Component {
             gameOn: true,
             randomInt: null,
             imageCount: 1,
-            imagesPlayed: 0,
         }
     }
     
@@ -41,14 +40,16 @@ class SinglePlayer extends Component {
 
 
     endGame = () => {
-      console.log("Game ended.")
-      this.setState({gameOn: false})
+      console.log("Game ended.");
+      this.setState({gameOn: false});
     }
-    // pictureProgress = () => {
-    //     this.setState({
-    //       pictureCounter: this.state.pictureCounter +1
-    //     });
-    //   };
+    
+    pictureProgress = () => {
+        this.setState({
+          pictureCounter: this.state.pictureCounter +1,
+          randomInt: this.getRandomInt(Images.length)
+        });
+      }
 
     getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
@@ -63,7 +64,8 @@ class SinglePlayer extends Component {
     }
 
     render() {
-      console.log(this.state.imageCount)
+      let sceneNumber = Images[this.state.randomInt];
+      console.log(this.state.imageCount);
       const finalTimerTime  = this.state.finalTimerTime;
       let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
@@ -74,7 +76,7 @@ class SinglePlayer extends Component {
         //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame sceneNumber={Images[this.state.randomInt]} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} imagesPlayed={this.state.imagesPlayed}/>
+            <SinglePlayerGame sceneNumber={sceneNumber} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
             <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>
@@ -92,7 +94,7 @@ class SinglePlayer extends Component {
             </div>
 
             <div>
-              Your time was {minutes}:{seconds}:{centiseconds}.
+              Your time was {minutes}:{seconds}:{centiseconds} for {this.state.imageCount} images.
             </div>
 
             <div>
