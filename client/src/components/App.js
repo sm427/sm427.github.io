@@ -31,7 +31,8 @@ class App extends Component {
         username: undefined,
         imageNames: [],
         playedTimes: [],
-      }
+      },
+      SinglePlayerImageCount: 2,
     };
   }
 
@@ -74,6 +75,13 @@ class App extends Component {
     post("/api/logout");
   };
 
+  reportSinglePlayerImageCount = (count) => {
+    this.setState({
+      SinglePlayerImageCount: count,
+    })
+    console.log(this.state.SinglePlayerImageCount)
+  }
+
   render() {
     let profileUserId = this.state.user._id;
     return (
@@ -85,10 +93,10 @@ class App extends Component {
         /> 
         <div className="App-container">
         <Router>
-          <Home path="/" user={this.state.user} userId={this.state.user._id}/>
+          <Home path="/" user={this.state.user} userId={this.state.user._id} reportSinglePlayerImageCount={this.reportSinglePlayerImageCount}/>
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} userId={this.state.user._id}/>
           <HowTo path="/howtoplay" />
-          <SinglePlayer path="/singleplayer" addTime={this.addTime}/>
+          <SinglePlayer path="/singleplayer" addTime={this.addTime} imageCount={this.state.SinglePlayerImageCount}/>
           <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>
           <NotFound default />
         </Router>

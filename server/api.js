@@ -65,7 +65,7 @@ router.post("/times", auth.ensureLoggedIn, (req,res) => {
   const newTimes = new Times({
     username: req.body.user.username,
     time: req.body.finalTime,
-    templateId: 1,
+    templateId: req.body.templateId,
   });
   newTimes.save().then((time) => res.send(time));
 })

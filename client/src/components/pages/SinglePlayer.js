@@ -21,7 +21,9 @@ class SinglePlayer extends Component {
             finalTimerTime: 0,
             pictureCounter : 0,
             gameOn: true,
-            randomInt: null
+            randomInt: null,
+            imageCount: 1,
+            imagesPlayed: 0,
         }
     }
     
@@ -34,6 +36,7 @@ class SinglePlayer extends Component {
         });
       });
       this.setState({randomInt: this.getRandomInt(Images.length)}) 
+        this.setState({imageCount: parseInt(this.props.imageCount)})
     }
 
 
@@ -53,13 +56,14 @@ class SinglePlayer extends Component {
 
     reportTimerTime = (time) => {
       this.setState({finalTimerTime: time})
-      let body = {finalTime: time, user: this.state.user}
+      let body = {finalTime: time, user: this.state.user, templateId: this.state.randomInt}
       console.log(body.user.username)
       post("/api/reportTime", body);
       post("/api/times", body);
     }
 
     render() {
+      console.log(this.state.imageCount)
       const finalTimerTime  = this.state.finalTimerTime;
       let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
@@ -70,7 +74,7 @@ class SinglePlayer extends Component {
         //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame sceneNumber={Images[this.state.randomInt]} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame}/>
+            <SinglePlayerGame sceneNumber={Images[this.state.randomInt]} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} imagesPlayed={this.state.imagesPlayed}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
             <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>

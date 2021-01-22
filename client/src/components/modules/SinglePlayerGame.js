@@ -272,6 +272,8 @@ movedown = () => {
                     <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
                 </div>
         
+                <div className="SinglePlayer-ProgressContainer">{this.props.playedImages}/{this.props.imageCount}</div>
+
                 <div  className="SinglePlayer-ImageContainer" id="container">
                         <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
                         <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={this.props.sceneNumber} alt="scene"/>

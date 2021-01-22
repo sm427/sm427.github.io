@@ -11,7 +11,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
-    this.state = {};
+    this.state = {
+      user: undefined,
+    };
   }
 
   componentDidMount() {
@@ -43,6 +45,10 @@ class Home extends Component {
     
   }
 
+  reportSinglePlayerImageCount = (count) => {
+    this.props.reportSinglePlayerImageCount(count);
+  }
+
   
 
   render() {
@@ -52,7 +58,7 @@ class Home extends Component {
         <h1 className="Home-Header u-textCenter">Welcome to Track'nTag</h1>
         <h2 className="u-textCenter">Find yourself in the crowd!</h2>
         <div className="Home-Container"> 
-          <div className="Home-singleBox"><SinglePlayerSetup user={this.state.user} userId={this.props.userId}/></div>
+          <div className="Home-singleBox"><SinglePlayerSetup user={this.state.user} userId={this.props.userId} reportSinglePlayerImageCount={this.reportSinglePlayerImageCount}/></div>
           <div className="Home-singleBox"><CreateLobbySetup user={this.state.user} userId={this.props.userId}/></div>
           <div className="Home-doubleBox"><JoinLobbySetup/></div>
         </div>

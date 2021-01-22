@@ -25,6 +25,7 @@ class SinglePlayerSetup extends Component {
 
 
   handleSubmit = (event) => {
+    this.props.reportSinglePlayerImageCount(this.state.sliderValue)
     //pass sliderValue to App.js (and then from there to SinglePlayer.js)
     //timer will start here too
   }
@@ -48,7 +49,7 @@ class SinglePlayerSetup extends Component {
   else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
-    startbutton = (<Link to="/singleplayer"><button
+    startbutton = (<Link to="/singleplayer"> <button
       type="submit"
       className="u-pointer App-submit Home-singlePlayerButton"
       value="Change"
