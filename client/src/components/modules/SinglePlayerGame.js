@@ -228,7 +228,12 @@ movedown = () => {
 // }
 
     gameOver = () => {
-        this.props.endGame("abc")
+        //add one to playedImages prop
+    if (this.props.playedImages >= this.props.imageCount) {
+        this.props.endGame("abc")}
+        else {
+            //load new template
+        }
     }
 
     render() {
@@ -272,7 +277,7 @@ movedown = () => {
                     <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
                 </div>
         
-                <div className="SinglePlayer-ProgressContainer">{this.props.playedImages}/{this.props.imageCount}</div>
+                <div className="SinglePlayer-ProgressContainer">{this.props.imagesPlayed}/{this.props.imageCount}</div>
 
                 <div  className="SinglePlayer-ImageContainer" id="container">
                         <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
