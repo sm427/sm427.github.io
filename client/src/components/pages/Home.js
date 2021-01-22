@@ -53,7 +53,7 @@ class Home extends Component {
         <h2 className="u-textCenter">Find yourself in the crowd!</h2>
         <div className="Home-Container"> 
           <div className="Home-singleBox"><SinglePlayerSetup user={this.state.user} userId={this.props.userId}/></div>
-          <div className="Home-singleBox"><CreateLobbySetup/></div>
+          <div className="Home-singleBox"><CreateLobbySetup user={this.state.user} userId={this.props.userId}/></div>
           <div className="Home-doubleBox"><JoinLobbySetup/></div>
         </div>
       </div>

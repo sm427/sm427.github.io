@@ -12,6 +12,7 @@ const express = require("express");
 // import models so we can interact with the database
 const User = require("./models/user");
 const Times = require("./models/times.js");
+const Lobbies = require("./models/lobbies.js");
 
 // import authentication library
 const auth = require("./auth");
@@ -84,6 +85,21 @@ router.get("/getTemplateTimes", (req,res) => {
   Times.find({templateId: req.query.templateId}).then((times) => {
     res.send(times)
   })
+})
+
+router.post("/createLobby", auth.ensureLoggedIn, (req,res) => {
+  const newLobby = new Lobbies({
+    creatorname: req.body.creatorname,
+    name: req.body.name,
+    code: req.body.code,
+    playerCount: req.body.playerCount,
+    players: [],
+  });
+  newLobby.save().then((lobby) => res.send(lobby));
+})
+
+router.get("/getLobbies", (req, res) => {
+    Lobbies.find({}).then((lobbies)=>res.send(lobbies))
 })
 
 router.post("/uploadImage", auth.ensureLoggedIn, (req, res) => {

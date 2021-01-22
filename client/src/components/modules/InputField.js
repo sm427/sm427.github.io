@@ -12,11 +12,12 @@ class InputField extends Component {
   }
 
   render() {
+    let placeholder = this.props.placeholder;
     return (
       <div className="Home-inputField">
           <input
             type="text"
-            placeholder={this.props.placeholder}
+            placeholder={placeholder}
             value= {this.props.value}
             onChange={this.props.handleChange}
             className="App-input"

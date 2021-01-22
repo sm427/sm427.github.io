@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../../utilities.css";
 import "../pages/Home.css";
 import InputField from "./InputField.js";
+import { Link } from "@reach/router";
+import { get, post } from "../../utilities";
 
 class CreateLobbySetup extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class CreateLobbySetup extends Component {
         value: "",
         placeholder: "Lobby Code"
         },
-      slidervalue: 5,
+      slidervalue: 3,
     };
   }
 
@@ -39,17 +41,40 @@ class CreateLobbySetup extends Component {
 }
 
     handleSubmit = (event) => {
-      //link to new page
+      let body = {creatorname: this.props.user.username ,name: this.state.Lobbyname.value, code: this.state.Lobbycode.value, playerCount: this.state.slidervalue}
+      post("/api/createLobby", body).then((lobbyObj) => {console.log(lobbyObj)})
     }
 
   render() {
+
+    let usernameMessage;
+    let startbutton;
+
+    if (!this.props.user) {
+      usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
+      startbutton = "Log in before playing.";
+    }
+    else {
+      usernameMessage = `Logged in as ${this.props.user.username}.`;
+      startbutton = (<button
+        type="submit"
+        className="u-pointer App-submit Home-singlePlayerButton"
+        value="Change"
+        onClick={this.handleSubmit}
+       >
+         Create!
+       </button>);
+  
+    }
+
     return (
       <div>
         <h4 className="Home-Box-Header">Create a Lobby</h4>
         <div className="Home-singlePlayerContentContainer u-textCenter">
           <div>
+            <p>{usernameMessage}</p>
             <p className="u-textCenter u-Quantico">
-              Note: Lobbies/multiplayer are not a part of the MVP, they will be added in the final product.
+              Note: Working on it.
               {/* i coded those input fields and didn't realize that the multiplayer won't be a part of the mvp */}
               </p>
           </div>
@@ -63,19 +88,12 @@ class CreateLobbySetup extends Component {
           </div> 
 
           <div><h4>Player Count</h4>
-          <p><input list="tickmarks" className="App-slider" type = "range" min="2" max="8" value={this.state.slidervalue} onChange={this.handleChangeSlider}/></p>
+          <p><input list="tickmarks" className="App-slider" type = "range" min="2" max="4" value={this.state.slidervalue} onChange={this.handleChangeSlider}/></p>
                
           <p>You'll play with {this.state.slidervalue} people.</p></div>
 
           <div>
-            <button
-             type="submit"
-             className="u-pointer App-submit"
-             value="Change"
-             onClick={this.handleSubmit}
-            >
-              Useless
-            </button>
+            {startbutton}
           </div>
         </div>
       </div>

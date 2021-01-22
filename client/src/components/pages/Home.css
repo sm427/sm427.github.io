@@ -59,3 +59,52 @@
     display: flex;
     align-items: center;
 }
+
+.Home-lobbyBox{
+    border: 1px solid var(--primary);
+    background-color: white;
+    
+    border-radius: 32px;
+    /* padding: 8px 32px; */
+    margin: 16px 0;
+}
+
+.Home-lobbyContainer{
+    padding: 16px;
+}
+
+.Home-lobbyBoxName{
+    background-color: var(--primary);
+    border-radius: 32px 0px 0px 32px;
+    height: 40px;
+    width: 15%;
+    padding: 16px 32px;
+    margin: 0 16px 0 0;
+    color: white;
+    display: inline-block;
+}
+
+.Home-LobbyPlayers{
+    flex-wrap: wrap;
+    height: 48px;
+    margin: 0 16px;
+    
+    
+}
+
+.Home-LobbyCode{
+    font-size: 24px;
+}
+
+.Home-LobbyInfoContainer{
+    
+    height: 56px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+
+}
+
+.Home-LobbyBoxPlayerNames{
+    margin: 2px 8px;
+}
