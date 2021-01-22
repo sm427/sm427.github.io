@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Times = require("./models/times.js");
 
 // import authentication library
 const auth = require("./auth");
@@ -58,15 +59,30 @@ router.post("/user", (req, res) => {
   }
 });
 
-router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
-  User.updateOne({ _id: req.user._id },{ $push: { playedTimes: req.body.finalTime } }).then((user) => {
-  res.send({}); // success!
+router.post("/times", auth.ensureLoggedIn, (req,res) => {
+  console.log("yeet");
+  const newTimes = new Times({
+    username: req.body.user.username,
+    time: req.body.finalTime,
+    templateId: 1,
+  });
+  newTimes.save().then((time) => res.send(time));
 })
+
+router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.body.user._id },{ $push: { playedTimes: req.body.finalTime } }).then((user) => {
+  res.send({}); });
 })
 
 router.get("/getTimes", auth.ensureLoggedIn, (req,res) => {
   User.find({_id: req.query.userId}).then((user) => {
     res.send(user.playedTimes)
+  })
+})
+
+router.get("/getTemplateTimes", (req,res) => {
+  Times.find({templateId: req.query.templateId}).then((times) => {
+    res.send(times)
   })
 })
 

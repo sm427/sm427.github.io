@@ -25,11 +25,11 @@ class SinglePlayer extends Component {
     
 
     componentDidMount() {
-      get("/api/whoami").then((user) => {
-        if (user._id) {
-          // they are registed in the database, and currently logged in.
-          this.setState({ user: user});
-        }
+      get("/api/whoami").then((currentuser) => {
+        get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
+          this.setState({ user: userObj});
+          console.log(this.state.user.username)
+        });
       });
     }
 
@@ -47,7 +47,9 @@ class SinglePlayer extends Component {
     reportTimerTime = (time) => {
       this.setState({finalTimerTime: time})
       let body = {finalTime: time, user: this.state.user}
-      post("/api/reportTime", body)
+      console.log(body.user.username)
+      post("/api/reportTime", body);
+      post("/api/times", body);
     }
 
     render() {

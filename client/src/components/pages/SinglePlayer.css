@@ -207,3 +207,13 @@ position: absolute;
 .SinglePlayer-GameOverButton:hover{
     background-color: var(--primary--dim);
 }
+
+.SinglePlayer-CheatPreventer{
+    z-index: 10;
+    position: absolute;
+    top: 0px;
+    left: 100vw;
+    width: 450px;
+    height: 100vh;
+    background-color: var(--primary--dim);
+}

@@ -35,16 +35,19 @@ class NavOut extends Component {
      </button></Link>);
 
     return (
-    <div className="u-flexColumn u-flex-alignCenter">
+      <>
+      <div className="SPGO-NavOutPlaceholder"> </div>
+    <div className="u-flexColumn u-flex-alignCenter SPGO-NavOutContainer">
       <div>
-      <h4>What do you want to do next?</h4>
-    </div>
-    <div>
+        <h4>What do you want to do next?</h4>
+      </div>
+      <div>
         {homeButton} 
         {replayButton}
       </div>
-      <p className="u-Quantico">Note: Play again doesn't really make sense in the MVP because there is only one playable image. This will be changed in the final product.</p>
+      {/* <p className="u-Quantico">Note: Play again doesn't really make sense in the MVP because there is only one playable image. This will be changed in the final product.</p> */}
     </div>
+    </>
     );
 
   }

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { get } from "../../utilities.js";
 
-import "../../utilities.css"
+import "../../utilities.css";
 import "../App.css";
-import "./SinglePlayerGameOver.css"
+import "./SinglePlayerGameOver.css";
 
-import RankList from "../modules/RankList.js"
-import NavOut from "../modules/NavOut.js"
+import RankList from "../modules/RankList.js";
+import RankListGlobal from "../modules/RankListGlobal.js";
+import NavOut from "../modules/NavOut.js";
 
 class SinglePlayerGameOver extends Component {
     constructor (props) {
@@ -35,6 +36,10 @@ class SinglePlayerGameOver extends Component {
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">
                {this.state.user ? ( <RankList user={this.state.user}/>) : ("Loading your best times")}
+                </div>
+
+                <div className="SPGO-ranklistContainer">
+               {this.state.user ? ( <RankListGlobal/>) : ("Loading your best times")}
                 </div>
                 
                 <NavOut/>

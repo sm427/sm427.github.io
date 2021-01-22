@@ -262,13 +262,17 @@ movedown = () => {
 
         </div>
 
+        <div>
+            <div className="SinglePlayer-CheatPreventer"></div>
+        </div>
+
         <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
             {/* <div className="u-textCenter"> zooming only in final version </div> */}
             <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
             <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
         </div>
 
-        <div  className="SinglePlayer-ImageContainer" id="container">
+        <div className="SinglePlayer-ImageContainer" id="container">
                 <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
                 <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
                 {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}

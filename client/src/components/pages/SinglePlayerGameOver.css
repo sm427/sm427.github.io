@@ -27,6 +27,7 @@
     background-color: gold;
     width: 100%;
     font-size: 24px;
+    
 }
 
 .SPGO-timeBox:nth-child(2){
@@ -48,7 +49,14 @@
 }
 
 .SPGO-ranklistContainer{
-    width: 50vw;
+    width: 30vw;
+    min-width: 600px;
+    margin: 0px 64px;
+}
+
+.SPGO-ranklistsContainer{
+    width: 100vw;
+    
 }
 
 .SPGO-lastTimeBox{
@@ -76,4 +84,36 @@
     width: 64px;
     background-color: var(--darkgrey);
     margin: 8px;
+}
+
+.SPGO-usernameBox{
+    z-index: 30;
+    display: inline-block;
+    background-color: var(--darkgrey);
+    border-radius: 32px;
+    margin-left: auto;
+    color: white;
+    margin: 0px;
+    font-size: inherit;
+    margin-top: 0px;
+    height: 120%;
+    padding: 0px 16px;
+    margin-left: 16px;
+    margin-right: -16px;
+    /* float: right; */
+    /* margin-left: -200px;
+    margin-right: -60px; */
+}
+
+.SPGO-NavOutContainer{
+    position: fixed;
+    top: 80vh;
+    background-color: white;
+    border-radius: 32px;
+
+}
+
+.SPGO-NavOutPlaceholder{
+    height: 160px;
+    width: 200px;
 }
