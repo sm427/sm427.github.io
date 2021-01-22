@@ -10,6 +10,7 @@ import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
 import "./SinglePlayer.css";
 import "../../utilities.css";
 
+import Images from "../images/photoIndex.js";
 
 class SinglePlayer extends Component {
     constructor (props) {
@@ -20,6 +21,7 @@ class SinglePlayer extends Component {
             finalTimerTime: 0,
             pictureCounter : 0,
             gameOn: true,
+            randomInt: null
         }
     }
     
@@ -31,6 +33,7 @@ class SinglePlayer extends Component {
           console.log(this.state.user.username)
         });
       });
+      this.setState({randomInt: this.getRandomInt(Images.length)}) 
     }
 
 
@@ -43,6 +46,10 @@ class SinglePlayer extends Component {
     //       pictureCounter: this.state.pictureCounter +1
     //     });
     //   };
+
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
 
     reportTimerTime = (time) => {
       this.setState({finalTimerTime: time})
@@ -57,11 +64,13 @@ class SinglePlayer extends Component {
       let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
+      // <! -- images[randomIntString]-->
 
       return(
+        //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame  pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame}/>
+            <SinglePlayerGame sceneNumber={Images[this.state.randomInt]} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
             <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>

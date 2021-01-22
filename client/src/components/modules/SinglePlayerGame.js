@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import { get } from "../../utilities.js";
-import Scene from "../images/t1-main2.png";
 // import { Redirect } from "react-router-dom";
 
 import "../../utilities.css"
@@ -233,6 +232,7 @@ movedown = () => {
     }
 
     render() {
+        
         let img = document.getElementById("drag-img");
         let container = document.getElementById("container");
         if (img) {addEventListener('mousedown', this.start_drag);}
@@ -242,45 +242,47 @@ movedown = () => {
         }
 //document.getElementById("container").addEventListener('mousemove', this.while_drag);
 //document.getElementById("container").addEventListener('mouseup', this.stop_drag);
+        
+            return(
+                <>
+                <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
+        
+                    <div>
+                        <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
+                    </div>
+        
+                    <div>
+                        <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
+                        <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
+                    </div>
+        
+                    <div>
+                        <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
+                    </div>
+        
+                </div>
+        
+                <div>
+                    <div className="SinglePlayer-CheatPreventer"></div>
+                </div>
 
-    return(
-        <>
-        <div className="SinglePlayer-ButtonPanelMove u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
-
-            <div>
-                <button className="SinglePlayer-button" onClick={this.moveup}>Up</button>
-            </div>
-
-            <div>
-                <button className="SinglePlayer-button" onClick={this.moveleft}>Left</button>
-                <button className="SinglePlayer-button" onClick={this.moveright}>Right</button>
-            </div>
-
-            <div>
-                <button className="SinglePlayer-button" onClick={this.movedown}>Down</button>
-            </div>
-
-        </div>
-
-        <div>
-            <div className="SinglePlayer-CheatPreventer"></div>
-        </div>
-
-        <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
-            {/* <div className="u-textCenter"> zooming only in final version </div> */}
-            <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
-            <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
-        </div>
-
-        <div className="SinglePlayer-ImageContainer" id="container">
-                <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
-                <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={Scene} alt="scene"/>
-                {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}
-                {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
-
-        </div>
-        </>
-    )
+                <div className="SinglePlayer-ButtonPanelZoom u-flex u-flex-alignCenter u-flex-justifyCenter">
+                    {/* <div className="u-textCenter"> zooming only in final version </div> */}
+                    <button className="SinglePlayer-button" onClick={this.zoomout}>-</button>
+                    <button className="SinglePlayer-button" onClick={this.zoomin}>+</button>
+                </div>
+        
+                <div  className="SinglePlayer-ImageContainer" id="container">
+                        <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
+                        <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={this.props.sceneNumber} alt="scene"/>
+                        {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}
+                        {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
+        
+                </div>
+                </>
+            )
+        
+    
     }
 }
 
