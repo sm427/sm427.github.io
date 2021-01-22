@@ -18,7 +18,7 @@ class RankList extends Component {
   }
 
   componentDidMount() {
-    this.setState({times: this.props.user.playedTimes.sort((a,b) => a - b)});
+    this.setState({times: this.props.user.playedTimes});
     // this.setState({times: this.props.user.playedTimes[0]});
       // get("/api/whoami").then((user) => {
       //   if (user._id) {
@@ -33,8 +33,8 @@ class RankList extends Component {
     }
 
     componentDidUpdate() {
-      if(this.props.user.playedTimes.sort((a,b) => a - b) !== this.state.times) {
-      this.setState({times: this.props.user.playedTimes.sort((a,b) => a - b)});
+      if(this.props.user.playedTimes !== this.state.times) {
+      this.setState({times: this.props.user.playedTimes});
       }
 
     }
@@ -46,23 +46,60 @@ class RankList extends Component {
     // }
 
         // this still nedds some work, is the start to highlight the last time
-    let ranklist = this.state.times.slice(0,10).map((time, index) => (
-      <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
-    ));
+        let ranklist;
+    // let ranklist = this.state.times.slice(0,10).map((time, index) => (
+    //   <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
+    // ));
+      
+      let lastTime = this.state.times[this.state.times.length-1]
+      let sortedTimes = this.state.times.sort((a,b) => a - b);
+      let tenBestTimes = sortedTimes.slice(0,10)
 
-      // let sortedTimes = this.state.times.sort((a,b) => a - b);
-      // let tenBestTimes = sortedTimes.slice(0,10)
-      // let lastTime = this.state.times[this.state.times.length-1]
-      // if (lastTime <= tenBestTimes[tenBestTimes,length-1]) {
-      //   ranklist = sortedTimes.slice(0,10).map((time, index) => (
-      //     <div key={index} className="SPGO-timeBox" >{index+1} | {time===lastTime?("a"):("b")} {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
-      //   ))
-      // }
-      // else {
-      //   ranklist = this.state.times.slice(0,10).map((time, index) => (
-      //     <div key={index} className="SPGO-timeBox" >{("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
-      //   ));
-      // }
+      console.log(lastTime);
+      console.log(tenBestTimes[tenBestTimes.length-1]);
+      
+      if (lastTime - tenBestTimes[tenBestTimes.length-1] < 0 ) {
+        console.log("good");
+        ranklist = sortedTimes.slice(0,10).map((time, index) => (
+          <>
+         {lastTime === time ?  (
+                <div key={"lasttime"+index} className="SPGO-timeBox SPGO-lastTimeBox" >
+                  <div className="SPGO-lastTime">Last Time</div>
+                  {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                </div>
+              ) : (
+                <div key={"notlasttime"+index} className="SPGO-timeBox" >
+                  {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                </div>
+              )}
+          </>
+        ));
+        
+      }
+      else {
+        console.log("bad");
+        ranklist = sortedTimes.map((time, index) => (
+          <>
+         {index < 8 ?  (
+                <div key={"notlasttime"+index} className="SPGO-timeBox">
+                  {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                </div>
+              ) : ( <> {lastTime===time? (
+                    <div key={"lasttime"+index} className="SPGO-timeBox" >
+                      <div className="SPGO-lastTime">Last Time</div>
+                      {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
+                    </div>
+                  ):( 
+                    <> 
+                      {index===8?(<div className="SPGO-placeholderTime"></div>):("")}                
+                    </>
+                  )}
+                </>
+              )}
+          </>
+        ));
+        
+      }
 
     return (
       // <div>

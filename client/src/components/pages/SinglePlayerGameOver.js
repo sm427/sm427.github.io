@@ -16,7 +16,7 @@ class SinglePlayerGameOver extends Component {
         }
     }
 
-
+ 
     componentDidMount() {
         get("/api/whoami").then((currentuser) => {
             get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
@@ -29,17 +29,14 @@ class SinglePlayerGameOver extends Component {
 
 
     render() {
-        this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
+        // this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
         return( 
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">
                {this.state.user ? ( <RankList user={this.state.user}/>) : ("Loading your best times")}
                 </div>
-                <p className="u-textCenter u-Quantico">
-                Note: The final product will show you which time was the one that you just played.
-              
-                </p>
+                
                 <NavOut/>
             </div>
           )
