@@ -12,17 +12,55 @@ class SinglePlayerGame extends Component {
         this.state = {
             images: [],
             zoomin: 0,
-            facePositions: {
-                template0: [1266, 311, 16, 25, 1366.17],
-                template1: [,,,,1518.41]
-            }
+            facePositions: [
+                [1266, 311, 16, 25, 1366.17],
+                [0,0,100,100,1518.41],
+                [938,334,16,24,1366.17],
+                [490,472,18,29,1366.17]
+            ]
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         get("/api/getImages").then(images => {
             this.setState({ images: images });
     });
+    let int = await this.props.randomInt
+
+            let templateNr = this.props.randomInt;
+            console.log("Waldo placed for image nr" +templateNr)
+
+            let img_ele = document.getElementById("drag-img");
+            let box = document.getElementById("drag-box");
+            let face = document.getElementById("drag-face");
+
+            img_ele.style.marginTop = 0 + 'px';
+            img_ele.style.marginLeft = 0 + 'px';
+            img_ele.style.width = this.state.facePositions[templateNr][4] + 'px';
+            img_ele.style.height = 912 + 'px';
+
+            this.setState({zoomin: 0});
+
+            box.style.left = this.state.facePositions[templateNr][0] - 2 + "px";
+            face.style.left = this.state.facePositions[templateNr][0] +"px";
+
+            box.style.top = this.state.facePositions[templateNr][1] - 2 +"px";
+            face.style.top = this.state.facePositions[templateNr][1] +"px";
+
+            box.style.width = this.state.facePositions[templateNr][2] + 4 + 'px';
+            box.style.height = this.state.facePositions[templateNr][3] + 4 + 'px';
+
+            face.style.width = this.state.facePositions[templateNr][2] + 'px';
+            face.style.height = this.state.facePositions[templateNr][3] + 'px';
+
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.randomInt !== this.props.randomInt && this.props.randomInt) {
+            // this.gameOver();
+            console.log("update")
+            this.loadTemplate();
+        }
     }
 
 zoomin = () => {
@@ -232,14 +270,21 @@ movedown = () => {
 // }
 
     gameOver = () => {
-        //add one to pictureCounter prop
-    if (this.props.pictureCounter +1 >= this.props.imageCount) {
+        // add one to pictureCounter prop
+        if (this.props.pictureCounter +1 >= this.props.imageCount) {
+            console.log("Gameover.")
             this.props.endGame("abc")
             this.props.pictureProgress()}
         else {
             this.props.pictureProgress()
+            //load new template
+        }
+    }
 
-            let templateName = "template" + "0";
+    loadTemplate = () => {
+        // console.log ("yup")
+            let templateNr = this.props.randomInt;
+            console.log("Waldo placed for image nr" +templateNr)                        
 
             let img_ele = document.getElementById("drag-img");
             let box = document.getElementById("drag-box");
@@ -247,24 +292,22 @@ movedown = () => {
 
             img_ele.style.marginTop = 0 + 'px';
             img_ele.style.marginLeft = 0 + 'px';
-            img_ele.style.width = this.state.facePositions.templateName[4] + 'px';
+            img_ele.style.width = this.state.facePositions[templateNr][4] + 'px';
             img_ele.style.height = 912 + 'px';
 
-            this.setState({zoomin: this.state.zoomin-1});
+            this.setState({zoomin: 0});
 
-            box.style.left = this.state.facePositions.templateName[0] - 2 + "px";
-            face.style.left = this.state.facePositions.templateName[0] +"px";
+            box.style.left = this.state.facePositions[templateNr][0] - 2 + "px";
+            face.style.left = this.state.facePositions[templateNr][0] +"px";
 
-            box.style.top = this.state.facePositions.templateName[1] - 2 +"px";
-            face.style.top = this.state.facePositions.templateName[1] +"px";
+            box.style.top = this.state.facePositions[templateNr][1] - 2 +"px";
+            face.style.top = this.state.facePositions[templateNr][1] +"px";
 
-            box.style.width = this.state.facePositions.templateName[2] + 4 + 'px';
-            box.style.height = this.state.facePositions.templateName[3] + 4 + 'px';
+            box.style.width = this.state.facePositions[templateNr][2] + 4 + 'px';
+            box.style.height = this.state.facePositions[templateNr][3] + 4 + 'px';
 
-            face.style.width = this.state.facePositions.templateName[2] + 'px';
-            face.style.height = this.state.facePositions.templateName[3] + 'px';
-            //load new template
-        }
+            face.style.width = this.state.facePositions[templateNr][2] + 'px';
+            face.style.height = this.state.facePositions[templateNr][3] + 'px';
     }
 
     render() {

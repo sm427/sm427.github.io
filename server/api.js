@@ -61,7 +61,6 @@ router.post("/user", (req, res) => {
 });
 
 router.post("/times", auth.ensureLoggedIn, (req,res) => {
-  console.log("yeet");
   const newTimes = new Times({
     username: req.body.user.username,
     time: req.body.finalTime,

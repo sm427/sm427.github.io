@@ -22,7 +22,7 @@ class SinglePlayer extends Component {
             pictureCounter : 0,
             gameOn: true,
             randomInt: null,
-            imageCount: 1,
+            imageCount: 5,
         }
     }
     
@@ -31,7 +31,6 @@ class SinglePlayer extends Component {
       get("/api/whoami").then((currentuser) => {
         get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
           this.setState({ user: userObj});
-          console.log(this.state.user.username)
         });
       });
       this.setState({randomInt: this.getRandomInt(Images.length)}) 
@@ -58,14 +57,14 @@ class SinglePlayer extends Component {
     reportTimerTime = (time) => {
       this.setState({finalTimerTime: time})
       let body = {finalTime: time, user: this.state.user, templateId: this.state.randomInt}
-      console.log(body.user.username)
       post("/api/reportTime", body);
       post("/api/times", body);
     }
 
     render() {
+      //let sceneNumber = Images[this.state.randomInt];
       let sceneNumber = Images[this.state.randomInt];
-      console.log(this.state.imageCount);
+      console.log("Image Nr " + this.state.randomInt)
       const finalTimerTime  = this.state.finalTimerTime;
       let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
@@ -76,7 +75,7 @@ class SinglePlayer extends Component {
         //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame sceneNumber={sceneNumber} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
+            <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
             <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>

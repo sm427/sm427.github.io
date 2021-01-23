@@ -43,7 +43,7 @@ class RankListGlobal extends Component {
     let tenBestTimes = sortedTimes.slice(0,10)
       
       if (lastTime - tenBestTimes[tenBestTimes.length-1].time <= 0 ) {
-        console.log("good");
+        // console.log("good");
         ranklist = tenBestTimes.map((timeObj, index) => (
           <>
           {/* <div key={index} className="SPGO-timeBox">
@@ -67,7 +67,7 @@ class RankListGlobal extends Component {
         
       }
       else {
-        console.log("bad");
+        // console.log("bad");
         ranklist = sortedTimes.map((timeObj, index) => (
           <>
          {index < 8 ?  (

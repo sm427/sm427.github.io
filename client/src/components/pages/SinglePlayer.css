@@ -95,7 +95,7 @@ position: absolute;
 }
 
 .SinglePlayer-box {
-    z-index: 30;
+    /* z-index: 30; */
     position: absolute;
     /* margin-top: calc(59px - 100vh);
     margin-left: 200px; */
