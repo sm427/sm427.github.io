@@ -180,6 +180,8 @@ class Profile extends Component {
             </div>
 
             <div className="Profile-rankListContainer">
+          
+              <h4>Number of Rounds for the Ranklist</h4>
             <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" step="2" value={this.state.slidervalue} onChange={this.handleChange}/></p>
 
               <RankList user={this.state.profileUser} imageCount={this.state.imageCount}/>
