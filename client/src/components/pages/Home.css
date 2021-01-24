@@ -108,3 +108,35 @@
 .Home-LobbyBoxPlayerNames{
     margin: 2px 8px;
 }
+
+.Home-imageCountSelector{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--darkgrey);
+    height: 34px;
+    width: 34px;
+    border-radius: 32px;
+    color: var(--darkgrey);
+    margin: 0px 16px;
+    cursor: pointer;
+}
+
+.Home-imageCountSelector:hover{
+    background-color: var(--primary) !important;
+    color: white !important;
+    border: 1px solid var(--primary) !important;
+}
+
+.Home-imageCountSelector:active{
+    background-color: var(--primary--dim) !important;
+    color: white !important;
+    border: 1px solid var(--primary--dim) !important;
+}
+
+.Home-imageCountSelector:nth-child(2){
+    background-color: var(--primary);
+    color: white;
+    border: 1px solid var(--primary);
+}

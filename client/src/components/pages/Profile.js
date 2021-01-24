@@ -103,6 +103,28 @@ class Profile extends Component {
     })
   } 
 
+  set1 = (event) => {
+    this.setState({imageCount: 1});
+    event.target.style.backgroundColor = "var(--primary)";
+    document.getElementById("selector3").style.backgroundColor = "var(--darkgrey)" 
+    document.getElementById("selector5").style.backgroundColor = "var(--darkgrey)" 
+  };
+
+  set3 = (event) => {
+      this.setState({imageCount: 3});
+      event.target.style.backgroundColor = "var(--primary)";
+      document.getElementById("selector1").style.backgroundColor = "var(--darkgrey)"
+      document.getElementById("selector5").style.backgroundColor = "var(--darkgrey)" 
+  };
+  
+
+  set5 = (event) => {
+    this.setState({imageCount: 5})
+    event.target.style.backgroundColor = "var(--primary)";
+    document.getElementById("selector1").style.backgroundColor = "var(--darkgrey)" 
+    document.getElementById("selector3").style.backgroundColor = "var(--darkgrey)" 
+}
+
   render() {
     let profilePictureSection;
     if (!this.state.profileUser) {
@@ -181,8 +203,9 @@ class Profile extends Component {
 
             <div className="Profile-rankListContainer">
            
-              <h4>Number of Rounds for the Ranklist</h4>
-            <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" step="2" value={this.state.slidervalue} onChange={this.handleChange}/></p>
+              {/* <h4>Number of Rounds for the Ranklist</h4> */}
+              <div className="u-flex u-flex-justifyCenter"><div className="Profile-imageCountSelector" onClick={this.set1} id="selector1">1</div><div className="Profile-imageCountSelector" onClick={this.set3} id="selector3">3</div><div className="Profile-imageCountSelector" onClick={this.set5} id="selector5">5</div></div>
+            {/* <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" step="2" value={this.state.slidervalue} onChange={this.handleChange}/></p> */}
 
               <RankList user={this.state.profileUser} imageCount={this.state.imageCount}/>
             </div> 

@@ -99,6 +99,7 @@ class RankList extends Component {
         ));
         
       }
+      else if(relevantTimes.length === 0) {ranklist = "No games played."}
       else {
         ranklist = sortedTimes.map((time, index) => (
           <>

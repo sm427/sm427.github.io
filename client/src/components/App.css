@@ -37,6 +37,10 @@
     background-color: var(--primary);
 }
 
+.App-submit:active{
+    background-color: var(--primary--dim) !important;
+}
+
 .App-fileUpload{
     background-color: var(--lightgrey);
     border: 1px solid black;
