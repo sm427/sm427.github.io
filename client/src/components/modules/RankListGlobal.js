@@ -17,9 +17,10 @@ class RankListGlobal extends Component {
     }
   }
 
-  componentDidMount() {
-      let query = {templateId: 1}
-        get("api/getTemplateTimes", query).then((timesObj) =>{
+  async componentDidMount() {
+      let imageCountProp = await this.props.imageCount
+      let query = {imageCount: imageCountProp}
+        get("api/getGlobalTimes", query).then((timesObj) =>{
             for (let i=0; i<timesObj.length; i++) {
               this.setState({times: this.state.times.concat(timesObj[i])})
             }
@@ -95,7 +96,7 @@ class RankListGlobal extends Component {
 
     return (
       <div className="u-flexColumn u-flex-alignCenter">
-        <h2 className="textCenter">Global Leaderboard</h2>
+        <h2 className="textCenter">Global Leaderboard for {this.props.imageCount === "1" ? this.props.imageCount + " round" : this.props.imageCount + " rounds"} </h2>
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
           {ranklist}

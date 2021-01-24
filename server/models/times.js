@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const TimesSchema = new mongoose.Schema({
   username: String,
   time: Number,
-  templateId: Number,
+  imageCount: Number,
   userId: String,
 });
 

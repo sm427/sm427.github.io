@@ -22,7 +22,7 @@ class SinglePlayer extends Component {
             pictureCounter : 0,
             gameOn: true,
             randomInt: null,
-            imageCount: 5,
+            imageCount: 3,
         }
     }
     
@@ -127,7 +127,7 @@ class SinglePlayer extends Component {
 
     reportTimerTime = (time) => {
       this.setState({finalTimerTime: time})
-      let body = {finalTime: time, user: this.state.user, templateId: this.state.randomInt}
+      let body = {finalTime: time, user: this.state.user, imageCount: this.state.imageCount}
       post("/api/reportTime", body);
       post("/api/times", body);
     }

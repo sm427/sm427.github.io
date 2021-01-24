@@ -32,7 +32,7 @@ class App extends Component {
         imageNames: [],
         playedTimes: [],
       },
-      SinglePlayerImageCount: 2,
+      SinglePlayerImageCount: 3,
     };
   }
 
@@ -97,7 +97,7 @@ class App extends Component {
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} userId={this.state.user._id}/>
           <HowTo path="/howtoplay" />
           <SinglePlayer path="/singleplayer" userId={this.state.user._id} addTime={this.addTime} imageCount={this.state.SinglePlayerImageCount}/>
-          <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>
+          <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user} imageCount={this.state.SinglePlayerImageCount}/>
           <NotFound default />
         </Router>
         </div>

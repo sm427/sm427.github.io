@@ -64,13 +64,13 @@ router.post("/times", auth.ensureLoggedIn, (req,res) => {
   const newTimes = new Times({
     username: req.body.user.username,
     time: req.body.finalTime,
-    templateId: req.body.templateId,
+    imageCount: req.body.imageCount,
   });
   newTimes.save().then((time) => res.send(time));
 })
 
 router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
-  User.updateOne({ _id: req.body.user._id },{ $push: { playedTimes: req.body.finalTime } }).then((user) => {
+  User.updateOne({ _id: req.body.user._id },{ $push: { playedTimes: ([req.body.finalTime, req.body.imageCount]) } }).then((user) => {
   res.send({}); });
 })
 
@@ -80,9 +80,15 @@ router.get("/getTimes", auth.ensureLoggedIn, (req,res) => {
   })
 })
 
-router.get("/getTemplateTimes", (req,res) => {
-  Times.find({templateId: req.query.templateId}).then((times) => {
+router.get("/getGlobalTimes", (req,res) => {
+  Times.find({imageCount: req.query.imageCount}).then((times) => {
     res.send(times)
+  })
+})
+
+router.get("/getUserTimes", (req,res) => {
+  User.find({_id: req.query.userId}).then((user) => {
+    res.send(user)
   })
 })
 

@@ -35,11 +35,11 @@ class SinglePlayerGameOver extends Component {
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankList user={this.state.user}/>) : ("Loading your best times")}
+               {this.state.user ? ( <RankList user={this.state.user} imageCount={this.props.imageCount}/>) : ("Loading your best times")}
                 </div>
 
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankListGlobal/>) : ("Loading the global best times")}
+               {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.props.imageCount}/>) : ("Loading the global best times")}
                 </div>
                 
                 <NavOut/>

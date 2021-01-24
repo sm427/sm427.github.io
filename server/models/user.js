@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   googleid: String,
   username: String,
   imageNames: [String],
-  playedTimes: [String],
+  playedTimes: [[Number]],
   playedTemplates: [Number],
 });
 
