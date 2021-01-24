@@ -36,8 +36,8 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/user", (req, res) => {
-  User.findById(req.query.userid).then((user) => {
+router.get("/user", auth.ensureLoggedIn, (req, res) => {
+  User.findById(req.user._id).then((user) => {
     res.send(user);
   });
 });
@@ -166,6 +166,28 @@ router.post("/deleteImages", auth.ensureLoggedIn, (req, res) => {
     res.status(500).send()
   });
 });
+
+router.post("/reportPlayedTemplate", auth.ensureLoggedIn, (req, res) => {
+  console.log("reported template");
+  User.findById(req.user._id).then(user => {
+    user.playedTemplates = user.playedTemplates.concat(req.body.templateNr)
+    user.save().then((updatedUser)=>res.send(updatedUser));
+  })
+})
+
+router.get("/getPlayedTemplates", auth.ensureLoggedIn, (req, res) => {
+  console.log("got template");
+  User.findById(req.user._id).then((user) => {
+    res.send(user)
+  })
+})
+
+router.post("/clearPlayedTemplates", auth.ensureLoggedIn, (req, res) => {
+  User.findById(req.user._id).then(user => {
+    user.playedTemplates = [];
+    user.save().then((updatedUser)=>res.send(updatedUser))
+  })
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

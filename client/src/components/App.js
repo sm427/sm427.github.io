@@ -96,7 +96,7 @@ class App extends Component {
           <Home path="/" user={this.state.user} userId={this.state.user._id} reportSinglePlayerImageCount={this.reportSinglePlayerImageCount}/>
           <Profile path="/profile/:profileUserId" profileUserId={profileUserId} userId={this.state.user._id}/>
           <HowTo path="/howtoplay" />
-          <SinglePlayer path="/singleplayer" addTime={this.addTime} imageCount={this.state.SinglePlayerImageCount}/>
+          <SinglePlayer path="/singleplayer" userId={this.state.user._id} addTime={this.addTime} imageCount={this.state.SinglePlayerImageCount}/>
           <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user}/>
           <NotFound default />
         </Router>

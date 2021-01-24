@@ -39,7 +39,7 @@ class SinglePlayerGameOver extends Component {
                 </div>
 
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankListGlobal/>) : ("Loading your best times")}
+               {this.state.user ? ( <RankListGlobal/>) : ("Loading the global best times")}
                 </div>
                 
                 <NavOut/>

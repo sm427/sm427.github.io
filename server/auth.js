@@ -27,6 +27,9 @@ function getOrCreateUser(user) {
       name: user.name,
       googleid: user.sub,
       username: "Set username in profile",
+      imageNames: [],
+      playedTimes: [],
+      playedTemplates: [],
     });
 
     return newUser.save();

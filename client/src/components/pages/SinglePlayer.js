@@ -27,13 +27,34 @@ class SinglePlayer extends Component {
     }
     
 
-    componentDidMount() {
+    async componentDidMount() {
+      let userId = await this.props.userId;
       get("/api/whoami").then((currentuser) => {
         get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
           this.setState({ user: userObj});
         });
       });
-      this.setState({randomInt: this.getRandomInt(Images.length)}) 
+      get("/api/user", { userid: this.props.userId}).then((user) => {
+              if (user.playedTemplates.length > 4) { //nr of templates
+                console.log(user.playedTemplates);
+                post("/api/clearPlayedTemplates").then((updateUser) => {
+                  console.log("Cleared played templates for " + updateUser.username);});
+                  this.setState({randomInt: this.getRandomInt(Images.length)}) 
+                  console.log("set randomInt")
+              }
+              else {
+                console.log("else");
+                let unplayedTemplates = [];
+                for (let i=0; i < Images.length; i++) {
+                  unplayedTemplates=unplayedTemplates.concat(i)
+                }
+                let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
+                console.log(difference)
+                let randomInt = difference[this.getRandomInt(difference.length -1)]
+              this.setState({randomInt: randomInt});
+              }
+            })
+      
         this.setState({imageCount: parseInt(this.props.imageCount)})
     }
 
@@ -44,14 +65,64 @@ class SinglePlayer extends Component {
     }
     
     pictureProgress = () => {
-        this.setState({
-          pictureCounter: this.state.pictureCounter +1,
-          randomInt: this.getRandomInt(Images.length)
-        });
-      }
+      let body = {user: this.state.user, templateNr: this.state.randomInt}
+      console.log("pictureProgress")
+      post("/api/reportPlayedTemplate", body).then((userObj) => {console.log("Played Templates: " + JSON.stringify(userObj.playedTemplates));
+        
+      get("/api/user").then((user) => {
+        console.log("Got user for playedTemplates")
+        if (user.playedTemplates.length >= Images.length) { //nr of templates
+          console.log(user.playedTemplates);
+          post("/api/clearPlayedTemplates").then((updateUser) => {
+            console.log("Cleared played templates for " + updateUser.username);});
+            this.setState({randomInt: this.getRandomInt(Images.length)}) 
+        }
+        else {
+          console.log("else");
+            let unplayedTemplates = [];
+            for (let i=0; i < Images.length; i++) {
+              unplayedTemplates=unplayedTemplates.concat(i)
+            }
+            let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
+            console.log(difference)
+            let randomInt = difference[this.getRandomInt(difference.length -1)]
+          this.setState({randomInt: randomInt});
+        }
+      })
+      });
+      this.setState({ pictureCounter: this.state.pictureCounter +1, });
+    }
 
-    getRandomInt(max) {
-      return Math.floor(Math.random() * Math.floor(max));
+    // getRandomInt = (max) => {
+    //   console.log("get random int")
+    //   let randomInt;
+    //   console.log(this.props.userId)
+    //   get("/api/user", { userid: this.props.userId}).then((user) => {
+    //       console.log(user);
+    //       if (user.playedTemplates.length >= 4) { //nr of templates
+    //         //console.log("if");
+    //         post("/api/clearPlayedTemplates").then((updateUser) => {
+    //           randomInt = Math.floor(Math.random() * Math.floor(max))}) //.catch(console.log("err2"))
+    //           console.log("Cleared played templates for " + updateUser.username);
+    //           console.log(randomInt);
+              
+    //       }
+    //       else {
+    //         //console.log("else");
+    //         randomInt = Math.floor(Math.random() * Math.floor(max))
+    //         while (user.playedTemplates.includes(randomInt)) {
+    //           randomInt = Math.floor(Math.random() * Math.floor(max))
+    //         }
+    //         console.log(randomInt);
+    //       }
+    //     }).catch(console.log("err"))
+      
+    // }
+
+    getRandomInt = (max) => {
+      let randomInt = Math.floor(Math.random() * Math.floor(max));
+      console.log("set randomInt to "+randomInt)
+      return randomInt;
     }
 
     reportTimerTime = (time) => {
@@ -78,7 +149,7 @@ class SinglePlayer extends Component {
             <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime}/>
+            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}

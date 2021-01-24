@@ -13,7 +13,13 @@ class SinglePlayerGameSidebar extends Component {
           images: [],
           timerOn: false,
           timerStart: 0,
-          timerTime: 0
+          timerTime: 0,
+          imageCredits: [
+            "Photo by CHUTTERSNAP on Unsplash.",
+            "Unknown",
+            "Photo by CHUTTERSNAP on Unsplash.",
+            "Photo by CHUTTERSNAP on Unsplash.",
+        ]
         }
     }
    
@@ -76,7 +82,7 @@ class SinglePlayerGameSidebar extends Component {
       return (
         <div className="u-flexColumn u-flex-alignCenter u-textCenter">
           <h2>Tag yourself!</h2>
-          <p className="SinglePlayer-ImageCredit">Photo by CHUTTERSNAP on Unsplash.</p>
+          <p className="SinglePlayer-ImageCredit">{this.props.randomInt ? this.state.imageCredits[this.props.randomInt] : "Loading image Credits..."}</p>
           <p>Game on, {username}! Use the bottons to move the image. Find and click on yourself! Currently optimized for laptop screens.</p>
           <div className="SinglePlayer-Timers">
             

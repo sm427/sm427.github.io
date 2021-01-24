@@ -19,8 +19,8 @@ class LobbyToSelect extends Component {
             <div className="Home-LobbyInfoContainer">
                 <div className="u-Bebas Home-LobbyCode">{this.props.lobby.code}</div>
                 <div className="u-flex Home-LobbyPlayers">
-                    {this.props.lobby.players.length >0 ? this.props.lobby.players.map((user) => (
-                    <div className="Home-LobbyBoxPlayerNames"> {user} </div>
+                    {this.props.lobby.players.length >0 ? this.props.lobby.players.map((user, index) => (
+                    <div key={"user"+index.toString()} className="Home-LobbyBoxPlayerNames"> {user} </div>
                     )): ("No Players yet")}
                 </div>
             </div>

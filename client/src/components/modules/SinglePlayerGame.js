@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import { get } from "../../utilities.js";
+import { get, post } from "../../utilities.js";
 // import { Redirect } from "react-router-dom";
 
 import "../../utilities.css"
@@ -17,17 +17,21 @@ class SinglePlayerGame extends Component {
                 [0,0,100,100,1518.41],
                 [938,334,16,24,1366.17],
                 [490,472,18,29,1366.17]
-            ]
+            ],
         }
     }
 
     async componentDidMount() {
         get("/api/getImages").then(images => {
             this.setState({ images: images });
-    });
-    let int = await this.props.randomInt
+        });
 
-            let templateNr = this.props.randomInt;
+        let templateNr = await this.props.randomInt;
+        let facepos = await this.state.facePositions;
+
+        if (this.state.facePositions[templateNr]) {
+
+            //let templateNr = this.props.randomInt;
             console.log("Waldo placed for image nr" +templateNr)
 
             let img_ele = document.getElementById("drag-img");
@@ -52,7 +56,7 @@ class SinglePlayerGame extends Component {
 
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
-
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -270,12 +274,14 @@ movedown = () => {
 // }
 
     gameOver = () => {
+        console.log("Game over function runs")
         // add one to pictureCounter prop
         if (this.props.pictureCounter +1 >= this.props.imageCount) {
             console.log("Gameover.")
             this.props.endGame("abc")
             this.props.pictureProgress()}
         else {
+            console.log("Picture Progress")
             this.props.pictureProgress()
             //load new template
         }

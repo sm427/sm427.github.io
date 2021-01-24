@@ -20,9 +20,9 @@ class RankListGlobal extends Component {
   componentDidMount() {
       let query = {templateId: 1}
         get("api/getTemplateTimes", query).then((timesObj) =>{
-            timesObj.map((timeObj)=>{
-                this.setState({times: this.state.times.concat(timeObj)})
-            });
+            for (let i=0; i<timesObj.length; i++) {
+              this.setState({times: this.state.times.concat(timesObj[i])})
+            }
         });
     }
 

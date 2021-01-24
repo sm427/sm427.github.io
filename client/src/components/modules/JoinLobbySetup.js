@@ -22,7 +22,7 @@ class JoinLobbySetup extends Component {
     let lobbies;
     if (this.state.lobbies) {
       lobbies = this.state.lobbies.map((lobby,index) => (
-        <LobbyToSelect key={"lobby"+JSON.stringify(index)} lobby={lobby} />
+        <LobbyToSelect key={"lobby"+index.toString()} lobby={lobby} />
       ))
     }
     return (
