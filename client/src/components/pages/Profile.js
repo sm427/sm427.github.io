@@ -14,6 +14,7 @@ class Profile extends Component {
       profileUser: undefined,
       images: [],
       showChangePicture: false,
+      imageCount: 3,
     };
   }
 
@@ -96,6 +97,12 @@ class Profile extends Component {
     } else {this.setState({showChangePicture: true})}
   }
 
+  handleChange = (event) => {
+    this.setState({
+        imageCount: parseInt(event.target.value),
+    })
+  } 
+
   render() {
     let profilePictureSection;
     if (!this.state.profileUser) {
@@ -173,7 +180,9 @@ class Profile extends Component {
             </div>
 
             <div className="Profile-rankListContainer">
-              <RankList user={this.state.profileUser}/>
+            <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" step="2" value={this.state.slidervalue} onChange={this.handleChange}/></p>
+
+              <RankList user={this.state.profileUser} imageCount={this.state.imageCount}/>
             </div> 
 
           </div>
