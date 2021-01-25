@@ -109,7 +109,7 @@ position: absolute;
 }
 
 .SinglePlayer-face {
-    /* z-index: 20; */
+    /* z-index: 20;  */
     position: absolute;
     border: 0px solid red;
     /* margin-top: calc(59px - 100vh);

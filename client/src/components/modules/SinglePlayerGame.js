@@ -14,11 +14,16 @@ class SinglePlayerGame extends Component {
             zoomin: 0,
             facePositions: [
                 [1266, 311, 16, 25, 1366.17],
-                [0,0,100,100,1518.41],
                 [938,334,16,24,1366.17],
-                [490,472,18,29,1366.17]
+                [490,472,18,29,1366.17],
+                [221,604,15,23,1368], 
+                [562,594,12,16,1615.38],
+                [1570,734,16,20,1615.38],
+                [1190,794,34,46,1615.38],
+                [1316,805,22,27,1368],
+                [438,932,24,35,1368],
             ],
-            loading: true,
+            loading: 2,
         }
     }
 
@@ -58,7 +63,7 @@ class SinglePlayerGame extends Component {
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
 
-            this.setState({loading: false})
+            this.setState({loading: this.state.loading -1 })
         }
     }
 
@@ -292,7 +297,7 @@ movedown = () => {
             this.props.endGame("abc")
         }
         else {
-            this.setState({loading: true})
+            this.setState({loading: 2})
             console.log("Picture Progress")
             this.props.pictureProgress()
             //load new template
@@ -326,7 +331,12 @@ movedown = () => {
 
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
-            this.setState({loading: false})
+            this.setState({loading: this.state.loading -1})
+    }
+
+    imgLoaded = () => {
+        console.log("Image loaded")
+        this.setState( {loading: this.state.loading - 1})
     }
 
     render() {
@@ -373,8 +383,10 @@ movedown = () => {
                 <div className="SinglePlayer-ProgressContainer">{this.props.pictureCounter}/{this.props.imageCount}</div>
 
                 <div  className="SinglePlayer-ImageContainer" id="container">
-                        <div className="SinglePlayer-face" id="drag-face"><img src={this.state.images[0]} className="sp-face" /></div>
-                        <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={this.props.sceneNumber} alt="scene"/>
+                        <div className="SinglePlayer-face" id="drag-face">
+                            {this.state.loading ? (""):(<img src={this.state.images[0]} className="sp-face" />)}
+                        </div>
+                        <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={this.props.sceneNumber} alt="scene" onLoad={this.imgLoaded}/>
                         {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}
                         {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
         

@@ -15,10 +15,15 @@ class SinglePlayerGameSidebar extends Component {
           timerStart: 0,
           timerTime: 0,
           imageCredits: [
-            "Photo by CHUTTERSNAP on Unsplash.",
-            "Unknown",
-            "Photo by CHUTTERSNAP on Unsplash.",
-            "Photo by CHUTTERSNAP on Unsplash.",
+            (<>Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/crowd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>, altered.</>),
+            (<>Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/crowd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>, altered.</>),
+            (<>Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/crowd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>, altered.</>),
+            (<>Photo by JohnDarrochNZ on <a href="https://commons.wikimedia.org/wiki/File:Crowd_listening_to_speakers.jpg">Wikimedia</a>, altered.</>),
+            (<>Photo by Visit El Paso on <a href="https://flickr.com/photos/72649499@N02/16097570266">Flickr</a>, altered.</>),
+            (<>Photo by Visit El Paso on <a href="https://flickr.com/photos/72649499@N02/16097570266">Flickr</a>, altered.</>),
+            (<>Photo by Visit El Paso on <a href="https://flickr.com/photos/72649499@N02/16097570266">Flickr</a>, altered.</>),
+           (<>Photo by <a href="https://unsplash.com/@hansonluu?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Hanson Lu</a> on <a href="https://unsplash.com/s/photos/crowd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>, altered.</>),
+           (<>Photo by <a href="https://unsplash.com/@hansonluu?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Hanson Lu</a> on <a href="https://unsplash.com/s/photos/crowd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>, altered.</>),
         ]
         }
     }
@@ -86,7 +91,7 @@ class SinglePlayerGameSidebar extends Component {
       return (
         <div className="u-flexColumn u-flex-alignCenter u-textCenter">
           <h2>Tag yourself!</h2>
-          <p className="SinglePlayer-ImageCredit">{this.props.randomInt ? this.state.imageCredits[this.props.randomInt] : "Loading image Credits..."}</p>
+          <p className="SinglePlayer-ImageCredit">{this.props.randomInt || this.props.randomInt === 0 ? this.state.imageCredits[this.props.randomInt] : "Loading image Credits..."}</p>
           <p>Game on, {username}! Use the bottons to move the image. Find and click on yourself! Currently optimized for laptop screens.</p>
           <div className="SinglePlayer-Timers">
             

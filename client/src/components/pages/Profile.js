@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities";
 import ChangeUsername from "../modules/ChangeUsername.js";
-import Sampleimage from "../images/testface4.png"
+//import Sampleimage from "https://storage.googleapis.com/xaea12sgodparentsbucket1/testface4.png"
 import RankList from "../modules/RankList.js"
 
 import "../../utilities.css";
@@ -181,7 +181,7 @@ class Profile extends Component {
           <p className="Profile-PictureExplanation">Optional: For the best experience, make sure that your image has a width of 200px and a height of 300px, distorting it if neccessary. If your graphics editor supports it, change the colors to 8-bit, in order to decrease the file size. Save as .png.</p>
           <p className="Profile-PictureExplanation">Feel free to right-click, save, reupload, and play with one of the sample pictures below.</p>
           <p className="Profile-PictureExplanation">Sample picture:</p>
-          <img src={Sampleimage} />
+          <img src="https://storage.googleapis.com/xaea12sgodparentsbucket1/testface4.png" />
           <p className="Profile-PictureExplanation">Sources: CC <a href="https://commons.wikimedia.org/wiki/File:JoeBidenCropped.jpg">White House</a>, images distorted and mirrored</p>
           </div>
           </div>
