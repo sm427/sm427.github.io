@@ -7,6 +7,8 @@ const UserSchema = new mongoose.Schema({
   imageNames: [String],
   playedTimes: [[Number]],
   playedTemplates: [Number],
+  currentStartTime: Number,
+  currentEndTime: Number,
 });
 
 // compile model from schema

@@ -18,6 +18,7 @@ class SinglePlayerGame extends Component {
                 [938,334,16,24,1366.17],
                 [490,472,18,29,1366.17]
             ],
+            loading: true,
         }
     }
 
@@ -56,16 +57,26 @@ class SinglePlayerGame extends Component {
 
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
+
+            this.setState({loading: false})
         }
     }
 
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.randomInt !== this.props.randomInt && this.props.randomInt) {
+    //         // this.gameOver();
+    //         console.log("update")
+    //         this.loadTemplate();
+    //     }
+    // }
+
     componentDidUpdate(prevProps) {
-        if (prevProps.randomInt !== this.props.randomInt && this.props.randomInt) {
-            // this.gameOver();
-            console.log("update")
-            this.loadTemplate();
+            if (prevProps.randomInt !== this.props.randomInt) {
+                // this.gameOver();
+                console.log("update")
+                this.loadTemplate();
+            }
         }
-    }
 
 zoomin = () => {
     let img_ele = document.getElementById("drag-img");
@@ -279,8 +290,9 @@ movedown = () => {
         if (this.props.pictureCounter +1 >= this.props.imageCount) {
             console.log("Gameover.")
             this.props.endGame("abc")
-            this.props.pictureProgress()}
+        }
         else {
+            this.setState({loading: true})
             console.log("Picture Progress")
             this.props.pictureProgress()
             //load new template
@@ -314,6 +326,7 @@ movedown = () => {
 
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
+            this.setState({loading: false})
     }
 
     render() {
@@ -366,6 +379,8 @@ movedown = () => {
                         {/* HERE I'll add another layer that enhances how good the user's face blends into the crowd */}
         
                 </div>
+
+                {this.state.loading ? (<div><div className="SinglePlayer-loading"></div><div className="SinglePlayer-loadingText">Loading...</div></div>):("")}
                 </>
             )
         

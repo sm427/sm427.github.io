@@ -23,11 +23,13 @@ class SinglePlayer extends Component {
             gameOn: true,
             randomInt: null,
             imageCount: 3,
+            finalServerTime: 0,
         }
     }
     
 
     async componentDidMount() {
+      this.setState({finalServerTime: 0})
       let userId = await this.props.userId;
       get("/api/whoami").then((currentuser) => {
         get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
@@ -35,7 +37,7 @@ class SinglePlayer extends Component {
         });
       });
       get("/api/user", { userid: this.props.userId}).then((user) => {
-              if (user.playedTemplates.length > 4) { //nr of templates
+              if (user.playedTemplates.length >= Images.length) { //nr of templates
                 console.log(user.playedTemplates);
                 post("/api/clearPlayedTemplates").then((updateUser) => {
                   console.log("Cleared played templates for " + updateUser.username);});
@@ -62,6 +64,7 @@ class SinglePlayer extends Component {
     endGame = () => {
       console.log("Game ended.");
       this.setState({gameOn: false});
+      this.setState({ pictureCounter: this.state.pictureCounter +1, });
     }
     
     pictureProgress = () => {
@@ -126,6 +129,21 @@ class SinglePlayer extends Component {
     }
 
     reportTimerTime = (time) => {
+      
+        get("/api/user").then((user) => {
+          //this.setState({startServerTime: user.currentStartTime, endServerTime: user.currentEndTime})
+          let finalServerTime = user.currentEndTime - user.currentStartTime;
+          console.log(user.currentEndTime)
+          console.log(user.currentStartTime)
+          console.log(finalServerTime)
+          let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2);
+          let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
+          let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
+          this.setState({finalServerTime: minutes + ":" + seconds + ":" + centiseconds})
+          console.log(this.state.finalServerTime)
+      })
+      
+      
       this.setState({finalTimerTime: time})
       let body = {finalTime: time, user: this.state.user, imageCount: this.state.imageCount}
       post("/api/reportTime", body);
@@ -149,7 +167,7 @@ class SinglePlayer extends Component {
             <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt}/>
+            <SinglePlayerGameSidebar finalServerTime={this.state.finalServerTime} pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}
@@ -164,7 +182,7 @@ class SinglePlayer extends Component {
             </div>
 
             <div>
-              Your time was {minutes}:{seconds}:{centiseconds} for {this.state.imageCount} images.
+              Your time was {this.state.finalServerTime} for {this.state.imageCount=="1" ? this.state.imageCount+ " image.": this.state.imageCount+ " images."}
             </div>
 
             <div>

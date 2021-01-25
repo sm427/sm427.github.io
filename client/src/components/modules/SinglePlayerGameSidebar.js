@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import { get } from "../../utilities.js";
+import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 import "../App.css";
 import "../pages/SinglePlayer.css"
@@ -34,12 +34,15 @@ class SinglePlayerGameSidebar extends Component {
     componentDidUpdate() {
       if (this.state.timerOn) {
       if (!this.props.gameOn) {
+        console.log(this.props.finalServerTime)
         this.stopTimer();
+        post("/api/GameEndTime");
         this.props.reportTimerTime(this.state.timerTime);
       }}
     }
     
       startTimer = () => {
+        post("/api/GameStartTime");
         this.setState({
           timerOn: true,
           timerTime: this.state.timerTime,
@@ -76,6 +79,7 @@ class SinglePlayerGameSidebar extends Component {
       let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
       let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
+      let time= this.props.finalServerTime === 0 ? minutes + ":" + seconds + ":" + centiseconds : this.props.finalServerTime;
 
       //console.log(this.props.user);
       //console.log(username);
@@ -89,7 +93,8 @@ class SinglePlayerGameSidebar extends Component {
             <div className="Stopwatch">
               <div className="Stopwatch-header"></div>
               <div className="Stopwatch-display u-Bebas u-fontsize30">
-                {/* {hours} : */} {minutes} : {seconds} : {centiseconds} 
+                {/* {minutes} : {seconds} : {centiseconds}  */}
+                {time}
               </div>
               {/* {this.state.timerOn === false && this.state.timerTime === 0 && (
                 <button className="SinglePlayer-button" onClick={this.startTimer}>Start</button>

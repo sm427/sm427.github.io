@@ -30,7 +30,7 @@ class SinglePlayerSetup extends Component {
   }
 
   set1 = (event) => {
-    this.setState({sliderValue: 1});
+    this.setState({sliderValue: "1"});
     event.target.style.backgroundColor = "var(--primary)";
     event.target.style.color = "white";
     event.target.style.border = "1px solid var(--primary)";
@@ -43,7 +43,7 @@ class SinglePlayerSetup extends Component {
   };
 
   set3 = (event) => {
-      this.setState({sliderValue: 3});
+      this.setState({sliderValue: "3"});
       event.target.style.backgroundColor = "var(--primary)";
     event.target.style.color = "white";
     event.target.style.border = "1px solid var(--primary)";
@@ -57,7 +57,7 @@ class SinglePlayerSetup extends Component {
   
 
   set5 = (event) => {
-    this.setState({sliderValue: 5})
+    this.setState({sliderValue: "5"})
     event.target.style.backgroundColor = "var(--primary)";
     event.target.style.color = "white";
     event.target.style.border = "1px solid var(--primary)";

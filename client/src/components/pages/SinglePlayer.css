@@ -236,3 +236,22 @@ position: absolute;
     left: calc(85vw - 112px);
     top: calc(578px);
 }
+
+.SinglePlayer-loading{
+    z-index: 15;
+    background-color: black;
+    opacity: 0.7;
+    position: absolute;
+    width: 70vw;
+    height: calc(100vh - 59px);
+    top: 59px;
+    left: 0;
+}
+
+.SinglePlayer-loadingText{
+    z-index: 16;
+    color: white;
+    position:absolute;
+    top: 450px;
+    left: calc(35vw - 20px);
+}
