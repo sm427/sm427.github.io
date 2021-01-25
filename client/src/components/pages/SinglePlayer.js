@@ -24,6 +24,7 @@ class SinglePlayer extends Component {
             randomInt: null,
             imageCount: 3,
             finalServerTime: 0,
+            showGameOver: false,
         }
     }
     
@@ -129,35 +130,38 @@ class SinglePlayer extends Component {
     }
 
     reportTimerTime = (time) => {
-      
+      post("/api/GameEndTime").then(() => {
         get("/api/user").then((user) => {
           //this.setState({startServerTime: user.currentStartTime, endServerTime: user.currentEndTime})
-          let finalServerTime = user.currentEndTime - user.currentStartTime;
+          //let finalServerTime = user.currentEndTime - user.currentStartTime;
           console.log(user.currentEndTime)
           console.log(user.currentStartTime)
+          let end = new Date(user.currentEndTime);
+          let start = new Date (user.currentStartTime);
+          let finalServerTime = end - start;
           console.log(finalServerTime)
           let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2);
           let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
           let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
           this.setState({finalServerTime: minutes + ":" + seconds + ":" + centiseconds})
           console.log(this.state.finalServerTime)
+          let body = {finalTime: finalServerTime, user: this.state.user, imageCount: this.state.imageCount}
+          post("/api/reportTime", body);
+          post("/api/times", body);
+          this.setState({showGameOver: true})
+        })
       })
-      
-      
       this.setState({finalTimerTime: time})
-      let body = {finalTime: time, user: this.state.user, imageCount: this.state.imageCount}
-      post("/api/reportTime", body);
-      post("/api/times", body);
     }
 
     render() {
       //let sceneNumber = Images[this.state.randomInt];
       let sceneNumber = Images[this.state.randomInt];
       console.log("Image Nr " + this.state.randomInt)
-      const finalTimerTime  = this.state.finalTimerTime;
-      let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
-      let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
-      let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
+      // const finalTimerTime  = this.state.finalTimerTime;
+      // let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
+      // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
+      // let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
       // <! -- images[randomIntString]-->
 
       return(
@@ -182,7 +186,7 @@ class SinglePlayer extends Component {
             </div>
 
             <div>
-              Your time was {this.state.finalServerTime} for {this.state.imageCount=="1" ? this.state.imageCount+ " image.": this.state.imageCount+ " images."}
+              {this.state.showGameOver? (`Your time was ${this.state.finalServerTime} for ${this.state.imageCount=="1" ? this.state.imageCount+ " image.": this.state.imageCount+ " images."}`) : ("Loading the exact time...")}
             </div>
 
             <div>

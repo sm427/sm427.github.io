@@ -36,7 +36,7 @@ class SinglePlayerGameSidebar extends Component {
       if (!this.props.gameOn) {
         console.log(this.props.finalServerTime)
         this.stopTimer();
-        post("/api/GameEndTime");
+        
         this.props.reportTimerTime(this.state.timerTime);
       }}
     }
