@@ -43,16 +43,16 @@ class SinglePlayer extends Component {
                 post("/api/clearPlayedTemplates").then((updateUser) => {
                   console.log("Cleared played templates for " + updateUser.username);});
                   this.setState({randomInt: this.getRandomInt(Images.length)}) 
-                  console.log("set randomInt")
+                  //console.log("set randomInt")
               }
               else {
-                console.log("else");
+                //console.log("else");
                 let unplayedTemplates = [];
                 for (let i=0; i < Images.length; i++) {
                   unplayedTemplates=unplayedTemplates.concat(i)
                 }
                 let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
-                console.log(difference)
+                console.log("unplayed templates: " + JSON.stringify(difference))
                 let randomInt = difference[this.getRandomInt(difference.length -1)]
               this.setState({randomInt: randomInt});
               }
@@ -70,11 +70,11 @@ class SinglePlayer extends Component {
     
     pictureProgress = () => {
       let body = {user: this.state.user, templateNr: this.state.randomInt}
-      console.log("pictureProgress")
+      // console.log("pictureProgress")
       post("/api/reportPlayedTemplate", body).then((userObj) => {console.log("Played Templates: " + JSON.stringify(userObj.playedTemplates));
         
       get("/api/user").then((user) => {
-        console.log("Got user for playedTemplates")
+        //console.log("Got user for playedTemplates")
         if (user.playedTemplates.length >= Images.length) { //nr of templates
           console.log(user.playedTemplates);
           post("/api/clearPlayedTemplates").then((updateUser) => {
@@ -82,13 +82,13 @@ class SinglePlayer extends Component {
             this.setState({randomInt: this.getRandomInt(Images.length)}) 
         }
         else {
-          console.log("else");
+          //console.log("else");
             let unplayedTemplates = [];
             for (let i=0; i < Images.length; i++) {
               unplayedTemplates=unplayedTemplates.concat(i)
             }
             let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
-            console.log(difference)
+            console.log("unplayed templates: " + JSON.stringify(difference))
             let randomInt = difference[this.getRandomInt(difference.length -1)]
           this.setState({randomInt: randomInt});
         }
@@ -125,7 +125,7 @@ class SinglePlayer extends Component {
 
     getRandomInt = (max) => {
       let randomInt = Math.floor(Math.random() * Math.floor(max));
-      console.log("set randomInt to "+randomInt)
+      //console.log("set randomInt to "+randomInt)
       return randomInt;
     }
 
@@ -134,12 +134,12 @@ class SinglePlayer extends Component {
         get("/api/user").then((user) => {
           //this.setState({startServerTime: user.currentStartTime, endServerTime: user.currentEndTime})
           //let finalServerTime = user.currentEndTime - user.currentStartTime;
-          console.log(user.currentEndTime)
-          console.log(user.currentStartTime)
+          //console.log(user.currentEndTime)
+          //console.log(user.currentStartTime)
           let end = new Date(user.currentEndTime);
           let start = new Date (user.currentStartTime);
           let finalServerTime = end - start;
-          console.log(finalServerTime)
+          //console.log(finalServerTime)
           let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2);
           let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
           let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
@@ -157,7 +157,7 @@ class SinglePlayer extends Component {
     render() {
       //let sceneNumber = Images[this.state.randomInt];
       let sceneNumber = Images[this.state.randomInt];
-      console.log("Image Nr " + this.state.randomInt)
+      console.log("Playing Image #" + this.state.randomInt)
       // const finalTimerTime  = this.state.finalTimerTime;
       // let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);

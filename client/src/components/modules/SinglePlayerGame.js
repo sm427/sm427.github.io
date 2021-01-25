@@ -13,15 +13,27 @@ class SinglePlayerGame extends Component {
             images: [],
             zoomin: 0,
             facePositions: [
-                [1266, 311, 16, 25, 1366.17],
-                [938,334,16,24,1366.17],
+                [1266, 311, 16, 25, 1366.17], //0, t1
+                [938,334,16,24,1366.17], //1, t3
                 [490,472,18,29,1366.17],
                 [221,604,15,23,1368], 
-                [562,594,12,16,1615.38],
-                [1570,734,16,20,1615.38],
+                [562,594,12,16,1615.38], 
+                [1570,734,16,20,1615.38], //5, t7
                 [1190,794,34,46,1615.38],
                 [1316,805,22,27,1368],
-                [438,932,24,35,1368],
+                [438,932,24,35,1368], //8, t10
+                [368, 79, 28, 37, 1368],
+                [1172, 75, 25, 33, 1368],
+                [751, 99, 27, 42, 1368],
+                [551, 662, 35, 53, 1368],
+                [1105, 83, 19, 29, 1369], //13, t15
+                [282, 673, 23, 32, 1369],
+                [63, 462, 20, 29, 1369],
+                [1007, 97, 30, 46, 1368],
+                [463, 468, 23, 33, 1368],
+                [1126, 64, 21, 26, 1368],
+                [237, 476, 23, 30, 1368], //19, t21
+
             ],
             loading: 2,
         }
@@ -78,7 +90,7 @@ class SinglePlayerGame extends Component {
     componentDidUpdate(prevProps) {
             if (prevProps.randomInt !== this.props.randomInt) {
                 // this.gameOver();
-                console.log("update")
+                //console.log("update")
                 this.loadTemplate();
             }
         }
@@ -290,15 +302,15 @@ movedown = () => {
 // }
 
     gameOver = () => {
-        console.log("Game over function runs")
+        //console.log("Game over function runs")
         // add one to pictureCounter prop
         if (this.props.pictureCounter +1 >= this.props.imageCount) {
-            console.log("Gameover.")
+            //console.log("Gameover.")
             this.props.endGame("abc")
         }
         else {
             this.setState({loading: 2})
-            console.log("Picture Progress")
+            //console.log("Picture Progress")
             this.props.pictureProgress()
             //load new template
         }

@@ -19,12 +19,13 @@ class RankList extends Component {
 
    componentDidMount() {
 
-    // get("/api/whoami").then((currentuser) => {
-    //   get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
-    //     this.setState({ user: userObj});
-    //     this.setState({times: userObj.playedTimes})
-    //     console.log(userObj)
-    //   });
+    get("/api/whoami").then((currentuser) => {
+      get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
+        this.setState({ user: userObj});
+        this.setState({times: userObj.playedTimes})
+        //console.log(userObj)
+      });
+    })
 
     // });
     // let imageCountProp = await this.props.imageCount;
@@ -37,7 +38,7 @@ class RankList extends Component {
     //       }
     //   });
 
-    this.setState({times: this.props.user.playedTimes});
+    //this.setState({times: this.props.user.playedTimes});
     // this.setState({times: this.props.user.playedTimes[0]});
       // get("/api/whoami").then((user) => {
       //   if (user._id) {
@@ -69,6 +70,7 @@ class RankList extends Component {
     // let ranklist = this.state.times.slice(0,10).map((time, index) => (
     //   <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
     // ));
+    console.log(this.props.imageCount)
       let relevantTimeObjs = this.state.times.filter((x) => {return x[1] === this.props.imageCount} )
       let relevantTimes = []
       for (let i=0; i<relevantTimeObjs.length; i++) {
@@ -78,8 +80,8 @@ class RankList extends Component {
       let sortedTimes = relevantTimes.sort((a,b) => a - b);
       let tenBestTimes = sortedTimes.slice(0,10)
 
-      console.log(lastTime);
-      console.log(tenBestTimes[tenBestTimes.length-1]);
+      //console.log(lastTime);
+      //console.log(tenBestTimes[tenBestTimes.length-1]);
       
       if (lastTime - tenBestTimes[tenBestTimes.length-1] <= 0 ) {
 

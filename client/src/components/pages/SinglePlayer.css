@@ -255,3 +255,11 @@ position: absolute;
     top: 450px;
     left: calc(35vw - 20px);
 }
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: var(--primary--dim)
+}
