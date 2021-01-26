@@ -258,7 +258,9 @@ movedown = () => {
     let marginTopStart = img_ele.getBoundingClientRect().top - 59;
     let topBoxStart = box.getBoundingClientRect().top;
     let topFaceStart = face.getBoundingClientRect().top;
-    let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
+    let spacebottom = img_ele.getBoundingClientRect().bottom - window.innerHeight;
+    console.log(spacebottom);
+    console.log(img_ele.getBoundingClientRect().bottom)
     if(spacebottom >= 50 ){
         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
         box.style.top = (topBoxStart - 50) + "px";
