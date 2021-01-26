@@ -38,7 +38,7 @@ class CreateLobbySetup extends Component {
     this.setState({
         slidervalue: event.target.value,
     })
-}
+  }
 
     handleSubmit = (event) => {
       let body = {creatorname: this.props.user.username ,name: this.state.Lobbyname.value, code: this.state.Lobbycode.value, playerCount: this.state.slidervalue}
@@ -54,6 +54,7 @@ class CreateLobbySetup extends Component {
       usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
       startbutton = (<div className="SinglePlayer-notLoggedInText">Log in before playing.</div>);
     }
+
     else {
       usernameMessage = `Logged in as ${this.props.user.username}.`;
       startbutton = (<button

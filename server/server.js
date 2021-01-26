@@ -31,6 +31,8 @@ const auth = require("./auth");
 
 // socket stuff
 const socketManager = require("./server-socket");
+const socketio = require('socket.io');
+
 
 
 // Server configuration below
@@ -93,6 +95,46 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+
+
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers
+} = require('./models/roomUsers');
+
+const server = http.createServer(app);
+const io = socketio(server);
+
+// Run when client connects
+io.on('connection', socket => {
+  socket.on('joinRoom', ({ username, room }) => {
+    const user = userJoin(socket.id, username, room);
+
+    socket.join(user.room);
+
+    // Send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+    });
+  });
+
+  // Runs when client disconnects
+  socket.on('disconnect', () => {
+    const user = userLeave(socket.id);
+
+    if (user) {
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    }
+  });
+});
+
 
 // hardcode port to 3000 for now
 const port = process.env.PORT || 3000;
