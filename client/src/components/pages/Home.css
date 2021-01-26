@@ -22,7 +22,8 @@
 .Home-singleContainer{
     display: flex;
     flex: 2 0 664px;
-    height: 120%;
+    /* height: 120%; */
+    max-height: 130%;
 }
 
 .Home-Box-Header{
