@@ -14,6 +14,7 @@ class RankList extends Component {
     this.state = {
         times : [],
         user: undefined,
+        initialImageCount: 3,
     }
   }
 
@@ -23,7 +24,8 @@ class RankList extends Component {
       get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
         this.setState({ user: userObj});
         this.setState({times: userObj.playedTimes})
-        console.log(userObj)
+        //console.log(userObj)
+        this.setState({initialImageCount: userObj.playedTimes[userObj.playedTimes.length-1][1]})
       });
     })
 
@@ -70,7 +72,7 @@ class RankList extends Component {
     // let ranklist = this.state.times.slice(0,10).map((time, index) => (
     //   <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
     // ));
-    console.log(this.props.imageCount)
+    //console.log(this.props.imageCount)
       let relevantTimeObjs = this.state.times.filter((x) => {return x[1] == this.props.imageCount} )
       let relevantTimes = []
       for (let i=0; i<relevantTimeObjs.length; i++) {
@@ -83,11 +85,14 @@ class RankList extends Component {
       //console.log(lastTime);
       //console.log(tenBestTimes[tenBestTimes.length-1]);
       
-      if (lastTime - tenBestTimes[tenBestTimes.length-1] <= 0 ) {
+      //console.log(this.state.initialImageCount)
+      //console.log(this.props.imageCount)
+
+      if (lastTime - tenBestTimes[tenBestTimes.length-1] <= 0 || this.state.initialImageCount != this.props.imageCount) {
 
         ranklist = sortedTimes.slice(0,10).map((time, index) => (
           <div key={index+"_"+time} className="SPGO-timeBox">
-         {lastTime === time ?  (
+         {lastTime === time && this.state.initialImageCount == this.props.imageCount ?  (
                 <div className="SPGO-lastTimeBox" >
                   <div className="SPGO-lastTime">Last Time</div>
                   {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
@@ -109,7 +114,7 @@ class RankList extends Component {
                 <div key={"notlasttime"+index+"_"+time} className="SPGO-timeBox">
                   {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                 </div>
-              ) : ( <> {lastTime===time? (
+              ) : ( <> {lastTime===time && this.state.initialImageCount == this.props.imageCount ? (
                     <div key={"lasttime"+index+"_"+time} className="SPGO-timeBox" >
                       <div className="SPGO-lastTime">Last Time</div>
                       {index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}

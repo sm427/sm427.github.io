@@ -15,11 +15,12 @@ class SinglePlayerGameOver extends Component {
         this.state = {
             user: undefined,
             imageCount: 3,
+            imageCountGlobal: 3,
         }
     }
 
  
-    componentDidMount() {
+    async componentDidMount() {
         get("/api/whoami").then((currentuser) => {
             get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
               this.setState({ user: userObj});
@@ -27,10 +28,21 @@ class SinglePlayerGameOver extends Component {
             });
       
           });
+          let count = await this.props.imageCount
         this.setState({imageCount: this.props.imageCount})
-        if(this.props.imageCount==1) {document.getElementById("selector1").style.backgroundColor = "var(--primary)"}
-        else if(this.props.imageCount==3) {document.getElementById("selector3").style.backgroundColor = "var(--primary)"}
-        else {document.getElementById("selector5").style.backgroundColor = "var(--primary)"}
+        this.setState({imageCountGlobal: this.props.imageCount})
+        if(this.props.imageCount==1) {
+            document.getElementById("selector1").style.backgroundColor = "var(--primary)"
+            document.getElementById("selector1Global").style.backgroundColor = "var(--primary)"
+        }
+        else if(this.props.imageCount==3) {
+            document.getElementById("selector3").style.backgroundColor = "var(--primary)"
+            document.getElementById("selector3Global").style.backgroundColor = "var(--primary)"
+        }
+        else {
+            document.getElementById("selector5").style.backgroundColor = "var(--primary)"
+            document.getElementById("selector5Global").style.backgroundColor = "var(--primary)"
+        }
       }
 
 
@@ -55,6 +67,27 @@ class SinglePlayerGameOver extends Component {
         document.getElementById("selector3").style.backgroundColor = "var(--darkgrey)" 
     }
 
+    set1global = (event) => {
+        this.setState({imageCountGlobal: 1});
+        event.target.style.backgroundColor = "var(--primary)";
+        document.getElementById("selector3Global").style.backgroundColor = "var(--darkgrey)" 
+        document.getElementById("selector5Global").style.backgroundColor = "var(--darkgrey)" 
+      };
+    
+      set3global = (event) => {
+          this.setState({imageCountGlobal: 3});
+          event.target.style.backgroundColor = "var(--primary)";
+          document.getElementById("selector1Global").style.backgroundColor = "var(--darkgrey)"
+          document.getElementById("selector5Global").style.backgroundColor = "var(--darkgrey)" 
+      };
+    
+      set5global = (event) => {
+        this.setState({imageCountGlobal: 5})
+        event.target.style.backgroundColor = "var(--primary)";
+        document.getElementById("selector1Global").style.backgroundColor = "var(--darkgrey)" 
+        document.getElementById("selector3Global").style.backgroundColor = "var(--darkgrey)" 
+    }
+
     render() {
         // this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
         return( 
@@ -67,8 +100,10 @@ class SinglePlayerGameOver extends Component {
                 <div className="u-flex u-flex-justifyCenter"><div className="SPGO-imageCountSelector" onClick={this.set1} id="selector1">1</div><div className="SPGO-imageCountSelector" onClick={this.set3} id="selector3">3</div><div className="SPGO-imageCountSelector" onClick={this.set5} id="selector5">5</div></div>
 
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.props.imageCount}/>) : ("Loading the global best times")}
+               {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.state.imageCountGlobal}/>) : ("Loading the global best times")}
                 </div>
+
+                <div className="u-flex u-flex-justifyCenter"><div className="SPGO-imageCountSelector" onClick={this.set1global} id="selector1Global">1</div><div className="SPGO-imageCountSelector" onClick={this.set3global} id="selector3Global">3</div><div className="SPGO-imageCountSelector" onClick={this.set5global} id="selector5Global">5</div></div>
                 
                 <NavOut/>
             </div>

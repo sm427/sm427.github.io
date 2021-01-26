@@ -14,16 +14,21 @@ class RankListGlobal extends Component {
     this.state = {
         times : [],
         user: undefined,
+        lastTime: 0,
+        initialImageCount: 3,
     }
   }
 
   async componentDidMount() {
       let imageCountProp = await this.props.imageCount
+      this.setState({initialImageCount: this.props.imageCount})
       let query = {imageCount: imageCountProp}
         get("api/getGlobalTimes", query).then((timesObj) =>{
             for (let i=0; i<timesObj.length; i++) {
               this.setState({times: this.state.times.concat(timesObj[i])})
             }
+            //console.log(timesObj[timesObj.length-1].time)
+            this.setState({lastTime: timesObj[timesObj.length-1].time})
         });
     }
 
@@ -34,16 +39,33 @@ class RankListGlobal extends Component {
 
     // }
 
-    render() {
+    componentDidUpdate(prevProps) {
+      
+      if (prevProps.imageCount != this.props.imageCount) {
+        
+        let imageCountProp = this.props.imageCount
+        let query = {imageCount: imageCountProp}
+        get("api/getGlobalTimes", query).then((timesObj) =>{
+            this.setState({times: []})
+            for (let i=0; i<timesObj.length; i++) {
+              this.setState({times: this.state.times.concat(timesObj[i])})
+            }
+        });
+      }
+    }
 
+    render() {
+      //console.log(this.props.imageCount)
         let ranklist;
       if (this.state.times.length > 0) {
           
-    let lastTime = this.state.times[this.state.times.length-1].time
+    //let lastTime = this.state.times[this.state.times.length-1].time
     let sortedTimes = this.state.times.sort((a,b) => a.time - b.time);
     let tenBestTimes = sortedTimes.slice(0,10)
+    //console.log(this.state.lastTime)
+    //console.log(tenBestTimes[tenBestTimes.length-1].time)
       
-      if (lastTime - tenBestTimes[tenBestTimes.length-1].time <= 0 ) {
+      if (this.state.lastTime - tenBestTimes[tenBestTimes.length-1].time <= 0 || this.props.imageCount != this.state.initialImageCount) {
         // console.log("good");
         ranklist = tenBestTimes.map((timeObj, index) => (
           <>
@@ -51,7 +73,7 @@ class RankListGlobal extends Component {
                   {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} | {timeObj.username}
                 </div>
           {console.log(timeObj.time)} */}
-         {lastTime === timeObj.time ?  (
+         {this.state.lastTime === timeObj.time ?  (
                 <div key={"lasttime"+index} className="SPGO-timeBox SPGO-lastTimeBox" >
                   <div className="SPGO-lastTime">Last Time</div>
                   {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} 
@@ -76,7 +98,7 @@ class RankListGlobal extends Component {
                     {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)}
                     <div className="SPGO-usernameBox">{timeObj.username}</div>
                 </div>
-              ) : ( <> {lastTime===timeObj.time? (
+              ) : ( <> {this.state.lastTime===timeObj.time? (
                     <div key={"lasttime"+index} className="SPGO-timeBox SPGO-lastTimeBox" >
                         <div className="SPGO-lastTime">Last Time</div>
                         {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} 
@@ -96,7 +118,7 @@ class RankListGlobal extends Component {
 
     return (
       <div className="u-flexColumn u-flex-alignCenter">
-        <h2 className="textCenter">Global Leaderboard for {this.props.imageCount === "1" ? this.props.imageCount + " round" : this.props.imageCount + " rounds"} </h2>
+        <h2 className="textCenter">Global Leaderboard for {this.props.imageCount == "1" ? this.props.imageCount + " round" : this.props.imageCount + " rounds"} </h2>
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
           {ranklist}
