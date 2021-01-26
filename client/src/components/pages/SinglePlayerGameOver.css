@@ -89,6 +89,26 @@
 .SPGO-usernameBox{
     z-index: 30;
     display: inline-block;
+    background-color: var(--primary);
+    border-radius: 32px;
+    margin-left: auto;
+    color: white;
+    margin: 0px;
+    font-size: inherit;
+    margin-top: 0px;
+    height: 120%;
+    padding: 0px 16px;
+    margin-left: 16px;
+    margin-right: -16px;
+    min-width: 100px;
+    /* float: right; */
+    /* margin-left: -200px;
+    margin-right: -60px; */
+}
+
+.SPGO-usernameBoxElse{
+    z-index: 30;
+    display: inline-block;
     background-color: var(--darkgrey);
     border-radius: 32px;
     margin-left: auto;
@@ -100,9 +120,7 @@
     padding: 0px 16px;
     margin-left: 16px;
     margin-right: -16px;
-    /* float: right; */
-    /* margin-left: -200px;
-    margin-right: -60px; */
+    min-width: 100px;
 }
 
 .SPGO-NavOutContainer{

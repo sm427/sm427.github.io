@@ -46,19 +46,20 @@ class App extends Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.userId !== this.props.userId && this.props.userId) { 
-      get("/api/whoami").then((currentuser) => {
+ 
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.userId !== this.props.userId && this.props.userId) { 
+  //     get("/api/whoami").then((currentuser) => {
 
-        get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
-          this.setState({ user: userObj});
+  //       get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
+  //         this.setState({ user: userObj});
 
-        });
+  //       });
   
-      });
+  //     });
   
-    }
-  }
+  //   }
+  // }
 
 
   handleLogin = (res) => {
@@ -79,7 +80,7 @@ class App extends Component {
     this.setState({
       SinglePlayerImageCount: count,
     })
-    console.log(this.state.SinglePlayerImageCount)
+    console.log(this.state.SinglePlayerImageCount + " rounds")
   }
 
   render() {

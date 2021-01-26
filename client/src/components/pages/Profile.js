@@ -207,7 +207,7 @@ class Profile extends Component {
               <div className="u-flex u-flex-justifyCenter"><div className="Profile-imageCountSelector" onClick={this.set1} id="selector1">1</div><div className="Profile-imageCountSelector" onClick={this.set3} id="selector3">3</div><div className="Profile-imageCountSelector" onClick={this.set5} id="selector5">5</div></div>
             {/* <p><input list="tickmarks" className="App-slider" type = "range" min="1" max="5" step="2" value={this.state.slidervalue} onChange={this.handleChange}/></p> */}
 
-              <RankList user={this.state.profileUser} imageCount={this.state.imageCount}/>
+              <RankList user={this.state.profileUser} imageCount={this.state.imageCount} inProfile={true}/>
             </div> 
 
           </div>

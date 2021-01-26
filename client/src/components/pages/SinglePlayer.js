@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
 //import Waldo from "../modules/Waldo.js"
+import { useHistory } from "react-router-dom";
 
 import "./SinglePlayer.css";
 import "../../utilities.css";
@@ -39,21 +40,21 @@ class SinglePlayer extends Component {
       });
       get("/api/user", { userid: this.props.userId}).then((user) => {
               if (user.playedTemplates.length >= Images.length) { //nr of templates
-                console.log(user.playedTemplates);
+                //console.log(user.playedTemplates);
                 post("/api/clearPlayedTemplates").then((updateUser) => {
-                  console.log("Cleared played templates for " + updateUser.username);});
+                  console.log("Cleared record of played templates for " + updateUser.username + " because all templates have been played.");});
                   this.setState({randomInt: this.getRandomInt(Images.length)}) 
                   //console.log("set randomInt")
               }
               else {
                 //console.log("else");
-                console.log(user.playedTemplates);
+                //console.log(user.playedTemplates);
                 let unplayedTemplates = [];
                 for (let i=0; i < Images.length; i++) {
                   unplayedTemplates=unplayedTemplates.concat(i)
                 }
                 let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
-                console.log("unplayed templates: " + JSON.stringify(difference))
+                //console.log("unplayed templates: " + JSON.stringify(difference))
                 let randomInt = difference[this.getRandomInt(difference.length -1)]
               this.setState({randomInt: randomInt});
               }
@@ -62,8 +63,25 @@ class SinglePlayer extends Component {
         this.setState({imageCount: parseInt(this.props.imageCount)})
     }
 
+    // componentDidUpdate() {
+    //   if (!this.props.userId) {
+    //     this.setState({loading: 100})
+    //     this.handleLogout
+    //   }
+    // }
+
+    // handleLogout = () => {
+    //   const history = useHistory();
+
+    //     redirect = () => {
+    //       history.push("/home")
+    //     }
+    // }
 
     endGame = () => {
+      let body = {user: this.state.user, templateNr: this.state.randomInt}
+      post("/api/reportPlayedTemplate", body).then((userObj) => {console.log("Templates played in this round: " + JSON.stringify(userObj.playedTemplates.slice(userObj.playedTemplates.length - this.state.imageCount)));});
+
       console.log("Game ended.");
       this.setState({gameOn: false});
       this.setState({ pictureCounter: this.state.pictureCounter +1, });
@@ -72,14 +90,14 @@ class SinglePlayer extends Component {
     pictureProgress = () => {
       let body = {user: this.state.user, templateNr: this.state.randomInt}
       // console.log("pictureProgress")
-      post("/api/reportPlayedTemplate", body).then((userObj) => {console.log("Played Templates: " + JSON.stringify(userObj.playedTemplates));
+      post("/api/reportPlayedTemplate", body).then((userObj) => { //console.log("Played Templates: " + JSON.stringify(userObj.playedTemplates));
         
       get("/api/user").then((user) => {
         //console.log("Got user for playedTemplates")
         if (user.playedTemplates.length >= Images.length) { //nr of templates
-          console.log(user.playedTemplates);
+          //console.log(user.playedTemplates);
           post("/api/clearPlayedTemplates").then((updateUser) => {
-            console.log("Cleared played templates for " + updateUser.username);});
+            console.log("Cleared record of played templates for " + updateUser.username + " because all templates have been played.");});
             this.setState({randomInt: this.getRandomInt(Images.length)}) 
         }
         else {
@@ -89,7 +107,7 @@ class SinglePlayer extends Component {
               unplayedTemplates=unplayedTemplates.concat(i)
             }
             let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
-            console.log("unplayed templates: " + JSON.stringify(difference))
+            //console.log("unplayed templates: " + JSON.stringify(difference))
             let randomInt = difference[this.getRandomInt(difference.length -1)]
           this.setState({randomInt: randomInt});
         }
@@ -145,7 +163,7 @@ class SinglePlayer extends Component {
           let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
           let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
           this.setState({finalServerTime: minutes + ":" + seconds + ":" + centiseconds})
-          console.log(this.state.finalServerTime)
+          console.log("Time: " + this.state.finalServerTime)
           let body = {finalTime: finalServerTime, user: this.state.user, imageCount: this.state.imageCount}
           post("/api/reportTime", body);
           post("/api/times", body);
@@ -158,7 +176,7 @@ class SinglePlayer extends Component {
     render() {
       //let sceneNumber = Images[this.state.randomInt];
       let sceneNumber = Images[this.state.randomInt];
-      console.log("Playing Image #" + this.state.randomInt)
+      //console.log("Playing Image #" + this.state.randomInt)
       // const finalTimerTime  = this.state.finalTimerTime;
       // let centiseconds = ("0" + (Math.floor(finalTimerTime / 10) % 100)).slice(-2);
       // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);

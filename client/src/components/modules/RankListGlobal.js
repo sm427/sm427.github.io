@@ -28,7 +28,7 @@ class RankListGlobal extends Component {
               this.setState({times: this.state.times.concat(timesObj[i])})
             }
             //console.log(timesObj[timesObj.length-1].time)
-            this.setState({lastTime: timesObj[timesObj.length-1].time})
+            if (timesObj.length !== 0) {this.setState({lastTime: timesObj[timesObj.length-1].time})}
         });
     }
 
@@ -64,6 +64,8 @@ class RankListGlobal extends Component {
     let tenBestTimes = sortedTimes.slice(0,10)
     //console.log(this.state.lastTime)
     //console.log(tenBestTimes[tenBestTimes.length-1].time)
+    //console.log(this.state.times.userId);
+    //console.log(this.props.user._id)
       
       if (this.state.lastTime - tenBestTimes[tenBestTimes.length-1].time <= 0 || this.props.imageCount != this.state.initialImageCount) {
         // console.log("good");
@@ -73,7 +75,7 @@ class RankListGlobal extends Component {
                   {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} | {timeObj.username}
                 </div>
           {console.log(timeObj.time)} */}
-         {this.state.lastTime === timeObj.time ?  (
+         {this.state.lastTime === timeObj.time && !this.props.inProfile ?  (
                 <div key={"lasttime"+index} className="SPGO-timeBox SPGO-lastTimeBox" >
                   <div className="SPGO-lastTime">Last Time</div>
                   {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} 
@@ -82,7 +84,7 @@ class RankListGlobal extends Component {
               ) : (
                 <div key={"notlasttime"+index} className="SPGO-timeBox" >
                   {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)}
-                  <div className="SPGO-usernameBox">{timeObj.username}</div>
+                  {timeObj.userId===this.props.user._id ? (<div className="SPGO-usernameBox">{timeObj.username}</div>):(<div className="SPGO-usernameBoxElse">{timeObj.username}</div>)} 
                 </div>
               )} 
           </>
@@ -96,9 +98,9 @@ class RankListGlobal extends Component {
          {index < 8 ?  (
                 <div key={"notlasttime"+index} className="SPGO-timeBox" >
                     {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)}
-                    <div className="SPGO-usernameBox">{timeObj.username}</div>
+                    {this.state.times.userId===this.props.user._id ? (<div className="SPGO-usernameBox">{timeObj.username}</div>):(<div className="SPGO-usernameBoxElse">{timeObj.username}</div>)} 
                 </div>
-              ) : ( <> {this.state.lastTime===timeObj.time? (
+              ) : ( <> {this.state.lastTime===timeObj.time && !this.props.inProfile ? (
                     <div key={"lasttime"+index} className="SPGO-timeBox SPGO-lastTimeBox" >
                         <div className="SPGO-lastTime">Last Time</div>
                         {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)} 
@@ -115,6 +117,9 @@ class RankListGlobal extends Component {
         ));
         
       }}
+    else {
+      ranklist = "No games played."
+    }
 
     return (
       <div className="u-flexColumn u-flex-alignCenter">

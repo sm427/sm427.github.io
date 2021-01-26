@@ -347,7 +347,7 @@ movedown = () => {
     }
 
     imgLoaded = () => {
-        console.log("Image loaded")
+        console.log("Image loaded.")
         this.setState( {loading: this.state.loading - 1})
     }
 

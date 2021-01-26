@@ -42,6 +42,9 @@ class Home extends Component {
       });
   
     }
+    else if (prevProps.userId !== this.props.userId) {
+      this.setState({user: undefined})
+    }
     
   }
 

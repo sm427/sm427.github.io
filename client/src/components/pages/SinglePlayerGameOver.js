@@ -94,13 +94,13 @@ class SinglePlayerGameOver extends Component {
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankList user={this.state.user} imageCount={this.state.imageCount}/>) : ("Loading your best times")}
+               {this.state.user ? ( <RankList user={this.state.user} imageCount={this.state.imageCount} inProfile={false}/>) : ("Loading your best times")}
                 </div>
 
                 <div className="u-flex u-flex-justifyCenter"><div className="SPGO-imageCountSelector" onClick={this.set1} id="selector1">1</div><div className="SPGO-imageCountSelector" onClick={this.set3} id="selector3">3</div><div className="SPGO-imageCountSelector" onClick={this.set5} id="selector5">5</div></div>
 
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.state.imageCountGlobal}/>) : ("Loading the global best times")}
+               {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.state.imageCountGlobal} inProfile={false}/>) : ("Loading the global best times")}
                 </div>
 
                 <div className="u-flex u-flex-justifyCenter"><div className="SPGO-imageCountSelector" onClick={this.set1global} id="selector1Global">1</div><div className="SPGO-imageCountSelector" onClick={this.set3global} id="selector3Global">3</div><div className="SPGO-imageCountSelector" onClick={this.set5global} id="selector5Global">5</div></div>

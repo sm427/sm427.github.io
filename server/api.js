@@ -65,6 +65,7 @@ router.post("/times", auth.ensureLoggedIn, (req,res) => {
     username: req.body.user.username,
     time: req.body.finalTime,
     imageCount: req.body.imageCount,
+    userId: req.user._id
   });
   newTimes.save().then((time) => res.send(time));
 })
