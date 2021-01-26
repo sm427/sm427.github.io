@@ -352,7 +352,6 @@ movedown = () => {
     }
 
     render() {
-        
         let img = document.getElementById("drag-img");
         let container = document.getElementById("container");
         if (img) {addEventListener('mousedown', this.start_drag);}

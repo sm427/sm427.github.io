@@ -41,7 +41,7 @@
 .SinglePlayer-ButtonPanelMove {
     z-index: 11;
     position: absolute;
-    width: 13%;
+    width: 200px;
     height: 168px;
     border-radius: 32px;
     background-color: var(--primary);
