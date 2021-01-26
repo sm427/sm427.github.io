@@ -222,6 +222,16 @@ class SinglePlayer extends Component {
                     See the ranklist!
               </button>
             </Link>
+
+            <button
+                  type="submit"
+                  className="u-pointer App-submit Home-singlePlayerButton"
+                  value="Change"
+                  // onClick={}
+                >
+                  Play Again!
+                </button>
+              
             </div>
 
           </div>

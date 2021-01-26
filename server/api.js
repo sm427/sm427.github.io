@@ -95,17 +95,26 @@ router.get("/getUserTimes", (req,res) => {
 
 router.post("/createLobby", auth.ensureLoggedIn, (req,res) => {
   const newLobby = new Lobbies({
-    creatorname: req.body.creatorname,
+    creatorname: req.user.username,
     name: req.body.name,
     code: req.body.code,
     playerCount: req.body.playerCount,
-    players: [req.body.creatorname],
+    players: [req.user.username],
+    playerIds: [req.user._id]
   });
   newLobby.save().then((lobby) => res.send(lobby));
 })
 
 router.get("/getLobbies", (req, res) => {
     Lobbies.find({}).then((lobbies)=>res.send(lobbies))
+})
+
+router.post("/joinLobby", auth.ensureLoggedIn, (req, res) => {
+  Lobbies.updateOne({_id: req.body.lobbyId}, {$push: { players: req.user.username }}).then(() => {
+    Lobbies.updateOne({_id: req.body.lobbyId}, {$push: { playerIds: req.user._id }}).then(() => {
+      Lobbies.find({_id: req.body.lobbyId}).then((lobby)=>res.send(lobby))
+    })
+  })
 })
 
 router.post("/uploadImage", auth.ensureLoggedIn, (req, res) => {

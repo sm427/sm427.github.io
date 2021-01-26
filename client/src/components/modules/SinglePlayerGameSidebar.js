@@ -103,7 +103,7 @@ class SinglePlayerGameSidebar extends Component {
         <div className="u-flexColumn u-flex-alignCenter u-textCenter">
           <h2>Tag yourself!</h2>
           <p className="SinglePlayer-ImageCredit">{this.props.randomInt || this.props.randomInt === 0 ? this.state.imageCredits[this.props.randomInt] : "Loading image Credits..."}</p>
-          <p>Game on, {username}! Use the bottons to move the image. Find and click on yourself! Currently optimized for laptop screens.</p>
+          <p>Game on, {username}! Use the buttons to move and zoom the image. Find and click on yourself!</p>
           <div className="SinglePlayer-Timers">
             
             <div className="Stopwatch">
