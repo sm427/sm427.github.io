@@ -1,4 +1,7 @@
 .NavBar-container {
+    position: fixed;
+    top: 0;
+    width: 98%;
     z-index: 40;
     padding: var(--s) var(--m);
     background-color: var(--primary);

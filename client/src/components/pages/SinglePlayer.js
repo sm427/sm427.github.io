@@ -145,7 +145,7 @@ class SinglePlayer extends Component {
     getRandomInt = (max) => {
       let randomInt = Math.floor(Math.random() * Math.floor(max));
       //console.log("set randomInt to "+randomInt)
-      return randomInt;
+      return 7;
     }
 
     reportTimerTime = (time) => {
@@ -182,6 +182,9 @@ class SinglePlayer extends Component {
       // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
       // let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
       // <! -- images[randomIntString]-->
+
+      let noScroll = require('no-scroll');
+      noScroll.on()
 
       return(
         //console.log;
