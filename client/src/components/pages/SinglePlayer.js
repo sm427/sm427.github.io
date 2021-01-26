@@ -185,11 +185,7 @@ class SinglePlayer extends Component {
       // let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
       // <! -- images[randomIntString]-->
       let noScroll = require('no-scroll');
-    
       setTimeout(() => {noScroll.on()}, 250);
-
-      
-
       
       return(
         //console.log;
