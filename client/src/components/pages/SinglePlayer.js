@@ -223,14 +223,14 @@ class SinglePlayer extends Component {
               </button>
             </Link>
 
-            <button
+            {/* <button
                   type="submit"
                   className="u-pointer App-submit Home-singlePlayerButton"
                   value="Change"
                   // onClick={}
                 >
                   Play Again!
-                </button>
+                </button> */}
               
             </div>
 

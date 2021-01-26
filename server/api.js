@@ -213,6 +213,14 @@ router.post("/GameEndTime", auth.ensureLoggedIn, (req, res) => {
   User.updateOne({ _id: req.user._id }, {$currentDate: {"currentEndTime": { $type: "date" },}}).then(() => res.send({}))
 })
 
+router.post("/GameStartTimeMultiplayer", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.user._id }, {$currentDate: {"currentStartTimeMultiplayer": { $type: "date" },}}).then(() => res.send({}))
+})
+
+router.post("/GameEndTimeMultiplayer", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.user._id }, {$currentDate: {"currentEndTimeMultiplayer": { $type: "date" },}}).then(() => res.send({}))
+})
+
 // router.post("/GameEndTime", auth.ensureLoggedIn, (req, res) => {
 //   User.updateOne(
 //     { _id: req.user._id }, 
