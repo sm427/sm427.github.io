@@ -1,0 +1,17 @@
+.MP-timecontainer{
+    position: absolute;
+    z-index: 30;
+    width: 200px;
+    height: 300px;
+    left: calc(85vw - 112px);
+    top: calc(648px);
+}
+
+.MP-singleTime{
+    width: 200px;
+    margin: 8px 0px 8px;
+    background-color: var(--primary);
+    border-radius: 32px;
+    padding: 8px 0px;
+
+}

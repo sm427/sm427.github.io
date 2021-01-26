@@ -3,7 +3,7 @@ import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 import "../App.css";
 import "../pages/SinglePlayer.css"
-
+import "../pages/Multiplayer.css"
 
 class MultiplayerGameSidebar extends Component {
     constructor (props) {
@@ -96,6 +96,8 @@ class MultiplayerGameSidebar extends Component {
       let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
       let time= this.props.finalServerTime === 0 ? minutes + ":" + seconds + ":" + centiseconds : this.props.finalServerTime;
 
+      let samplearray = [["sid", 1],["ian", 2],["jakob", 0]];
+
       //console.log(this.props.user);
       //console.log(username);
       return (
@@ -127,8 +129,11 @@ class MultiplayerGameSidebar extends Component {
 
           </div>
 
-                <div>
+                <div className="MP-timecontainer">
                     {/** Map the currently playing users to an object that shows their progress */}
+                    {samplearray.map((obj, index) => (
+                      <div key={index} className="MP-singleTime"> {obj[0] + " found " + obj[1] + (obj[1]!==1 ? (" faces."):(" face."))} </div>
+                    ))}
                 </div>
         </div>
       )
