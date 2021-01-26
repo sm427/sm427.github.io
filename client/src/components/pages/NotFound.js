@@ -6,6 +6,9 @@ class NotFound extends Component {
   }
 
   render() {
+    let noScroll = require('no-scroll');
+    noScroll.off()
+
     return (
       <div>
         <h1>404 Not Found</h1>

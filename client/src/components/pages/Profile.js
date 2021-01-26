@@ -126,6 +126,9 @@ class Profile extends Component {
 }
 
   render() {
+    let noScroll = require('no-scroll');
+    noScroll.off()
+
     let profilePictureSection;
     if (!this.state.profileUser) {
       return <div> Loading! </div>;

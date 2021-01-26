@@ -106,12 +106,12 @@ zoomin = () => {
     let pre_height = img_ele.getBoundingClientRect().height;
 
     let marginLeftStart = img_ele.getBoundingClientRect().left;
-    let marginTopStart = img_ele.getBoundingClientRect().top-59;
+    let marginTopStart = img_ele.getBoundingClientRect().top - 59;
 
     let leftBoxStart = box.getBoundingClientRect().left;
     let leftFaceStart = face.getBoundingClientRect().left;
-    let topBoxStart = box.getBoundingClientRect().top -59;
-    let topFaceStart = face.getBoundingClientRect().top -59;
+    let topBoxStart = box.getBoundingClientRect().top - 59;
+    let topFaceStart = face.getBoundingClientRect().top - 59;
     let widthBoxStart = box.getBoundingClientRect().width;
     let widthFaceStart = face.getBoundingClientRect().width;
     let heightBoxStart = box.getBoundingClientRect().height;
@@ -153,12 +153,12 @@ zoomout = () => {
             let pre_height = img_ele.getBoundingClientRect().height;
 
             let marginLeftStart = img_ele.getBoundingClientRect().left;
-            let marginTopStart = img_ele.getBoundingClientRect().top-59;
+            let marginTopStart = img_ele.getBoundingClientRect().top - 59;
 
             let leftBoxStart = box.getBoundingClientRect().left;
             let leftFaceStart = face.getBoundingClientRect().left;
-            let topBoxStart = box.getBoundingClientRect().top -59;
-            let topFaceStart = face.getBoundingClientRect().top -59;
+            let topBoxStart = box.getBoundingClientRect().top - 59;
+            let topFaceStart = face.getBoundingClientRect().top - 59;
             let widthBoxStart = box.getBoundingClientRect().width;
             let widthFaceStart = face.getBoundingClientRect().width;
             let heightBoxStart = box.getBoundingClientRect().height;
@@ -234,7 +234,7 @@ moveup = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59;
+    let marginTopStart = img_ele.getBoundingClientRect().top - 59;
     let topBoxStart = box.getBoundingClientRect().top;
     let topFaceStart = face.getBoundingClientRect().top;
     let spacetop = img_ele.getBoundingClientRect().top - 59;
@@ -255,7 +255,7 @@ movedown = () => {
     let img_ele = document.getElementById("drag-img");
     let box = document.getElementById("drag-box");
     let face = document.getElementById("drag-face");
-    let marginTopStart = img_ele.getBoundingClientRect().top-59;
+    let marginTopStart = img_ele.getBoundingClientRect().top - 59;
     let topBoxStart = box.getBoundingClientRect().top;
     let topFaceStart = face.getBoundingClientRect().top;
     let spacebottom = img_ele.getBoundingClientRect().bottom - 59 - window.innerHeight;
@@ -352,7 +352,6 @@ movedown = () => {
     }
 
     render() {
-        
         let img = document.getElementById("drag-img");
         let container = document.getElementById("container");
         if (img) {addEventListener('mousedown', this.start_drag);}

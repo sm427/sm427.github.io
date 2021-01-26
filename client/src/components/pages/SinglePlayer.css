@@ -2,8 +2,9 @@
     background-color: var(--lightgrey);
     width:100vw;
     height: calc(100vh - 59px);
-    margin: 0px;
+    margin-top: 59px;
     display: flex;
+    padding-top: 0px;    
 }
 
 .SinglePlayer-SearchImageContainer {

@@ -28,9 +28,10 @@ class SinglePlayer extends Component {
             showGameOver: false,
         }
     }
-    
 
     async componentDidMount() {
+      window.scrollTo(0, 0);
+      
       this.setState({finalServerTime: 0})
       let userId = await this.props.userId;
       get("/api/whoami").then((currentuser) => {
@@ -61,6 +62,7 @@ class SinglePlayer extends Component {
             })
       
         this.setState({imageCount: parseInt(this.props.imageCount)})
+        
     }
 
     // componentDidUpdate() {
@@ -182,7 +184,9 @@ class SinglePlayer extends Component {
       // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
       // let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
       // <! -- images[randomIntString]-->
-
+      let noScroll = require('no-scroll');
+      setTimeout(() => {noScroll.on()}, 250);
+      
       return(
         //console.log;
         <div className="SinglePlayer-container">

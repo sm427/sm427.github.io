@@ -1,6 +1,11 @@
 .Home-Header {
+    top: 40;
     font-family: "Bebas Neue";
     font-size: 80px;
+}
+
+.Home-Background {
+    padding-top: 60px;
 }
 
 .Home-Container{

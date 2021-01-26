@@ -55,6 +55,8 @@ class Home extends Component {
   
 
   render() {
+    let noScroll = require('no-scroll');
+    noScroll.off()
     
     return (
       <div className="Home-Background">

@@ -23,6 +23,9 @@ class HowTo extends Component {
   // }
 
   render() {
+    let noScroll = require('no-scroll');
+    noScroll.off()
+
     return (
       <div className="HT-container">
         <h1>How to Play Track'nTag</h1>

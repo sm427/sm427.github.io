@@ -90,6 +90,9 @@ class SinglePlayerGameOver extends Component {
 
     render() {
         // this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
+        let noScroll = require('no-scroll');
+        noScroll.off()
+
         return( 
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
