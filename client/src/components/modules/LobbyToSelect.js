@@ -16,7 +16,7 @@ class LobbyToSelect extends Component {
 
 
   render() {
-    joinbutton = (<button
+    let joinbutton = (<button
       type="submit"
       className="u-pointer App-submit Home-singlePlayerButton"
       value="Change"
@@ -32,7 +32,7 @@ class LobbyToSelect extends Component {
               <div>
                 {this.props.lobby.name}
               </div> 
-              <div> {joinbutton} </div>
+              
             </div>
             <div className="Home-LobbyInfoContainer">
                 <div className="u-Bebas Home-LobbyCode">{this.props.lobby.code}</div>
@@ -41,7 +41,9 @@ class LobbyToSelect extends Component {
                     <div key={"user"+index.toString()} className="Home-LobbyBoxPlayerNames"> {user} </div>
                     )): ("No Players yet")}
                 </div>
+                
             </div>
+            <div> {joinbutton} </div>
         </div>) : ("Loading")}
         </>
     );

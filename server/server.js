@@ -104,7 +104,8 @@ const {
   getRoomUsers
 } = require('./models/roomUsers');
 
-const server = http.createServer(app);
+//const server = http.createServer(app);
+let server = http.createServer(app);
 const io = socketio(server);
 
 // Run when client connects
@@ -138,7 +139,8 @@ io.on('connection', socket => {
 
 // hardcode port to 3000 for now
 const port = process.env.PORT || 3000;
-const server = http.Server(app);
+server = http.Server(app);
+
 socketManager.init(server);
 
 server.listen(port, () => {
