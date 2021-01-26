@@ -1,7 +1,16 @@
 .NavBar-container {
     position: fixed;
     top: 0;
-    width: 98%;
+    width: 100vw;
+    z-index: 40;
+    padding: var(--s) var(--m);
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    /* box-shadow: -10px -15px 25px 15px var(--darkgrey); */
+}
+
+.NavBar-container2 {
     z-index: 40;
     padding: var(--s) var(--m);
     background-color: var(--primary);
@@ -24,6 +33,7 @@
 
   .LoginButton{
     margin-left: auto;
+    margin-right: 42px;
   }
 
   .NavBar-link,

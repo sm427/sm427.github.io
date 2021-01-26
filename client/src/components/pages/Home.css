@@ -10,6 +10,7 @@
 
 .Home-Container{
     display: flex;
+    
     justify-content: center;
     flex-wrap: wrap;
     align-content: stretch;
@@ -18,6 +19,12 @@
     padding: 16px;
 }
 
+.Home-singleContainer{
+    display: flex;
+    flex: 2 0 664px;
+    /* height: 120%; */
+    max-height: 130%;
+}
 
 .Home-Box-Header{
     background-color: var(--primary);
@@ -35,7 +42,7 @@
     border-color: var(--primary--dim);
     border-radius: 56px;
     margin: 16px;
-    flex: 2 0 500px;
+    flex: 2 0 600px;
 }
 
 .Home-singleBox {
