@@ -52,7 +52,7 @@ class CreateLobbySetup extends Component {
 
     if (!this.props.user) {
       usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
-      startbutton = "Log in before playing.";
+      startbutton = (<div className="SinglePlayer-notLoggedInText">Log in before playing.</div>);
     }
     else {
       usernameMessage = `Logged in as ${this.props.user.username}.`;
@@ -68,15 +68,15 @@ class CreateLobbySetup extends Component {
     }
 
     return (
-      <div>
+      <div className="Home-singleBoxContent">
         <h4 className="Home-Box-Header">Create a Lobby</h4>
         <div className="Home-singlePlayerContentContainer u-textCenter">
           <div>
             <p>{usernameMessage}</p>
-            <p className="u-textCenter u-Quantico">
+            {/* <p className="u-textCenter u-Quantico">
               Note: Working on it.
-              {/* i coded those input fields and didn't realize that the multiplayer won't be a part of the mvp */}
-              </p>
+              {/* i coded those input fields and didn't realize that the multiplayer won't be a part of the mvp 
+              </p> */}
           </div>
 
           <div className="u-width100">

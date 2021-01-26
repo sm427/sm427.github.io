@@ -2,10 +2,14 @@
     top: 40;
     font-family: "Bebas Neue";
     font-size: 80px;
+    margin-bottom: 16px;
 }
 
 .Home-Background {
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Home-Container{
@@ -17,13 +21,15 @@
     flex-basis: 40%;
     height: 50vh;
     padding: 16px;
+    max-width: 1200px; 
 }
 
 .Home-singleContainer{
     display: flex;
+    flex-wrap: wrap;
     flex: 2 0 664px;
     /* height: 120%; */
-    max-height: 130%;
+   
 }
 
 .Home-Box-Header{
@@ -34,6 +40,7 @@
     margin: 0;
     border-color: var(--primary--dim);
     color: rgb(255, 255, 255);
+    text-align:center;
 }
 
 .Home-doubleBox {
@@ -52,6 +59,12 @@
     border-radius: 56px;
     margin: 16px;
     flex: 1 0 300px;
+    max-height:520px;
+}
+
+.Home-singleBoxContent{
+    height: 100%;
+    
 }
 
 .Home-singlePlayerContentContainer{
@@ -59,12 +72,20 @@
     flex-direction: column;
     justify-content: space-between;
     
-    padding: 16px 32px 0px;
+    padding: 16px 32px 16px;
     align-items: center;
+    height: 83%
 }
 
 .Home-singlePlayerButton {
     width: 150px;
+    justify-self: end;
+    margin-bottom: 16px;
+
+}
+
+.SinglePlayer-notLoggedInText{
+margin: 8px 0px 16px;
 }
 
 .Home-inputField {
