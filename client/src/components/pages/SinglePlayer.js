@@ -47,6 +47,7 @@ class SinglePlayer extends Component {
               }
               else {
                 //console.log("else");
+                console.log(user.playedTemplates);
                 let unplayedTemplates = [];
                 for (let i=0; i < Images.length; i++) {
                   unplayedTemplates=unplayedTemplates.concat(i)

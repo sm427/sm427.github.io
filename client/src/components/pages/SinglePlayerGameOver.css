@@ -114,6 +114,27 @@
 }
 
 .SPGO-NavOutPlaceholder{
-    height: 160px;
+    height: 200px;
     width: 200px;
+}
+
+.SPGO-imageCountSelector{
+    background-color: var(--darkgrey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 32px;
+    color: white;
+    margin: 0px 16px;
+    cursor: pointer;
+}
+
+.SPGO-imageCountSelector:hover{
+    background-color: var(--primary) !important;
+}
+
+.SPGO-imageCountSelector:active{
+    background-color: var(--primary--dim) !important;
 }

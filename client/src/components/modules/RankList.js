@@ -23,7 +23,7 @@ class RankList extends Component {
       get(`/api/user`, { userid: currentuser._id}).then((userObj) => {
         this.setState({ user: userObj});
         this.setState({times: userObj.playedTimes})
-        //console.log(userObj)
+        console.log(userObj)
       });
     })
 
@@ -71,7 +71,7 @@ class RankList extends Component {
     //   <div key={index} className="SPGO-timeBox" >{index+1} | {("0" + (Math.floor(time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(time / 10) % 100)).slice(-2)}</div>
     // ));
     console.log(this.props.imageCount)
-      let relevantTimeObjs = this.state.times.filter((x) => {return x[1] === this.props.imageCount} )
+      let relevantTimeObjs = this.state.times.filter((x) => {return x[1] == this.props.imageCount} )
       let relevantTimes = []
       for (let i=0; i<relevantTimeObjs.length; i++) {
         relevantTimes = relevantTimes.concat(relevantTimeObjs[i][0])

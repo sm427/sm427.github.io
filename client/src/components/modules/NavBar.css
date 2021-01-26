@@ -1,4 +1,5 @@
 .NavBar-container {
+    z-index: 40;
     padding: var(--s) var(--m);
     background-color: var(--primary);
     display: flex;

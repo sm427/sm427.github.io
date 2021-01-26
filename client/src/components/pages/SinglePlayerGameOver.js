@@ -14,6 +14,7 @@ class SinglePlayerGameOver extends Component {
         super(props);
         this.state = {
             user: undefined,
+            imageCount: 3,
         }
     }
 
@@ -26,8 +27,33 @@ class SinglePlayerGameOver extends Component {
             });
       
           });
+        this.setState({imageCount: this.props.imageCount})
+        if(this.props.imageCount==1) {document.getElementById("selector1").style.backgroundColor = "var(--primary)"}
+        else if(this.props.imageCount==3) {document.getElementById("selector3").style.backgroundColor = "var(--primary)"}
+        else {document.getElementById("selector5").style.backgroundColor = "var(--primary)"}
       }
 
+
+      set1 = (event) => {
+        this.setState({imageCount: 1});
+        event.target.style.backgroundColor = "var(--primary)";
+        document.getElementById("selector3").style.backgroundColor = "var(--darkgrey)" 
+        document.getElementById("selector5").style.backgroundColor = "var(--darkgrey)" 
+      };
+    
+      set3 = (event) => {
+          this.setState({imageCount: 3});
+          event.target.style.backgroundColor = "var(--primary)";
+          document.getElementById("selector1").style.backgroundColor = "var(--darkgrey)"
+          document.getElementById("selector5").style.backgroundColor = "var(--darkgrey)" 
+      };
+    
+      set5 = (event) => {
+        this.setState({imageCount: 5})
+        event.target.style.backgroundColor = "var(--primary)";
+        document.getElementById("selector1").style.backgroundColor = "var(--darkgrey)" 
+        document.getElementById("selector3").style.backgroundColor = "var(--darkgrey)" 
+    }
 
     render() {
         // this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
@@ -35,8 +61,10 @@ class SinglePlayerGameOver extends Component {
             <div className="SPGO-container">
                 {/* <p>{JSON.stringify(this.props.user)}</p> */}
                 <div className="SPGO-ranklistContainer">
-               {this.state.user ? ( <RankList user={this.state.user} imageCount={this.props.imageCount}/>) : ("Loading your best times")}
+               {this.state.user ? ( <RankList user={this.state.user} imageCount={this.state.imageCount}/>) : ("Loading your best times")}
                 </div>
+
+                <div className="u-flex u-flex-justifyCenter"><div className="SPGO-imageCountSelector" onClick={this.set1} id="selector1">1</div><div className="SPGO-imageCountSelector" onClick={this.set3} id="selector3">3</div><div className="SPGO-imageCountSelector" onClick={this.set5} id="selector5">5</div></div>
 
                 <div className="SPGO-ranklistContainer">
                {this.state.user ? ( <RankListGlobal user={this.state.user} imageCount={this.props.imageCount}/>) : ("Loading the global best times")}

@@ -15,6 +15,7 @@ class NavBar extends Component {
         let profileLink = "/profile/" + this.props.user._id
 
         return(
+            <>
             <nav className="NavBar-container u-flex">
                <Link to="/" className="NavBar-title u-inlineBlock u-link">track'ntag</Link>
                <span className="NavBar-linkContainer u-inlineBlock">
@@ -43,6 +44,7 @@ class NavBar extends Component {
                 )}
                 </div>
             </nav>
+            </>
         );
     }
 }
