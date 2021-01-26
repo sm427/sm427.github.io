@@ -99,7 +99,7 @@ router.post("/createLobby", auth.ensureLoggedIn, (req,res) => {
     name: req.body.name,
     code: req.body.code,
     playerCount: req.body.playerCount,
-    players: [],
+    players: [req.body.creatorname],
   });
   newLobby.save().then((lobby) => res.send(lobby));
 })

@@ -10,12 +10,30 @@ class LobbyToSelect extends Component {
     };
   }
 
+  handleSubmit = (event) => {
+
+  }
+
 
   render() {
+    joinbutton = (<button
+      type="submit"
+      className="u-pointer App-submit Home-singlePlayerButton"
+      value="Change"
+      onClick={this.handleSubmit}
+     >
+       Join!
+     </button>);
+     
     return (
         <>
         {this.props.lobby ? (<div  className="Home-lobbyBox u-flex u-flex-alignCenter"> 
-            <div className="Home-lobbyBoxName u-flex u-flex-alignCenter"><div>{this.props.lobby.name}</div> </div>
+            <div className="Home-lobbyBoxName u-flex u-flex-alignCenter">
+              <div>
+                {this.props.lobby.name}
+              </div> 
+              <div> {joinbutton} </div>
+            </div>
             <div className="Home-LobbyInfoContainer">
                 <div className="u-Bebas Home-LobbyCode">{this.props.lobby.code}</div>
                 <div className="u-flex Home-LobbyPlayers">

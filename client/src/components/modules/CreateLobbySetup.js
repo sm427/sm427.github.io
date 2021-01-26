@@ -50,12 +50,12 @@ class CreateLobbySetup extends Component {
     let usernameMessage;
     let startbutton;
 
-    if (!this.props.user) {
-      usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
-      startbutton = "Log in before playing.";
-    }
-    else {
-      usernameMessage = `Logged in as ${this.props.user.username}.`;
+    //if (!this.props.user) {
+    //  usernameMessage = "Please log in to continue. Click the Google Login Button in the top right corner.";
+    //  startbutton = "Log in before playing.";
+    //}
+    //else {
+      usernameMessage = `Logged in as test.`;
       startbutton = (<button
         type="submit"
         className="u-pointer App-submit Home-singlePlayerButton"
@@ -65,7 +65,7 @@ class CreateLobbySetup extends Component {
          Create!
        </button>);
   
-    }
+    //}
 
     return (
       <div>
