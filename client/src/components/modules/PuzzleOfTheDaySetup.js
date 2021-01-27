@@ -44,14 +44,14 @@ class PuzzleOfTheDaySetup extends Component {
       templates = templates.concat(i)
     }
     this.setState({templates: templates})
-    fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
-      let day = data.currentDateTime.slice(8,10)
-      let month = data.currentDateTime.slice(5,7)
-      let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
-      this.setState({date: data.currentDateTime})
+      let datewrong = new Date();
+      let date=datewrong.toISOString();
+      let day = date.slice(8,10)
+      let month = date.slice(5,7)
+     let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
+      this.setState({date: date.slice(0,10)})
       this.setState({selectedImage: selectedImage})
-    })
-
+    
   }
 
   render() {

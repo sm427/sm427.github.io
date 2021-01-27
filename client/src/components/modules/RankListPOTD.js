@@ -21,11 +21,12 @@ class RankListPOTD extends Component {
   async componentDidMount() {
       let imageCountProp = await this.props.imageCount
       this.setState({initialImageCount: this.props.imageCount})
-      fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
-        this.setState({date: data.currentDateTime}) 
+      let datewrong = new Date();
+      let date=datewrong.toISOString();
+        this.setState({date: date}) 
         // let query = 
         // console.log(query)
-        get("api/getPOTDtimes", {playedDate: data.currentDateTime.slice(0,10)}).then((timesObj) =>{
+        get("api/getPOTDtimes", {playedDate: date.slice(0,10)}).then((timesObj) =>{
             //console.log(timesObj)
             for (let i=0; i<timesObj.length; i++) {
               this.setState({times: this.state.times.concat(timesObj[i])})
@@ -33,7 +34,7 @@ class RankListPOTD extends Component {
             //console.log(timesObj[timesObj.length-1].time)
             // if (timesObj.length !== 0) {this.setState({lastTime: timesObj[timesObj.length-1].time})}
         });
-        })
+        
     }
 
     // componentDidUpdate() {
