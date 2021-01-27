@@ -48,9 +48,10 @@ class PuzzleOfTheDay extends Component {
             fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
                 this.setState({date: data.currentDateTime})
                 let day = data.currentDateTime.slice(8,10)
+                console.log(data.currentDateTime)
                 let month = data.currentDateTime.slice(5,7)
                 let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
-              this.setState({randomInt: selectedImage});
+              this.setState({randomInt:  (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length});
               
             })
       })
