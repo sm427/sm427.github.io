@@ -105,41 +105,41 @@ const {
 } = require('./models/roomUsers');
 
 //const server = http.createServer(app);
-let server = http.createServer(app);
-const io = socketio(server);
+//let server = http.createServer(app);
+// const io = socketio(server);
 
-// Run when client connects
-io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
+// // Run when client connects
+// io.on('connection', socket => {
+//   socket.on('joinRoom', ({ username, room }) => {
+//     const user = userJoin(socket.id, username, room);
 
-    socket.join(user.room);
+//     socket.join(user.room);
 
-    // Send users and room info
-    io.to(user.room).emit('roomUsers', {
-      room: user.room,
-      users: getRoomUsers(user.room)
-    });
-  });
+//     // Send users and room info
+//     io.to(user.room).emit('roomUsers', {
+//       room: user.room,
+//       users: getRoomUsers(user.room)
+//     });
+//   });
 
-  // Runs when client disconnects
-  socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
+//   // Runs when client disconnects
+//   socket.on('disconnect', () => {
+//     const user = userLeave(socket.id);
 
-    if (user) {
-      // Send users and room info
-      io.to(user.room).emit('roomUsers', {
-        room: user.room,
-        users: getRoomUsers(user.room)
-      });
-    }
-  });
-});
+//     if (user) {
+//       // Send users and room info
+//       io.to(user.room).emit('roomUsers', {
+//         room: user.room,
+//         users: getRoomUsers(user.room)
+//       });
+//     }
+//   });
+// });
 
 
 // hardcode port to 3000 for now
 const port = process.env.PORT || 3000;
-server = http.Server(app);
+const server = http.Server(app);
 
 socketManager.init(server);
 
