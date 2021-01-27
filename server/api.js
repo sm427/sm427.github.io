@@ -13,7 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Times = require("./models/times.js");
 const Lobbies = require("./models/lobbies.js");
-const Potd = require("./models/puzzlesoftheday.js");
+const Potd = require("./models/PuzzlesOfTheDay.js");
 
 // import authentication library
 const auth = require("./auth");
