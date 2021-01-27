@@ -5,7 +5,6 @@ import Home from "./pages/Home.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import SinglePlayerGameOver from "./pages/SinglePlayerGameOver.js";
-import Multiplayer from "./pages/Multiplayer.js";
 //import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "../utilities.css";
 import "./App.js";
@@ -102,7 +101,6 @@ class App extends Component {
           <HowTo path="/howtoplay" />
           <SinglePlayer path="/singleplayer" userId={this.state.user._id} addTime={this.addTime} imageCount={this.state.SinglePlayerImageCount}/>
           <SinglePlayerGameOver path="/singleplayergameover" user={this.state.user} imageCount={this.state.SinglePlayerImageCount}/>
-          <Multiplayer path="multiplayer/:roomid" roomId={this.state.roomId} imageCount={3}/> 
           <NotFound default />
         </Router>
         </div>

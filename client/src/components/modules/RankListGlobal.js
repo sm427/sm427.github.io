@@ -57,6 +57,7 @@ class RankListGlobal extends Component {
     render() {
       //console.log(this.props.imageCount)
         let ranklist;
+        // let lastTimeObjArr;
       if (this.state.times.length > 0) {
           
     //let lastTime = this.state.times[this.state.times.length-1].time
@@ -92,7 +93,10 @@ class RankListGlobal extends Component {
         
       }
       else {
-        // console.log("bad");
+        // console.log(this.state.lastTime)
+        // console.log(sortedTimes[10])
+        // console.log(sortedTimes.indexOf(this.state.lastTime));
+        // console.log(sortedTimes.filter((x)=>{return x.time === this.state.lastTime}))
         ranklist = sortedTimes.map((timeObj, index) => (
           <>
          {index < 8 ?  (
@@ -115,6 +119,19 @@ class RankListGlobal extends Component {
               )}
           </>
         ));
+
+        // ranklist = sortedTimes.slice(0,8).map((timeObj, index) => (
+        //   <div key={"notlasttime"+index} className="SPGO-timeBox" >
+        //       {index+1} | {("0" + (Math.floor(timeObj.time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor(timeObj.time / 10) % 100)).slice(-2)}
+        //       {this.state.times.userId===this.props.user._id ? (<div className="SPGO-usernameBox">{timeObj.username}</div>):(<div className="SPGO-usernameBoxElse">{timeObj.username}</div>)} 
+        //   </div>
+        // ))
+
+        // lastTimeObjArr = sortedTimes.filter((x)=>{return x.time === this.state.lastTime})
+        // let lastTimeObj = lastTimeObjArr[0]
+        // let lastTimeRank = sortedTimes.indexOf(lastTimeObj)
+        
+              
         
       }}
     else {
@@ -127,6 +144,11 @@ class RankListGlobal extends Component {
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
           {ranklist}
+          {/* {lastTimeObjArr?(<div className="SPGO-timeBox SPGO-lastTimeBox" >
+                  <div className="SPGO-lastTime">Last Time</div>
+                  {lastTimeRank+1} | {("0" + (Math.floor(sortedTimes[lastTimeRank].time / 60000) % 60)).slice(-2)}:{("0" + (Math.floor( sortedTimes[lastTimeRank].time / 1000) % 60)).slice(-2)}:{("0" + (Math.floor( sortedTimes[lastTimeRank].time / 10) % 100)).slice(-2)} 
+                  <div className="SPGO-usernameBox">{ sortedTimes[lastTimeRank].username}</div>
+              </div>):("")} */}
       </div>
       </div>
     );

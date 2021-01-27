@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import SinglePlayerSetup from "../modules/SinglePlayerSetup.js";
-import JoinLobbySetup from "../modules/JoinLobbySetup.js";
-import CreateLobbySetup from "../modules/CreateLobbySetup.js";
+import PuzzleOfTheDaySetup from "../modules/PuzzleOfTheDaySetup.js"
+//import JoinLobbySetup from "../modules/JoinLobbySetup.js";
+//import CreateLobbySetup from "../modules/CreateLobbySetup.js";
 import { get } from "../../utilities";
 
 import "../../utilities.css";
@@ -65,9 +66,10 @@ class Home extends Component {
         <div className="Home-Container"> 
           <div className="Home-singleContainer">
             <div className="Home-singleBox"><SinglePlayerSetup user={this.state.user} userId={this.props.userId} reportSinglePlayerImageCount={this.reportSinglePlayerImageCount}/></div>
-            <div className="Home-singleBox"><CreateLobbySetup user={this.state.user} userId={this.props.userId}/></div>
+            <div className="Home-singleBox"><PuzzleOfTheDaySetup user={this.state.user} userId={this.props.userId}/></div>
+            {/* <div className="Home-singleBox"><CreateLobbySetup user={this.state.user} userId={this.props.userId}/></div> */}
           </div>
-          <div className="Home-doubleBox"><JoinLobbySetup/></div>
+          {/* <div className="Home-doubleBox"><JoinLobbySetup/></div> */}
         </div>
       </div>
     );
