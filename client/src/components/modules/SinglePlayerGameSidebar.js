@@ -35,7 +35,9 @@ class SinglePlayerGameSidebar extends Component {
             (<>Photo by <a href="https://pixabay.com/de/users/keithjj-2328014/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Keith Johnston</a> on <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Pixabay</a>, altered.</>),
             (<>Photo by <a href="https://pixabay.com/de/users/keithjj-2328014/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Keith Johnston</a> on <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Pixabay</a>, altered.</>),
             (<>Photo by <a href="https://pixabay.com/de/users/keithjj-2328014/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Keith Johnston</a> on <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1573901">Pixabay</a>, altered.</>), //19, t21
-        ]
+        ],
+        currentPauseTimes: [],
+        currentPauseEndTimes: [],
         }
     }
    
@@ -44,7 +46,7 @@ class SinglePlayerGameSidebar extends Component {
       get("/api/getImages").then(images => {
         this.setState({ images: images });
       });
-      this.startTimer();
+      //post("/api/GameStartTime");
       }
 
     componentDidUpdate() {
@@ -54,11 +56,32 @@ class SinglePlayerGameSidebar extends Component {
         this.stopTimer();
         
         this.props.reportTimerTime(this.state.timerTime);
+        this.props.reportPauseTimes(this.state.currentPauseTimes);
+        this.props.reportPauseEndTimes(this.state.currentPauseEndTimes);
       }}
+
+      if (this.props.gameOn) {
+        if (this.state.timerOn) {
+          if (this.props.loading) {
+            console.log("The clock has been stopped because the image is loading.")
+            this.stopTimer();
+            post("/api/GamePauseTime").then((user) => this.setState({currentPauseTimes: this.state.currentPauseTimes.concat(user.currentPauseTime)}));
+            //console.log(this.state)
+          }}
+          
+        else {
+          if (this.props.loading==0) {
+            console.log("The clock has started because the image loaded.")
+            this.startTimer();
+            post("/api/GamePauseEndTime").then((user) => this.setState({currentPauseEndTimes: this.state.currentPauseEndTimes.concat(user.currentPauseEndTime)}));
+            //console.log(this.state)
+          }
+        }
+      }
     }
     
+    
       startTimer = () => {
-        post("/api/GameStartTime");
         this.setState({
           timerOn: true,
           timerTime: this.state.timerTime,
@@ -103,7 +126,7 @@ class SinglePlayerGameSidebar extends Component {
         <div className="u-flexColumn u-flex-alignCenter u-textCenter">
           <h2>Tag yourself!</h2>
           <p className="SinglePlayer-ImageCredit">{this.props.randomInt || this.props.randomInt === 0 ? this.state.imageCredits[this.props.randomInt] : "Loading image Credits..."}</p>
-          <p>Game on, {username}! Use the buttons to move and zoom the image. Find and click on yourself!</p>
+          <p>Game on, {username}! {window.innerWidth >= 585 ?("Use the buttons to move and zoom the image."):("")}  {window.innerWidth >= 728 ?("Find and click on yourself!"):("")}</p>
           <div className="SinglePlayer-Timers">
             
             <div className="Stopwatch">

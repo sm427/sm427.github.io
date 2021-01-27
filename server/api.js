@@ -233,6 +233,21 @@ router.get("/getGameStartTime", auth.ensureLoggedIn, (req,res) => {
   User.findById(req.user._id).then((user) => {res.send(user)})
 })
 
+router.post("/GamePauseTime", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.user._id }, {$currentDate: {"currentPauseTime": { $type: "date" },}}).then(() => {
+    User.findById(req.user._id).then((user) => {
+      res.send(user)
+    })
+  })
+})
+
+router.post("/GamePauseEndTime", auth.ensureLoggedIn, (req, res) => {
+  User.updateOne({ _id: req.user._id }, {$currentDate: {"currentPauseEndTime": { $type: "date" },}}).then(() => {
+    User.findById(req.user._id).then((user) => {
+      res.send(user)
+    })
+  })
+})
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

@@ -76,6 +76,7 @@ class SinglePlayerGame extends Component {
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
 
             this.setState({loading: this.state.loading -1 })
+            this.reportLoading((-1));
         }
     }
 
@@ -259,8 +260,8 @@ movedown = () => {
     let topBoxStart = box.getBoundingClientRect().top;
     let topFaceStart = face.getBoundingClientRect().top;
     let spacebottom = img_ele.getBoundingClientRect().bottom - window.innerHeight;
-    console.log(spacebottom);
-    console.log(img_ele.getBoundingClientRect().bottom)
+    //console.log(spacebottom);
+    //console.log(img_ele.getBoundingClientRect().bottom)
     if(spacebottom >= 50 ){
         img_ele.style.marginTop = (marginTopStart - 50) + 'px';
         box.style.top = (topBoxStart - 50) + "px";
@@ -312,6 +313,7 @@ movedown = () => {
         }
         else {
             this.setState({loading: 2})
+            this.reportLoading(2);
             //console.log("Picture Progress")
             this.props.pictureProgress()
             //load new template
@@ -346,21 +348,22 @@ movedown = () => {
             face.style.width = this.state.facePositions[templateNr][2] + 'px';
             face.style.height = this.state.facePositions[templateNr][3] + 'px';
             this.setState({loading: this.state.loading -1})
+            this.reportLoading((-1));
     }
 
     imgLoaded = () => {
         console.log("Image loaded.")
         this.setState( {loading: this.state.loading - 1})
+        this.reportLoading((-1));
+    }
+
+    reportLoading = (x) => {
+        this.props.reportLoading(x)
     }
 
     render() {
-        let img = document.getElementById("drag-img");
-        let container = document.getElementById("container");
-        if (img) {addEventListener('mousedown', this.start_drag);}
-        if (container) {
-            addEventListener('mousemove', this.while_drag);
-            addEventListener('mouseup', this.stop_drag);
-        }
+        
+        
 //document.getElementById("container").addEventListener('mousemove', this.while_drag);
 //document.getElementById("container").addEventListener('mouseup', this.stop_drag);
         

@@ -30,6 +30,8 @@ function getOrCreateUser(user) {
       imageNames: [],
       playedTimes: [],
       playedTemplates: [],
+      currentPauseTimes: [],
+      currentPauseEndTimes: []
     });
 
     return newUser.save();

@@ -26,6 +26,9 @@ class SinglePlayer extends Component {
             imageCount: 3,
             finalServerTime: 0,
             showGameOver: false,
+            loading: 2,
+            pauseEndTimes: [],
+            pauseTimes: [],
         }
     }
 
@@ -158,8 +161,44 @@ class SinglePlayer extends Component {
           //console.log(user.currentEndTime)
           //console.log(user.currentStartTime)
           let end = new Date(user.currentEndTime);
-          let start = new Date (user.currentStartTime);
-          let finalServerTime = end - start;
+          let start = new Date (this.state.pauseEndTimes[0]);
+          let allTime = end - start;
+          let pause1;
+          let pause2;
+          let pause3;
+          let pause4;
+
+          if (this.state.pauseEndTimes[1]) {
+            let pause1start = new Date (this.state.pauseTimes[0]);
+            let pause1end = new Date (this.state.pauseEndTimes[1]);
+            pause1 = pause1end - pause1start
+          }
+
+          if (this.state.pauseEndTimes[2]) {
+            let pause2start = new Date (this.state.pauseTimes[1]);
+            let pause2end = new Date (this.state.pauseEndTimes[2]);
+            pause2 = pause2end - pause2start
+          }
+
+          if (this.state.pauseEndTimes[3]) {
+            let pause3start = new Date (this.state.pauseTimes[2]);
+            let pause3end = new Date (this.state.pauseEndTimes[3]);
+            pause3 = pause3end - pause3start
+          }
+
+          if (this.state.pauseEndTimes[4]) {
+            let pause4start = new Date (this.state.pauseTimes[3]);
+            let pause4end = new Date (this.state.pauseEndTimes[4]);
+            pause4 = pause4end - pause4start
+          }
+
+          let finalServerTime = allTime
+
+          if (pause1) {finalServerTime = finalServerTime - pause1}
+          if (pause2) {finalServerTime = finalServerTime - pause2}
+          if (pause3) {finalServerTime = finalServerTime - pause3}
+          if (pause4) {finalServerTime = finalServerTime - pause4}
+          
           //console.log(finalServerTime)
           let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2);
           let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
@@ -175,6 +214,18 @@ class SinglePlayer extends Component {
       this.setState({finalTimerTime: time})
     }
 
+    reportLoading = (x) => {
+      this.setState({loading: this.state.loading + x})
+    }
+
+    reportPauseEndTimes = (times) => {
+      this.setState({pauseEndTimes: times})
+    }
+
+    reportPauseTimes = (times) => {
+      this.setState({pauseTimes: times})
+    }
+
     render() {
       //let sceneNumber = Images[this.state.randomInt];
       let sceneNumber = Images[this.state.randomInt];
@@ -186,15 +237,16 @@ class SinglePlayer extends Component {
       // <! -- images[randomIntString]-->
       let noScroll = require('no-scroll');
       setTimeout(() => {noScroll.on()}, 250);
+      console.log(this.state.loading)
       
       return(
         //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress}/>
+            <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress} reportLoading={this.reportLoading}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
-            <SinglePlayerGameSidebar finalServerTime={this.state.finalServerTime} pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt}/>
+            <SinglePlayerGameSidebar finalServerTime={this.state.finalServerTime} pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt} loading={this.state.loading} reportPauseTimes={this.reportPauseTimes} reportPauseEndTimes={this.reportPauseEndTimes}/>
           </div> 
             {/* <div className="Waldo" onClick={() => {this.pictureProgress();}}>
                {this.state.pictureCounter}
