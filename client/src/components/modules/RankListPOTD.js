@@ -14,6 +14,7 @@ class RankListPOTD extends Component {
         times : [],
         user: undefined,
         lastTime: 0,
+        date: undefined,
     }
   }
 
@@ -21,7 +22,7 @@ class RankListPOTD extends Component {
       let imageCountProp = await this.props.imageCount
       this.setState({initialImageCount: this.props.imageCount})
       fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
-        // this.setState({date: data.currentDateTime}) 
+        this.setState({date: data.currentDateTime}) 
         // let query = 
         // console.log(query)
         get("api/getPOTDtimes", {playedDate: data.currentDateTime.slice(0,10)}).then((timesObj) =>{
@@ -129,7 +130,7 @@ class RankListPOTD extends Component {
 
     return (
       <div className="u-flexColumn u-flex-alignCenter">
-        <h2 className="textCenter">Global Leaderboard for {this.props.imageCount == "1" ? this.props.imageCount + " round" : this.props.imageCount + " rounds"} </h2>
+        <h2 className="textCenter">{this.state.date? (`Puzzle of the Day Leaderboard ${this.state.date.slice(5,7)}/${this.state.date.slice(8,10)}/${this.state.date.slice(2,4)}`):("")} </h2>
         <div className="SPGO-shortHorizontalLine"> </div>
       <div className="SPGO-timesContainer">
           {ranklist}

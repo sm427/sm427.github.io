@@ -80,7 +80,7 @@ class PuzzleOfTheDaySetup extends Component {
    >
      Ranklist
    </button></Link>)
-    }}
+    }
     else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
@@ -90,8 +90,17 @@ class PuzzleOfTheDaySetup extends Component {
      >
        Play!
      </button></Link>);
-
-  }
+}}
+else {
+  usernameMessage = `Logged in as ${this.props.user.username}.`;
+  profilePictureMessage = "You have already uploaded a picture.";
+  startbutton = (<Link to="/puzzleoftheday"> <button
+    type="submit"
+    className="u-pointer App-submit Home-singlePlayerButton"
+   >
+     Play!
+   </button></Link>);}
+  
 
     return (
       <div className="Home-singleBoxContent">
