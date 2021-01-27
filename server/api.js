@@ -13,7 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Times = require("./models/times.js");
 const Lobbies = require("./models/lobbies.js");
-const POTD = require("./models/PuzzlesOfTheDay.js")
+const Potd = require("./models/puzzlesoftheday.js");
 
 // import authentication library
 const auth = require("./auth");
@@ -72,14 +72,20 @@ router.post("/times", auth.ensureLoggedIn, (req,res) => {
 })
 
 router.post("/podttimes", auth.ensureLoggedIn, (req,res) => {
-  const newPOTD = new POTD({
+  const newPotd = new Potd({
     username: req.body.user.username,
     time: req.body.finalTime,
     imageCount: req.body.imageCount,
     userId: req.user._id,
+    playedDate: req.body.date
   })
-  newPOTD.update({},{$currentDate: {"date": { $type: "date" }}})
-  newPOTD.save().then((POTDtime) => res.send(POTDtime));
+  newPotd.save().then((PotdTime) => res.send(PotdTime));
+})
+
+router.get("/getPOTDtimes", (req,res) => {
+  Potd.find({playedDate: req.query.playedDate}).then((times) => {
+    res.send(times)
+  })
 })
 
 router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
@@ -90,6 +96,13 @@ router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
 router.get("/getTimes", auth.ensureLoggedIn, (req,res) => {
   User.find({_id: req.query.userId}).then((user) => {
     res.send(user.playedTimes)
+  })
+})
+
+router.get("/getPOTDtimes", auth.ensureLoggedIn, (req,res) => {
+  POTD.find({date: req.query.date}).then((times) => {
+    console.log(times);
+    res.send(times)
   })
 })
 

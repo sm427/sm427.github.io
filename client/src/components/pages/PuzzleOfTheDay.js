@@ -29,6 +29,7 @@ class PuzzleOfTheDay extends Component {
             loading: 3,
             pauseEndTimes: [],
             pauseTimes: [],
+            date: undefined,
         }
     }
 
@@ -44,6 +45,7 @@ class PuzzleOfTheDay extends Component {
       });
       get("/api/user", { userid: this.props.userId}).then((user) => {
             fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
+                this.setState({date: data.currentDateTime})
                 let day = data.currentDateTime.slice(8,10)
                 let month = data.currentDateTime.slice(5,7)
                 let selectedImage = (parseInt(day) + parseInt(month) - 8)%Images.length
@@ -86,7 +88,8 @@ class PuzzleOfTheDay extends Component {
           let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
           this.setState({finalServerTime: minutes + ":" + seconds + ":" + centiseconds})
           console.log("Time: " + this.state.finalServerTime)
-          let body = {finalTime: finalServerTime, user: this.state.user}
+          let body = {finalTime: finalServerTime, user: this.state.user, date: this.state.date.slice(0,10)}
+          //console.log(body);
           post("/api/podttimes", body);
           //post("/api/times", body);
           this.setState({showGameOver: true})
@@ -111,7 +114,7 @@ class PuzzleOfTheDay extends Component {
       let sceneNumber = Images[this.state.randomInt];
       let noScroll = require('no-scroll');
       setTimeout(() => {noScroll.on()}, 250);
-      console.log(this.state.loading)
+      //console.log(this.state.loading)
       
       return(
         //console.log;
@@ -143,7 +146,7 @@ class PuzzleOfTheDay extends Component {
             </div>
 
             <div>
-            <Link to="/puzzleofthedayranklist">
+            <Link to="/puzzleofthedaygameover">
               <button
                   type="submit"
                   className="u-pointer SinglePlayer-GameOverButton"

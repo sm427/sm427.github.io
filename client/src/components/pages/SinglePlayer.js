@@ -237,7 +237,7 @@ class SinglePlayer extends Component {
       // <! -- images[randomIntString]-->
       let noScroll = require('no-scroll');
       setTimeout(() => {noScroll.on()}, 250);
-      console.log(this.state.loading)
+      //console.log(this.state.loading)
       
       return(
         //console.log;
