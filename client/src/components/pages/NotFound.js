@@ -6,7 +6,7 @@ class NotFound extends Component {
   }
 
   render() {
-    let noScroll = require('no-scroll');
+    let noScroll = require('no-scroll'); // no-scroll library {https://github.com/davidtheclark/no-scroll}
     noScroll.off()
 
     return (

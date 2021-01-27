@@ -80,7 +80,7 @@ class SinglePlayerGameSidebar extends Component {
     }
     
     
-      startTimer = () => {
+      startTimer = () => { // timers-demo library {https://github.com/peterdurham/timers-demo}
         this.setState({
           timerOn: true,
           timerTime: this.state.timerTime,
@@ -112,7 +112,7 @@ class SinglePlayerGameSidebar extends Component {
       let username;
       (this.props.user) ? (username = this.props.user.username) : (username="Username is loading...");
 
-      const { timerTime } = this.state;
+      const { timerTime } = this.state; // timers-demo library {https://github.com/peterdurham/timers-demo}
       let centiseconds = ("0" + (Math.floor(timerTime / 10) % 100)).slice(-2);
       let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);

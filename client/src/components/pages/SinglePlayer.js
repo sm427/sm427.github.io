@@ -200,7 +200,7 @@ class SinglePlayer extends Component {
           if (pause4) {finalServerTime = finalServerTime - pause4}
           
           //console.log(finalServerTime)
-          let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2);
+          let seconds = ("0" + (Math.floor(finalServerTime / 1000) % 60)).slice(-2); // timers-demo library {https://github.com/peterdurham/timers-demo}
           let minutes = ("0" +(Math.floor(finalServerTime / 60000) % 60)).slice(-2);
           let centiseconds = ("0" + (Math.floor(finalServerTime / 10) % 100)).slice(-2);
           this.setState({finalServerTime: minutes + ":" + seconds + ":" + centiseconds})
@@ -235,7 +235,7 @@ class SinglePlayer extends Component {
       // let seconds = ("0" + (Math.floor(finalTimerTime / 1000) % 60)).slice(-2);
       // let minutes = ("0" + (Math.floor(finalTimerTime / 60000) % 60)).slice(-2);
       // <! -- images[randomIntString]-->
-      let noScroll = require('no-scroll');
+      let noScroll = require('no-scroll'); // no-scroll library {https://github.com/davidtheclark/no-scroll}
       setTimeout(() => {noScroll.on()}, 250);
       //console.log(this.state.loading)
       

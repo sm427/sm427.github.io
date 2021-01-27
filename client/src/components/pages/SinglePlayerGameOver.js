@@ -90,7 +90,7 @@ class SinglePlayerGameOver extends Component {
 
     render() {
         // this.state.user ? console.log(`Timesssss for ${this.state.user.username}`) : console.log("not found") ;
-        let noScroll = require('no-scroll');
+        let noScroll = require('no-scroll'); // no-scroll library {https://github.com/davidtheclark/no-scroll}
         noScroll.off()
 
         return( 
