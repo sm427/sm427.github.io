@@ -47,7 +47,7 @@ class PuzzleOfTheDaySetup extends Component {
     fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
       let day = data.currentDateTime.slice(8,10)
       let month = data.currentDateTime.slice(5,7)
-      let selectedImage = (parseInt(day) + parseInt(month) - 8)%Images.length
+      let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
       this.setState({date: data.currentDateTime})
       this.setState({selectedImage: selectedImage})
     })
@@ -80,7 +80,7 @@ class PuzzleOfTheDaySetup extends Component {
    >
      Ranklist
    </button></Link>)
-    }
+    }}
     else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
@@ -91,7 +91,7 @@ class PuzzleOfTheDaySetup extends Component {
        Play!
      </button></Link>);
 
-  }}
+  }
 
     return (
       <div className="Home-singleBoxContent">
