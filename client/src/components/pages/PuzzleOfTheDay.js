@@ -48,7 +48,7 @@ class PuzzleOfTheDay extends Component {
                 this.setState({date: data.currentDateTime})
                 let day = data.currentDateTime.slice(8,10)
                 let month = data.currentDateTime.slice(5,7)
-                let selectedImage = (parseInt(day) + parseInt(month) - 8)%Images.length
+                let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
               this.setState({randomInt: selectedImage});
               
             })
@@ -63,7 +63,31 @@ class PuzzleOfTheDay extends Component {
     }
     
     pictureProgress = () => {
-      this.setState({ pictureCounter: this.state.pictureCounter +1, });
+      let body = {user: this.state.user, templateNr: this.state.randomInt}
+      // console.log("pictureProgress")
+      post("/api/reportPlayedTemplate", body).then((userObj) => { //console.log("Played Templates: " + JSON.stringify(userObj.playedTemplates));
+        
+      get("/api/user").then((user) => {
+        //console.log("Got user for playedTemplates")
+        if (user.playedTemplates.length >= Images.length) { //nr of templates
+          //console.log(user.playedTemplates);
+          post("/api/clearPlayedTemplates").then((updateUser) => {
+            console.log("Cleared record of played templates for " + updateUser.username + " because all templates have been played.");});
+            this.setState({randomInt: this.getRandomInt(Images.length)}) 
+        }
+        else {
+          //console.log("else");
+            let unplayedTemplates = [];
+            for (let i=0; i < Images.length; i++) {
+              unplayedTemplates=unplayedTemplates.concat(i)
+            }
+            let difference = unplayedTemplates.filter(x => !user.playedTemplates.includes(x));
+            //console.log("unplayed templates: " + JSON.stringify(difference))
+            let randomInt = difference[this.getRandomInt(difference.length -1)]
+          this.setState({randomInt: randomInt});
+        }
+      })
+      });
     }
 
     reportTimerTime = (time) => {
