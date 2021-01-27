@@ -24,20 +24,20 @@
     text-align: center;
 }
 
-.SPGO-timeBox:first-child{
+.SPGO-timeBox:first-of-type{
     background-color: gold;
     width: 100%;
     font-size: 24px;
     
 }
 
-.SPGO-timeBox:nth-child(2){
+.SPGO-timeBox:nth-of-type(2){
     background-color: silver;
     width: 96%;
     font-size: 22px;
 }
 
-.SPGO-timeBox:nth-child(3){
+.SPGO-timeBox:nth-of-type(3){
     background-color: burlywood;
     width: 92%;
     font-size: 20px;
