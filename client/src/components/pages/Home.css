@@ -177,3 +177,19 @@ margin: 8px 0px 16px;
     color: white;
     border: 1px solid var(--primary);
 }
+
+.Home-POTDname{
+    /* border-radius: 32px;
+    background-color: white;
+    border: 1px solid var(--darkgrey);
+    width: 100px;
+    padding: 8px 32px; */
+    margin: 0px 8px 0px;
+}
+
+.Home-shortHorizontalLine{
+    width: 64px;
+    background-color: black;
+    height: 1px;
+    margin: -8px 0px 8px;
+}

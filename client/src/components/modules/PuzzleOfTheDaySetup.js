@@ -11,7 +11,30 @@ class PuzzleOfTheDaySetup extends Component {
     super(props);
     // Initialize Default State
     this.state = {
-      templates: []
+      templates: [],
+      selectedImage: 0,
+      photographer: [
+        "CHUTTERSNAP | Unsplash",
+        "CHUTTERSNAP | Unsplash",
+        "CHUTTERSNAP | Unsplash",
+        "JohnDarrochNZ | Wikimedia",
+        "Visit El Paso | Flickr",
+        "Visit El Paso | Flickr",
+        "Visit El Paso | Flickr",
+        "Hanson Lu | Unsplash",
+        "Hanson Lu | Unsplash",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Ben Kerckx | Pixabay",
+        "Ben Kerckx | Pixabay",
+        "Ben Kerckx | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay",
+        "Keith Johnston | Pixabay"
+      ]
     };
   }
 
@@ -24,7 +47,8 @@ class PuzzleOfTheDaySetup extends Component {
     fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
       let day = data.currentDateTime.slice(8,10)
       let month = data.currentDateTime.slice(5,7)
-      let selectedImage = (parseInt(day) + parseInt(month))%Images.length
+      let selectedImage = (parseInt(day) + parseInt(month) - 8)%Images.length
+      this.setState({selectedImage: selectedImage})
     })
 
   }
@@ -68,9 +92,11 @@ class PuzzleOfTheDaySetup extends Component {
             <p>{profilePictureMessage}</p>
           </div>
 
-          <div>
+          <div className="u-flexColumn u-flex-alignCenter">
                 <h4>Today's puzzle of the day is</h4>
-                <p>[Name]</p>
+                {/* <div className="Home-POTDname"> Image #{this.state.selectedImage}</div> */}
+                <h2 className="Home-POTDname"> Image #{this.state.selectedImage}</h2>
+                <p>by {this.state.photographer[this.state.selectedImage]}</p>
           </div></div>
                
 

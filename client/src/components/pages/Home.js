@@ -62,6 +62,7 @@ class Home extends Component {
     return (
       <div className="Home-Background">
         <h1 className="Home-Header u-textCenter">Welcome to Track'nTag</h1>
+        <div className="Home-shortHorizontalLine" />
         <h2 className="u-textCenter">Find yourself in the crowd!</h2>
         <div className="Home-Container"> 
           <div className="Home-singleContainer">
