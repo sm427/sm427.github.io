@@ -63,6 +63,7 @@
     margin: 16px;
     flex: 1 0 350px;
     max-height:520px;
+    width: 30vw;
 }
 
 .Home-singleBoxContent{

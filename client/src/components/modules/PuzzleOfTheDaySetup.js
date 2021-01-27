@@ -4,22 +4,29 @@ import "../pages/Home.css";
 import InputField from "./InputField.js";
 import { Link } from "@reach/router";
 import { get, post } from "../../utilities";
+import Images from "../images/photoIndex.js";
 
 class PuzzleOfTheDaySetup extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
     this.state = {
-      Lobbyname: {
-      value: "",
-      placeholder: "Name your Lobby"
-      },
-      Lobbycode: {
-        value: "",
-        placeholder: "Lobby Code"
-        },
-      slidervalue: 3,
+      templates: []
     };
+  }
+
+  componentDidMount() {
+    let templates = []
+    for (let i=0; i<Images.length; i++) {
+      templates = templates.concat(i)
+    }
+    this.setState({templates: templates})
+    fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
+      let day = data.currentDateTime.slice(8,10)
+      let month = data.currentDateTime.slice(5,7)
+      let selectedImage = (parseInt(day) + parseInt(month))%Images.length
+    })
+
   }
 
   render() {
