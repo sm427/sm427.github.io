@@ -3,7 +3,7 @@
 ## Our Website
 
 - A "Where's Waldo" game with your own face!
-- Race Against the clock!
+- Race against the clock!
 - Compete with your friends on the global leaderboard!
 
 ## 3rd party libraries/APIs
