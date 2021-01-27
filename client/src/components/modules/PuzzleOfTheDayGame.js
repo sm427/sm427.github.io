@@ -35,7 +35,7 @@ class SinglePlayerGame extends Component {
                 [237, 535, 23, 30, 1368], //19, t21
 
             ],
-            loading: 3,
+            loading: 1,
         }
     }
 
