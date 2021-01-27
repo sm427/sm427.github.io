@@ -47,6 +47,7 @@ class PuzzleOfTheDay extends Component {
       get("/api/user", { userid: this.props.userId}).then((user) => {
             fetch("http://worldclockapi.com/api/json/est/now").then((response) => {return response.json(); }).then((data) => {
                 this.setState({date: data.currentDateTime})
+                console.log(data.currentDateTime);
                 let day = data.currentDateTime.slice(8,10)
                 let month = data.currentDateTime.slice(5,7)
                 let selectedImage = (parseInt(day) + parseInt(month) - 8 + Images.length)%Images.length
