@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
   playedTemplates: [Number],
   // currentStartTime: Number,
   // currentEndTime: Number,
+  playedPOTD: [String],
 });
 
 // compile model from schema

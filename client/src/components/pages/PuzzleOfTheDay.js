@@ -91,6 +91,7 @@ class PuzzleOfTheDay extends Component {
           let body = {finalTime: finalServerTime, user: this.state.user, date: this.state.date.slice(0,10)}
           //console.log(body);
           post("/api/podttimes", body);
+          post("/api/podtplayed", body);
           //post("/api/times", body);
           this.setState({showGameOver: true})
         })
@@ -115,6 +116,43 @@ class PuzzleOfTheDay extends Component {
       let noScroll = require('no-scroll');
       setTimeout(() => {noScroll.on()}, 250);
       //console.log(this.state.loading)
+
+      let anticheat = ""
+        if (this.state.user && this.state.date) {
+            //console.log(this.state.user.playedPOTD);
+           //console.log(this.state.date.slice(0,10));
+       if (this.state.user.playedPOTD.includes(this.state.date.slice(0,10))) {
+           
+       anticheat = (<div> 
+          <div className="SinglePlayer-dimBackground"></div>
+        <div className="SinglePlayer-GameOver u-flexColumn u-flex-alignCenter u-flex-justifyCenter">
+        
+          <div> <h2>
+            You have already played today! </h2>
+          </div>
+
+          <div className="SinglePlayer-longGameOverText">
+            You aren't allowed to play the puzzle of the day multiple times. Come back tomorrow.
+          </div>
+          
+
+          <div>
+          <Link to="/puzzleofthedaygameover">
+            <button
+                type="submit"
+                className="u-pointer SinglePlayer-GameOverButton"
+                value="Change"
+                >
+                  See the ranklist!
+            </button>
+          </Link>
+            
+          </div>
+
+        </div>
+
+        </div>)}}
+        
       
       return(
         //console.log;
@@ -161,6 +199,8 @@ class PuzzleOfTheDay extends Component {
           </div>
 
           </div>) : ("")}
+
+          {anticheat}
         </div>
       )
     }

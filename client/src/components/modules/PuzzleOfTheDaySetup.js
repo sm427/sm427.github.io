@@ -48,6 +48,7 @@ class PuzzleOfTheDaySetup extends Component {
       let day = data.currentDateTime.slice(8,10)
       let month = data.currentDateTime.slice(5,7)
       let selectedImage = (parseInt(day) + parseInt(month) - 8)%Images.length
+      this.setState({date: data.currentDateTime})
       this.setState({selectedImage: selectedImage})
     })
 
@@ -69,7 +70,18 @@ class PuzzleOfTheDaySetup extends Component {
     profilePictureMessage =("Please upload a picture in Profile to continue!");
     startbutton = (<div className="SinglePlayer-notLoggedInText">Upload a picture before playing.</div>) //bug, I have a profile picture and it is not letting me hit the button
   }
-  else {
+  else if (this.props.user.playedPOTD && this.state.date) {
+    if (this.props.user.playedPOTD.includes(this.state.date.slice(0,10))) {
+    usernameMessage = `You have already played today. Come back tomorrow.`;
+    profilePictureMessage =("");
+    startbutton = (<Link to="/puzzleofthedaygameover"> <button
+    type="submit"
+    className="u-pointer App-submit Home-singlePlayerButton"
+   >
+     Ranklist
+   </button></Link>)
+    }
+    else {
     usernameMessage = `Logged in as ${this.props.user.username}.`;
     profilePictureMessage = "You have already uploaded a picture.";
     startbutton = (<Link to="/puzzleoftheday"> <button
@@ -79,7 +91,7 @@ class PuzzleOfTheDaySetup extends Component {
        Play!
      </button></Link>);
 
-  }
+  }}
 
     return (
       <div className="Home-singleBoxContent">

@@ -88,6 +88,13 @@ router.get("/getPOTDtimes", (req,res) => {
   })
 })
 
+router.post("/podtplayed", auth.ensureLoggedIn, (req,res) => {
+  User.findById(req.user._id).then(user => {
+    user.playedPOTD = user.playedPOTD.concat(req.body.date)
+    user.save().then((updatedUser)=>res.send(updatedUser));
+  })
+})
+
 router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {
   User.updateOne({ _id: req.body.user._id },{ $push: { playedTimes: ([req.body.finalTime, req.body.imageCount]) } }).then((user) => {
   res.send({}); });

@@ -31,7 +31,8 @@ function getOrCreateUser(user) {
       playedTimes: [],
       playedTemplates: [],
       currentPauseTimes: [],
-      currentPauseEndTimes: []
+      currentPauseEndTimes: [],
+      playedPOTD: [],
     });
 
     return newUser.save();
