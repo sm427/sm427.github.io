@@ -21,3 +21,9 @@
 - World Clock API
 
    {http://worldclockapi.com}
+   
+- timers-demo
+
+   Peter Durham
+   
+   {https://github.com/peterdurham/timers-demo}
