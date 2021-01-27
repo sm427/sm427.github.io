@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 //import { get, post } from "../../utilities";
 import { Redirect } from "react-router-dom";
 import SinglePlayerGame from "../modules/SinglePlayerGame.js"
+import PuzzleOfTheDayGame from "../modules/SinglePlayerGame.js"
 import SinglePlayerGameSidebar from "../modules/SinglePlayerGameSidebar.js"
 //import Waldo from "../modules/Waldo.js"
 import { useHistory } from "react-router-dom";
@@ -158,7 +159,7 @@ class PuzzleOfTheDay extends Component {
         //console.log;
         <div className="SinglePlayer-container">
           <div className="SinglePlayer-SearchImageContainer">
-            <SinglePlayerGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress} reportLoading={this.reportLoading}/>
+            <PuzzleOfTheDayGame sceneNumber={sceneNumber} randomInt={this.state.randomInt} pictureCounter={this.state.pictureCounter} user={this.state.user} endGame={this.endGame} imageCount={this.state.imageCount} pictureProgress={this.pictureProgress} reportLoading={this.reportLoading}/>
           </div>
           <div className="SinglePlayer-SideBarContainer">
             <SinglePlayerGameSidebar finalServerTime={this.state.finalServerTime} pictureCounter={this.state.pictureCounter} user={this.state.user} gameOn={this.state.gameOn} reportTimerTime={this.reportTimerTime} randomInt={this.state.randomInt} loading={this.state.loading} reportPauseTimes={this.reportPauseTimes} reportPauseEndTimes={this.reportPauseEndTimes}/>
