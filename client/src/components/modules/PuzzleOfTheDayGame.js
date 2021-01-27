@@ -80,7 +80,8 @@ class SinglePlayerGame extends Component {
         }
     }
     componentDidUpdate(prevProps){
-        this.loadTemplate();
+        if (prevProps.randomInt !== this.props.randomInt)
+            this.loadTemplate();
     }
     // componentDidUpdate(prevProps) {
     //     if (prevProps.randomInt !== this.props.randomInt && this.props.randomInt) {
