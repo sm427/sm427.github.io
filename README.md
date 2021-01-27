@@ -18,10 +18,6 @@
  
     {https://github.com/davidtheclark/no-scroll}
    
-- World Clock API
-
-   {http://worldclockapi.com}
-   
 - timers-demo
 
    Peter Durham

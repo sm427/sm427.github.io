@@ -153,7 +153,7 @@ class SinglePlayer extends Component {
       return randomInt;
     }
 
-    reportTimerTime = (time) => {
+    reportTimerTime = (time) => { // timers-demo library {https://github.com/peterdurham/timers-demo}
       post("/api/GameEndTime").then(() => {
         get("/api/user").then((user) => {
           //this.setState({startServerTime: user.currentStartTime, endServerTime: user.currentEndTime})
