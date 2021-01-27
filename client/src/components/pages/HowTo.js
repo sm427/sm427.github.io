@@ -39,8 +39,12 @@ class HowTo extends Component {
         <p className="HT-text">Head back to the homepage. If you did successfully log in and upload a picture, you should be able to hit the "Play!" button in the singleplayer setup panel. Prior to clicking the button, select how many rounds you want to play.</p>
         <p className="HT-text">The photo that you've uploaded is hidden in an image of a crowd. Not all features of your face are always conserverd, so look carefully! When you've found your face, click on it.</p>
         <p className="HT-text">When you have played the number of rounds that you set in the beginning, you'll be redirected to a page with ranklists where you can compare your latest time to your best times or the globally best times. Can you become number 1 on the ranklist? </p>
-        <Link to="/"> <button className="u-pointer App-submit" value="Change" onClick={this.handleSubmit}>
-       Go back to Home page!
+
+        <h2>Puzzle of the Day</h2>
+        <p className="HT-text">Every day, one puzzle gets selected as the puzzle of the day. You only have one attempt to solve it as fast as you can. Are you the fastest Track'nTag player in the world today?</p>
+
+        <Link to="/"> <button className="u-pointer App-submit HT-Button" value="Change" onClick={this.handleSubmit}>
+       Go back to the Home Page
      </button></Link>
       </div>
     );

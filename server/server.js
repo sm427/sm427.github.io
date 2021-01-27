@@ -97,12 +97,12 @@ app.use((err, req, res, next) => {
 });
 
 
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers
-} = require('./models/roomUsers');
+// const {
+//   userJoin,
+//   getCurrentUser,
+//   userLeave,
+//   getRoomUsers
+// } = require('./models/roomUsers');
 
 //const server = http.createServer(app);
 //let server = http.createServer(app);

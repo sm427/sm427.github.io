@@ -6,9 +6,9 @@
 
 ## Website Description
 
-- A "Where's Waldo" game with your own face!
-- Race against the clock!
-- Compete with your friends on the global leaderboard!
+- In a “Where’s Waldo” type of game, the user’s face gets added to a picture of a large crowd. 
+- The users have to find their face against the clock with the time being added to a global leaderboard.
+- Every day, users have one attempt at a puzzle of the day that functions similarly.
 
 ## 3rd party libraries/APIs
 
@@ -17,3 +17,7 @@
     Copyright (c) 2015 David Clark
  
     {https://github.com/davidtheclark/no-scroll}
+   
+- World Clock API
+
+   {http://worldclockapi.com}
