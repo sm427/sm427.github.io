@@ -128,6 +128,12 @@ position: absolute;
     height: 100%;
 }
 
+.sp-face-transparent{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
 .SinglePlayer-SideBarPictureContainer {
     position: absolute;
     z-index: 15;
@@ -263,4 +269,18 @@ a{
 
 a:hover{
     color: var(--primary--dim)
+}
+
+.SinglePlayer-longGameOverText{
+    width: 60%;
+    text-align: center;
+    margin: 8px;
+    line-height: 1.4;
+}
+
+.SinglePlayer-gameOverShortLine{
+    width: 64px;
+    height: 1px;
+    background-color: white;
+    margin: 12px 0px 4px;
 }

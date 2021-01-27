@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Times = require("./models/times.js");
 const Lobbies = require("./models/lobbies.js");
+const POTD = require("./models/PuzzlesOfTheDay.js")
 
 // import authentication library
 const auth = require("./auth");
@@ -68,6 +69,17 @@ router.post("/times", auth.ensureLoggedIn, (req,res) => {
     userId: req.user._id
   });
   newTimes.save().then((time) => res.send(time));
+})
+
+router.post("/podttimes", auth.ensureLoggedIn, (req,res) => {
+  const newPOTD = new POTD({
+    username: req.body.user.username,
+    time: req.body.finalTime,
+    imageCount: req.body.imageCount,
+    userId: req.user._id,
+  })
+  newPOTD.update({},{$currentDate: {"date": { $type: "date" }}})
+  newPOTD.save().then((POTDtime) => res.send(POTDtime));
 })
 
 router.post("/reportTime", auth.ensureLoggedIn, (req, res) => {

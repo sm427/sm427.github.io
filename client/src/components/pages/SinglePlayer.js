@@ -26,7 +26,7 @@ class SinglePlayer extends Component {
             imageCount: 3,
             finalServerTime: 0,
             showGameOver: false,
-            loading: 2,
+            loading: 3,
             pauseEndTimes: [],
             pauseTimes: [],
         }

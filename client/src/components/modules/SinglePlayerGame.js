@@ -35,7 +35,7 @@ class SinglePlayerGame extends Component {
                 [237, 535, 23, 30, 1368], //19, t21
 
             ],
-            loading: 2,
+            loading: 3,
         }
     }
 
@@ -400,7 +400,7 @@ movedown = () => {
 
                 <div  className="SinglePlayer-ImageContainer" id="container">
                         <div className="SinglePlayer-face" id="drag-face">
-                            {this.state.loading ? (""):(<img src={this.state.images[0]} className="sp-face" />)}
+                            {this.state.loading ? (<img src={this.state.images[0]} className="sp-face-transparent" onLoad={this.imgLoaded}/>):(<img src={this.state.images[0]} className="sp-face"/>)}
                         </div>
                         <img  ref = "theImage" id="drag-img" className="SinglePlayer-Image" src={this.props.sceneNumber} alt="scene" onLoad={this.imgLoaded}/>
                         {/* <Link to="/singleplayergameover">*/} <div className="SinglePlayer-box" id="drag-box" onClick={this.gameOver}></div> {/*</Link> */}

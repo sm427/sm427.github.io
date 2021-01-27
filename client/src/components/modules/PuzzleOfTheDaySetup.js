@@ -75,8 +75,6 @@ class PuzzleOfTheDaySetup extends Component {
     startbutton = (<Link to="/puzzleoftheday"> <button
       type="submit"
       className="u-pointer App-submit Home-singlePlayerButton"
-      value="Change"
-      onClick={this.handleSubmit}
      >
        Play!
      </button></Link>);
