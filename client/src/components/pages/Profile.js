@@ -183,9 +183,9 @@ class Profile extends Component {
           <p className="Profile-PictureExplanation">Save the image and upload it here.</p>
           <p className="Profile-PictureExplanation">Optional: For the best experience, make sure that your image has a width of 200px and a height of 300px, distorting it if neccessary. If your graphics editor supports it, change the colors to 8-bit, in order to decrease the file size. Save as .png.</p>
           <p className="Profile-PictureExplanation">Feel free to right-click, save, reupload, and play with one of the sample pictures below.</p>
-          <p className="Profile-PictureExplanation">Sample picture:</p>
-          <img src="https://storage.googleapis.com/xaea12sgodparentsbucket1/testface4.png" />
-          <p className="Profile-PictureExplanation">Sources: CC <a href="https://commons.wikimedia.org/wiki/File:JoeBidenCropped.jpg">White House</a>, images distorted and mirrored</p>
+          <p className="Profile-PictureExplanation">Sample pictures:</p>
+          <img className="Profile-samplePicture" src="https://storage.googleapis.com/xaea12sgodparentsbucket1/testface4.png" /> <img className="Profile-samplePicture" src="https://storage.googleapis.com/xaea12sgodparentsbucket1/testface8.png"/> <img className="Profile-samplePicture" src="https://storage.googleapis.com/xaea12sgodparentsbucket1/testface1.png"/>
+          <p className="Profile-PictureExplanation">Image Credit: <a href="https://commons.wikimedia.org/wiki/File:JoeBidenCropped.jpg" className="Profile-link">White House</a>, <a href="https://commons.wikimedia.org/wiki/File:Salma_Hayek-9894.jpg" className="Profile-link">Harald Krichel</a>, Jakob de Raaij; images distorted and mirrored. All images on this homepage are licensed under Creative Commons.</p>
           </div>
           </div>
 

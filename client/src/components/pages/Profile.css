@@ -82,3 +82,12 @@
 .Profile-imageCountSelector:nth-child(2){
     background-color: var(--primary);
 }
+
+.Profile-link{
+    color: black;
+}
+
+.Profile-samplePicture{
+    height:200px;
+    margin: 8px;
+}
