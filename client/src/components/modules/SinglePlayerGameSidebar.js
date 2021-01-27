@@ -4,7 +4,6 @@ import { get, post } from "../../utilities.js";
 import "../../utilities.css";
 import "../App.css";
 import "../pages/SinglePlayer.css"
-import Stopwatch from "./GameStopwatch.js"
 
 class SinglePlayerGameSidebar extends Component {
     constructor (props) {
