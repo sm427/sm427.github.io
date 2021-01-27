@@ -79,7 +79,9 @@ class SinglePlayerGame extends Component {
             this.reportLoading((-1));
         }
     }
-
+    componentDidUpdate(prevProps){
+        this.loadTemplate();
+    }
     // componentDidUpdate(prevProps) {
     //     if (prevProps.randomInt !== this.props.randomInt && this.props.randomInt) {
     //         // this.gameOver();
